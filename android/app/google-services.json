@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "774301598894",
+    "project_id": "esquadrao-vendas-183ffj",
+    "storage_bucket": "esquadrao-vendas-183ffj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774301598894:android:0499b7a87c92288735993f",
+        "android_client_info": {
+          "package_name": "br.com.eupromovo.edv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774301598894-v0a69o6i1s2rmlta3g79n8hgukivva96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.eupromovo.edv",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "774301598894-vsjprub4mu1hehgg8m6msikgufgge9rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6vLSWrwWEl-hfByVPIUhyU4F6GeFmc_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774301598894-vsjprub4mu1hehgg8m6msikgufgge9rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "774301598894-k7ausa97q3q45ba366ktv2q3ssm5c8as.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.eupromovo.edv"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
