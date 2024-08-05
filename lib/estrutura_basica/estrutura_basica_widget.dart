@@ -77,6 +77,7 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                           const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
                       child: Container(
                         width: double.infinity,
+                        height: MediaQuery.sizeOf(context).height * 0.9,
                         constraints: const BoxConstraints(
                           maxWidth: 800.0,
                         ),
@@ -95,6 +96,7 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                                 child: const PgHeaderCmpWidget(),
                               ),
                               Container(
+                                height: MediaQuery.sizeOf(context).height * 0.8,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
