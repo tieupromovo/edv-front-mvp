@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class TrocaSenhaModel extends FlutterFlowModel<TrocaSenhaWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -36,7 +35,6 @@ class TrocaSenhaModel extends FlutterFlowModel<TrocaSenhaWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     passwordNewUpdateFocusNode?.dispose();
     passwordNewUpdateTextController?.dispose();

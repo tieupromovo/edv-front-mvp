@@ -104,7 +104,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/acaoCreatePage',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'AcaoCreatePage')
-              : const AcaoCreatePageWidget(),
+              : AcaoCreatePageWidget(
+                  actionID: params.getParam(
+                    'actionID',
+                    ParamType.int,
+                  ),
+                ),
         ),
         FFRoute(
           name: 'AcaoLojasCreatePage',
@@ -139,6 +144,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TrocaSenha',
           path: '/TrocaSenha',
           builder: (context, params) => const TrocaSenhaWidget(),
+        ),
+        FFRoute(
+          name: 'OnBoardingPage',
+          path: '/OnBoardingPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'OnBoardingPage')
+              : const OnBoardingPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

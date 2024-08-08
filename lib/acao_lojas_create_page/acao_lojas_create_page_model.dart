@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'acao_lojas_create_page_widget.dart' show AcaoLojasCreatePageWidget;
 import 'package:flutter/material.dart';
 
@@ -14,12 +13,12 @@ class AcaoLojasCreatePageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
-  // State field(s) for acao_input widget.
-  String? acaoInputValue;
-  FormFieldController<String>? acaoInputValueController;
+  // State field(s) for nomeLoja_acao widget.
+  FocusNode? nomeLojaAcaoFocusNode;
+  TextEditingController? nomeLojaAcaoTextController;
+  String? Function(BuildContext, String?)? nomeLojaAcaoTextControllerValidator;
   // State field(s) for nomeLoja_input widget.
   FocusNode? nomeLojaInputFocusNode;
   TextEditingController? nomeLojaInputTextController;
@@ -44,8 +43,10 @@ class AcaoLojasCreatePageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     pgHeaderCmpModel.dispose();
+    nomeLojaAcaoFocusNode?.dispose();
+    nomeLojaAcaoTextController?.dispose();
+
     nomeLojaInputFocusNode?.dispose();
     nomeLojaInputTextController?.dispose();
 

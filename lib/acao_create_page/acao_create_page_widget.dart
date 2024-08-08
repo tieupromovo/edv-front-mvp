@@ -10,7 +10,12 @@ import 'acao_create_page_model.dart';
 export 'acao_create_page_model.dart';
 
 class AcaoCreatePageWidget extends StatefulWidget {
-  const AcaoCreatePageWidget({super.key});
+  const AcaoCreatePageWidget({
+    super.key,
+    this.actionID,
+  });
+
+  final int? actionID;
 
   @override
   State<AcaoCreatePageWidget> createState() => _AcaoCreatePageWidgetState();
@@ -42,9 +47,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -273,7 +276,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   ),
                                                   Text(
                                                     dateTimeFormat(
-                                                      'd/M/y',
+                                                      "d/M/y",
                                                       _model.datePicked1,
                                                       locale:
                                                           FFLocalizations.of(
@@ -397,7 +400,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   ),
                                                   Text(
                                                     dateTimeFormat(
-                                                      'd/M/y',
+                                                      "d/M/y",
                                                       _model.datePicked2,
                                                       locale:
                                                           FFLocalizations.of(
@@ -600,6 +603,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             .toString(),
                                                         jwt:
                                                             currentAuthenticationToken,
+                                                        actionMakerId: 1,
                                                       );
 
                                                       if ((_model

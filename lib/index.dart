@@ -12,3 +12,5 @@ export '/acao_equipe_create_page/acao_equipe_create_page_widget.dart'
 export '/esqueci_senha_page/esqueci_senha_page_widget.dart'
     show EsqueciSenhaPageWidget;
 export '/troca_senha/troca_senha_widget.dart' show TrocaSenhaWidget;
+export '/on_boarding_page/on_boarding_page_widget.dart'
+    show OnBoardingPageWidget;

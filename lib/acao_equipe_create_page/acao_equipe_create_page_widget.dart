@@ -92,9 +92,7 @@ class _AcaoEquipeCreatePageWidgetState
         final acaoEquipeCreatePageActionListDetailResponse = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -287,11 +285,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                             0.0,
                                                                       ),
                                                               hintText:
-                                                                  ActionListDetailCall
-                                                                      .actionName(
-                                                                acaoEquipeCreatePageActionListDetailResponse
-                                                                    .jsonBody,
-                                                              ),
+                                                                  'Selecione uma ação',
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
@@ -1151,6 +1145,9 @@ class _AcaoEquipeCreatePageWidgetState
                                                           TeamListAllCall.call(
                                                         jwt:
                                                             currentAuthenticationToken,
+                                                        actionId:
+                                                            widget.lojaacaoId,
+                                                        storeId: widget.lojaId,
                                                       ),
                                                       builder:
                                                           (context, snapshot) {
@@ -1264,7 +1261,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                                         child: Text(
                                                                                           getJsonField(
                                                                                             equipeListItensItem,
-                                                                                            r'''$.type''',
+                                                                                            r'''$.profile''',
                                                                                           ).toString(),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 fontFamily: 'Inter',

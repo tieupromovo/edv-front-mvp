@@ -4,7 +4,6 @@ enum FuncaoEnum {
   Consultor,
   Lider,
   Recepcionista,
-  SELLER,
 }
 
 enum MessageTypeEnum {

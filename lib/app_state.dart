@@ -25,4 +25,33 @@ class FFAppState extends ChangeNotifier {
   set PageTitle(String value) {
     _PageTitle = value;
   }
+
+  List<dynamic> _sortedActionList = [];
+  List<dynamic> get sortedActionList => _sortedActionList;
+  set sortedActionList(List<dynamic> value) {
+    _sortedActionList = value;
+  }
+
+  void addToSortedActionList(dynamic value) {
+    sortedActionList.add(value);
+  }
+
+  void removeFromSortedActionList(dynamic value) {
+    sortedActionList.remove(value);
+  }
+
+  void removeAtIndexFromSortedActionList(int index) {
+    sortedActionList.removeAt(index);
+  }
+
+  void updateSortedActionListAtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    sortedActionList[index] = updateFn(_sortedActionList[index]);
+  }
+
+  void insertAtIndexInSortedActionList(int index, dynamic value) {
+    sortedActionList.insert(index, value);
+  }
 }

@@ -98,12 +98,14 @@ class ActionCreateCall {
     String? startAt = '',
     String? finishAt = '',
     String? jwt = '',
+    int? actionMakerId = 1,
   }) async {
     final ffApiRequestBody = '''
 {
   "name": "$name",
   "startAt": "$startAt",
-  "finishAt": "$finishAt"
+  "finishAt": "$finishAt",
+  "actionMakerId": $actionMakerId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ActionCreate',
@@ -180,7 +182,8 @@ class LojaCreateCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'LojaCreate',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores',
+      apiUrl:
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -342,6 +345,11 @@ class ActionListAllCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
+  static List? listAll(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+        true,
+      ) as List?;
 }
 
 class ActionListDetailCall {
@@ -445,10 +453,12 @@ class DELETEActionCall {
 class LojasListAllCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
+    int? actionId,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LojasListAll',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores',
+      apiUrl:
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -500,20 +510,27 @@ class LojasListAllCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
-  static List? storeActionId(dynamic response) => getJsonField(
+  static List<int>? storeActionId(dynamic response) => (getJsonField(
         response,
         r'''$[:].actionId''',
         true,
-      ) as List?;
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 class TeamListAllCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
+    int? actionId,
+    int? storeId,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamListAll',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/team',
+      apiUrl:
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/store/$storeId/teams',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -547,15 +564,6 @@ class TeamListAllCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
-  static List<String>? equipeType(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].type''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
   static List<int>? equipeId(dynamic response) => (getJsonField(
         response,
         r'''$[:].storeId''',
@@ -565,6 +573,18 @@ class TeamListAllCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
+  static String? profile(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].profile''',
+      ));
+  static int? teamId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].teamId''',
+      ));
+  static int? actionId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].actionId''',
+      ));
 }
 
 class TeamCreateCall {
@@ -709,6 +729,51 @@ class LojasListDetailCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LojasListDetail',
       apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/$storeId',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? lojaName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.name''',
+      ));
+  static int? lojaId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.storeId''',
+      ));
+  static int? lojaGoal(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.goal''',
+      ));
+  static String? lojaCity(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.addresses[:].city''',
+      ));
+  static dynamic actionId(dynamic response) => getJsonField(
+        response,
+        r'''$.actionId''',
+      );
+}
+
+class LojasListPorIDCall {
+  static Future<ApiCallResponse> call({
+    String? jwt = '',
+    int? acaoId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'LojasListPorID',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/$acaoId/stores',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',

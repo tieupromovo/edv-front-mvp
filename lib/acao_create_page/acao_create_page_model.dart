@@ -6,9 +6,12 @@ import 'acao_create_page_widget.dart' show AcaoCreatePageWidget;
 import 'package:flutter/material.dart';
 
 class AcaoCreatePageModel extends FlutterFlowModel<AcaoCreatePageWidget> {
+  ///  Local state fields for this page.
+
+  int? stateActionID;
+
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // State field(s) for txt_name widget.
@@ -30,7 +33,6 @@ class AcaoCreatePageModel extends FlutterFlowModel<AcaoCreatePageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     pgHeaderCmpModel.dispose();
     txtNameFocusNode?.dispose();
     txtNameTextController?.dispose();
