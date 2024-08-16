@@ -102,22 +102,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AcaoCreatePage',
           path: '/acaoCreatePage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'AcaoCreatePage')
-              : AcaoCreatePageWidget(
-                  actionID: params.getParam(
-                    'actionID',
-                    ParamType.int,
-                  ),
-                ),
+              : const AcaoCreatePageWidget(),
         ),
         FFRoute(
           name: 'AcaoLojasCreatePage',
           path: '/acaoLojasCreatePage',
           builder: (context, params) => AcaoLojasCreatePageWidget(
-            actionID: params.getParam(
-              'actionID',
-              ParamType.int,
+            acao: params.getParam(
+              'acao',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ActionStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -125,13 +123,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AcaoEquipeCreatePage',
           path: '/acaoEquipeCreatePage',
           builder: (context, params) => AcaoEquipeCreatePageWidget(
-            lojaacaoId: params.getParam(
-              'lojaacaoId',
-              ParamType.int,
+            store: params.getParam(
+              'store',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StoreStruct.fromSerializableMap,
             ),
-            lojaId: params.getParam(
-              'lojaId',
-              ParamType.int,
+            acao: params.getParam(
+              'acao',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ActionStruct.fromSerializableMap,
             ),
           ),
         ),

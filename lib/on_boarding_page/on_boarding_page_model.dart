@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,6 +7,10 @@ import 'on_boarding_page_widget.dart' show OnBoardingPageWidget;
 import 'package:flutter/material.dart';
 
 class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
+  ///  Local state fields for this page.
+
+  int? selectedActionId;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for PgHeaderCmp component.
@@ -13,6 +18,8 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
+  // Stores action output result for [Backend Call - API (ActionListAll)] action in DropDown widget.
+  ApiCallResponse? apiActionID;
   // State field(s) for DropDown widget.
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;

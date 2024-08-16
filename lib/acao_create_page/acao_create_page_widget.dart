@@ -1,6 +1,8 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
+import '/components/edit_acao_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,12 +12,7 @@ import 'acao_create_page_model.dart';
 export 'acao_create_page_model.dart';
 
 class AcaoCreatePageWidget extends StatefulWidget {
-  const AcaoCreatePageWidget({
-    super.key,
-    this.actionID,
-  });
-
-  final int? actionID;
+  const AcaoCreatePageWidget({super.key});
 
   @override
   State<AcaoCreatePageWidget> createState() => _AcaoCreatePageWidgetState();
@@ -741,24 +738,30 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
 
                                             return Builder(
                                               builder: (context) {
-                                                final actionListItens =
-                                                    listViewActionListAllResponse
-                                                        .jsonBody
-                                                        .toList();
+                                                final acaoList = (listViewActionListAllResponse
+                                                                .jsonBody
+                                                                .toList()
+                                                                .map<ActionStruct?>(
+                                                                    ActionStruct
+                                                                        .maybeFromMap)
+                                                                .toList()
+                                                            as Iterable<
+                                                                ActionStruct?>)
+                                                        .withoutNulls
+                                                        .toList() ??
+                                                    [];
 
                                                 return ListView.separated(
                                                   padding: EdgeInsets.zero,
                                                   scrollDirection:
                                                       Axis.vertical,
-                                                  itemCount:
-                                                      actionListItens.length,
+                                                  itemCount: acaoList.length,
                                                   separatorBuilder: (_, __) =>
                                                       const SizedBox(height: 4.0),
-                                                  itemBuilder: (context,
-                                                      actionListItensIndex) {
-                                                    final actionListItensItem =
-                                                        actionListItens[
-                                                            actionListItensIndex];
+                                                  itemBuilder:
+                                                      (context, acaoListIndex) {
+                                                    final acaoListItem =
+                                                        acaoList[acaoListIndex];
                                                     return Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -811,26 +814,63 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                         CrossAxisAlignment
                                                                             .stretch,
                                                                     children: [
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          getJsonField(
-                                                                            actionListItensItem,
-                                                                            r'''$.name''',
-                                                                          ).toString(),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Inter',
-                                                                                fontSize: 12.0,
-                                                                                letterSpacing: 0.0,
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                4.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              acaoListItem.name,
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Inter',
+                                                                                    fontSize: 12.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.end,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Início: ',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Inter',
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                ),
                                                                               ),
-                                                                        ),
+                                                                              Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                child: Text(
+                                                                                  acaoListItem.startAt,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Inter',
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                       Padding(
                                                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -844,14 +884,13 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                               MainAxisSize.max,
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
                                                                           children: [
                                                                             Padding(
                                                                               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                               child: Text(
-                                                                                getJsonField(
-                                                                                  actionListItensItem,
-                                                                                  r'''$.startAt''',
-                                                                                ).toString(),
+                                                                                acaoListItem.actionStatus,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Inter',
                                                                                       fontSize: 12.0,
@@ -859,19 +898,34 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                                     ),
                                                                               ),
                                                                             ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                getJsonField(
-                                                                                  actionListItensItem,
-                                                                                  r'''$.finishAt''',
-                                                                                ).toString(),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Inter',
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
+                                                                            Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                  child: Text(
+                                                                                    'Fim: ',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Inter',
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                  child: Text(
+                                                                                    acaoListItem.finishAt,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Inter',
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
                                                                             ),
                                                                           ],
                                                                         ),
@@ -929,13 +983,10 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                           'AcaoLojasCreatePage',
                                                                           queryParameters:
                                                                               {
-                                                                            'actionID':
+                                                                            'acao':
                                                                                 serializeParam(
-                                                                              getJsonField(
-                                                                                actionListItensItem,
-                                                                                r'''$.actionId''',
-                                                                              ),
-                                                                              ParamType.int,
+                                                                              ActionStruct.maybeFromMap(acaoListItem.toMap()),
+                                                                              ParamType.DataStruct,
                                                                             ),
                                                                           }.withoutNulls,
                                                                         );
@@ -965,49 +1016,39 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                               .transparent,
                                                                       onTap:
                                                                           () async {
-                                                                        context
-                                                                            .pushNamed(
-                                                                          'AcaoEquipeCreatePage',
-                                                                          queryParameters:
-                                                                              {
-                                                                            'lojaacaoId':
-                                                                                serializeParam(
-                                                                              getJsonField(
-                                                                                actionListItensItem,
-                                                                                r'''$.actionId''',
+                                                                        await showModalBottomSheet(
+                                                                          isScrollControlled:
+                                                                              true,
+                                                                          backgroundColor:
+                                                                              Colors.transparent,
+                                                                          enableDrag:
+                                                                              false,
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (context) {
+                                                                            return GestureDetector(
+                                                                              onTap: () => FocusScope.of(context).unfocus(),
+                                                                              child: Padding(
+                                                                                padding: MediaQuery.viewInsetsOf(context),
+                                                                                child: EditAcaoWidget(
+                                                                                  actionID: acaoListItem.actionId,
+                                                                                ),
                                                                               ),
-                                                                              ParamType.int,
-                                                                            ),
-                                                                          }.withoutNulls,
-                                                                        );
+                                                                            );
+                                                                          },
+                                                                        ).then((value) =>
+                                                                            safeSetState(() {}));
                                                                       },
                                                                       child:
                                                                           Icon(
                                                                         Icons
-                                                                            .people,
+                                                                            .edit,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         size:
                                                                             24.0,
                                                                       ),
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons
-                                                                          .delete,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons
-                                                                          .edit,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size:
-                                                                          24.0,
                                                                     ),
                                                                   ],
                                                                 ),

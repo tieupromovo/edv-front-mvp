@@ -1,6 +1,7 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -17,12 +18,12 @@ export 'acao_equipe_create_page_model.dart';
 class AcaoEquipeCreatePageWidget extends StatefulWidget {
   const AcaoEquipeCreatePageWidget({
     super.key,
-    this.lojaacaoId,
-    this.lojaId,
+    required this.store,
+    required this.acao,
   });
 
-  final int? lojaacaoId;
-  final int? lojaId;
+  final StoreStruct? store;
+  final ActionStruct? acao;
 
   @override
   State<AcaoEquipeCreatePageWidget> createState() =>
@@ -46,6 +47,20 @@ class _AcaoEquipeCreatePageWidgetState
       setState(() {});
     });
 
+    _model.txtAcaoTextController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      widget.acao?.name,
+      '-',
+    ));
+    _model.txtAcaoFocusNode ??= FocusNode();
+
+    _model.txtLojaTextController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      widget.store?.name,
+      '-',
+    ));
+    _model.txtLojaFocusNode ??= FocusNode();
+
     _model.inputTeamNameTextController ??= TextEditingController();
     _model.inputTeamNameFocusNode ??= FocusNode();
 
@@ -68,7 +83,10 @@ class _AcaoEquipeCreatePageWidgetState
 
     return FutureBuilder<ApiCallResponse>(
       future: ActionListDetailCall.call(
-        actionId: widget.lojaacaoId,
+        actionId: valueOrDefault<int>(
+          widget.acao?.actionId,
+          1,
+        ),
         jwt: currentAuthenticationToken,
       ),
       builder: (context, snapshot) {
@@ -107,7 +125,10 @@ class _AcaoEquipeCreatePageWidgetState
             body: FutureBuilder<ApiCallResponse>(
               future: LojasListDetailCall.call(
                 jwt: currentAuthenticationToken,
-                storeId: widget.lojaId,
+                storeId: valueOrDefault<int>(
+                  widget.store?.storeId,
+                  1,
+                ),
               ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
@@ -220,107 +241,115 @@ class _AcaoEquipeCreatePageWidgetState
                                                                     0.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child: FutureBuilder<
-                                                            ApiCallResponse>(
-                                                          future:
-                                                              ActionListAllCall
-                                                                  .call(
-                                                            jwt:
-                                                                currentAuthenticationToken,
-                                                          ),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50.0,
-                                                                  height: 50.0,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    valueColor:
-                                                                        AlwaysStoppedAnimation<
-                                                                            Color>(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .txtAcaoTextController,
+                                                          focusNode: _model
+                                                              .txtAcaoFocusNode,
+                                                          autofocus: true,
+                                                          readOnly: true,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final dropDownActionListAllResponse =
-                                                                snapshot.data!;
-
-                                                            return FlutterFlowDropDown<
-                                                                String>(
-                                                              controller: _model
-                                                                      .dropDownValueController ??=
-                                                                  FormFieldController<
-                                                                          String>(
-                                                                      null),
-                                                              options:
-                                                                  ActionListAllCall
-                                                                      .actionName(
-                                                                dropDownActionListAllResponse
-                                                                    .jsonBody,
-                                                              )!,
-                                                              onChanged: (val) =>
-                                                                  setState(() =>
-                                                                      _model.dropDownValue =
-                                                                          val),
-                                                              width: 300.0,
-                                                              height: 56.0,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                              hintText:
-                                                                  'Selecione uma ação',
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
+                                                                    .alternate,
+                                                                width: 2.0,
                                                               ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                              borderWidth: 2.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          4.0,
-                                                                          16.0,
-                                                                          4.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isOverButton:
-                                                                  true,
-                                                              isSearchable:
-                                                                  false,
-                                                              isMultiSelect:
-                                                                  false,
-                                                            );
-                                                          },
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .txtAcaoTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
                                                       ),
                                                     ),
@@ -355,111 +384,115 @@ class _AcaoEquipeCreatePageWidgetState
                                                                     0.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child: FutureBuilder<
-                                                            ApiCallResponse>(
-                                                          future:
-                                                              LojasListAllCall
-                                                                  .call(
-                                                            jwt:
-                                                                currentAuthenticationToken,
-                                                          ),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            // Customize what your widget looks like when it's loading.
-                                                            if (!snapshot
-                                                                .hasData) {
-                                                              return Center(
-                                                                child: SizedBox(
-                                                                  width: 50.0,
-                                                                  height: 50.0,
-                                                                  child:
-                                                                      CircularProgressIndicator(
-                                                                    valueColor:
-                                                                        AlwaysStoppedAnimation<
-                                                                            Color>(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .txtLojaTextController,
+                                                          focusNode: _model
+                                                              .txtLojaFocusNode,
+                                                          autofocus: true,
+                                                          readOnly: true,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                            final inputTeamStoreIdLojasListAllResponse =
-                                                                snapshot.data!;
-
-                                                            return FlutterFlowDropDown<
-                                                                String>(
-                                                              controller: _model
-                                                                      .inputTeamStoreIdValueController ??=
-                                                                  FormFieldController<
-                                                                          String>(
-                                                                      null),
-                                                              options:
-                                                                  LojasListAllCall
-                                                                      .lojaName(
-                                                                inputTeamStoreIdLojasListAllResponse
-                                                                    .jsonBody,
-                                                              )!,
-                                                              onChanged: (val) =>
-                                                                  setState(() =>
-                                                                      _model.inputTeamStoreIdValue =
-                                                                          val),
-                                                              width: 300.0,
-                                                              height: 56.0,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                              hintText:
-                                                                  LojasListDetailCall
-                                                                      .lojaName(
-                                                                containerLojasListDetailResponse
-                                                                    .jsonBody,
-                                                              ),
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
+                                                                    .alternate,
+                                                                width: 2.0,
                                                               ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                              borderWidth: 2.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          4.0,
-                                                                          16.0,
-                                                                          4.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isOverButton:
-                                                                  true,
-                                                              isSearchable:
-                                                                  false,
-                                                              isMultiSelect:
-                                                                  false,
-                                                            );
-                                                          },
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .txtLojaTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
                                                       ),
                                                     ),
@@ -877,8 +910,19 @@ class _AcaoEquipeCreatePageWidgetState
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
-                                                                context.pushNamed(
-                                                                    'AcaoCreatePage');
+                                                                context
+                                                                    .pushNamed(
+                                                                  'AcaoLojasCreatePage',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'acao':
+                                                                        serializeParam(
+                                                                      ActionStruct(),
+                                                                      ParamType
+                                                                          .DataStruct,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                );
                                                               },
                                                               text: 'Voltar',
                                                               icon: const Icon(
@@ -1007,14 +1051,26 @@ class _AcaoEquipeCreatePageWidgetState
                                                                       .text,
                                                                   jwt:
                                                                       currentAuthenticationToken,
-                                                                  phone: int.tryParse(
-                                                                      _model
-                                                                          .inputTeamPhoneTextController
-                                                                          .text),
+                                                                  phone: _model
+                                                                      .inputTeamPhoneTextController
+                                                                      .text,
                                                                   type: _model
                                                                       .inputTeamTypeValue,
-                                                                  storeId: widget
-                                                                      .lojaId,
+                                                                  storeId:
+                                                                      valueOrDefault<
+                                                                          int>(
+                                                                    widget
+                                                                        .store
+                                                                        ?.storeId,
+                                                                    1,
+                                                                  ),
+                                                                  actionId:
+                                                                      valueOrDefault<
+                                                                          int>(
+                                                                    widget.acao
+                                                                        ?.actionId,
+                                                                    1,
+                                                                  ),
                                                                 );
 
                                                                 shouldSetState =
@@ -1145,9 +1201,10 @@ class _AcaoEquipeCreatePageWidgetState
                                                           TeamListAllCall.call(
                                                         jwt:
                                                             currentAuthenticationToken,
-                                                        actionId:
-                                                            widget.lojaacaoId,
-                                                        storeId: widget.lojaId,
+                                                        actionId: widget
+                                                            .acao?.actionId,
+                                                        storeId: widget
+                                                            .store?.storeId,
                                                       ),
                                                       builder:
                                                           (context, snapshot) {

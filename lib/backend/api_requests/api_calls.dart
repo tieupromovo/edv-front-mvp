@@ -219,7 +219,7 @@ class LojaCreateCall {
       );
 }
 
-class LojaATTCall {
+class LojaUpdateCall {
   static Future<ApiCallResponse> call({
     String? name = '',
     String? jwt = '',
@@ -231,8 +231,13 @@ class LojaATTCall {
     final ffApiRequestBody = '''
 {
   "name": "$name",
+  "storeType": null,
+  "cnpj": null,
+  "ie": null,
+  "logoPath": null,
+  "active": null,
   "goal": $goal,
-
+  "region": "CITY",
   "addresses": [
     {
       "city": "$city"
@@ -241,9 +246,9 @@ class LojaATTCall {
   "actionId": $actionId
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'LojaATT',
+      callName: 'LojaUpdate',
       apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/$storeId',
-      callType: ApiCallType.PATCH,
+      callType: ApiCallType.PUT,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $jwt',
@@ -345,11 +350,67 @@ class ActionListAllCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
-  static List? listAll(dynamic response) => getJsonField(
-        response,
-        r'''$''',
-        true,
-      ) as List?;
+}
+
+class ClienteListAllCall {
+  static Future<ApiCallResponse> call({
+    String? jwt = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ClienteListAll ',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/clients',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ClienteCreateCall {
+  static Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? name = '',
+    int? phone,
+    String? invitationType = '',
+    String? date = '',
+    int? storeId,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "name": "$name",
+  "phone": $phone,
+  "invitation_type": "$invitationType",
+  "date": "$date",
+  "storeId": $storeId
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ClienteCreate',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/clients',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ActionListDetailCall {
@@ -401,13 +462,82 @@ class ActionListDetailCall {
       ));
 }
 
-class DELETEActionCall {
+class ActionUpdateCall {
+  static Future<ApiCallResponse> call({
+    String? jwt = '',
+    int? actionId,
+    String? name = '',
+    String? startAt = '',
+    String? finishAt = '',
+    String? actionType = '',
+    String? frequency = '',
+    String? actionStatus = '',
+    double? executionInvestment,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "name": "$name",
+  "actionType": "$actionType",
+  "startAt": "$startAt",
+  "finishAt": "$finishAt",
+  "frequency": "$frequency",
+  "executionInvestment": $executionInvestment,
+  "actionStatus": "$actionStatus",
+  "actionMakerId": 1
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ActionUpdate',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? actionName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.name''',
+      ));
+  static String? actionStartAt(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.startAt''',
+      ));
+  static String? actionFinishAt(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.finishAt''',
+      ));
+  static String? actionStatus(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.actionStatus''',
+      ));
+  static int? actionId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.actionId''',
+      ));
+}
+
+class ActionDeleteCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
     int? actionId,
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'DELETEAction',
+      callName: 'ActionDelete',
       apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId',
       callType: ApiCallType.DELETE,
       headers: {
@@ -530,7 +660,7 @@ class TeamListAllCall {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamListAll',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/store/$storeId/teams',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -591,20 +721,23 @@ class TeamCreateCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
     String? name = '',
-    int? phone,
+    String? phone = '',
     String? type = '',
     int? storeId,
+    int? actionId,
   }) async {
     final ffApiRequestBody = '''
 {
   "name": "$name",
-  "phone": $phone,
-  "type": "$type",
-  "storeId":$storeId
+  "phone": "$phone",
+  "profile": "$type",
+  "storeId": $storeId,
+  "actionId": $actionId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'TeamCreate',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/team',
+      apiUrl:
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -811,13 +944,13 @@ class LojasListPorIDCall {
       );
 }
 
-class DELETELojasCall {
+class LojaDeleteCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
     int? storeId,
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'DELETELojas',
+      callName: 'LojaDelete',
       apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/$storeId',
       callType: ApiCallType.DELETE,
       headers: {

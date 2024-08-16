@@ -1,6 +1,8 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
+import '/components/edit_loja_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,10 +16,10 @@ export 'acao_lojas_create_page_model.dart';
 class AcaoLojasCreatePageWidget extends StatefulWidget {
   const AcaoLojasCreatePageWidget({
     super.key,
-    this.actionID,
+    required this.acao,
   });
 
-  final int? actionID;
+  final ActionStruct? acao;
 
   @override
   State<AcaoLojasCreatePageWidget> createState() =>
@@ -38,10 +40,12 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Cadastro de Lojas';
       setState(() {});
-      _model.stateActionID = widget.actionID;
+      _model.stateActionID = widget.acao?.actionId;
       setState(() {});
     });
 
+    _model.nomeLojaAcaoTextController ??=
+        TextEditingController(text: widget.acao?.name);
     _model.nomeLojaAcaoFocusNode ??= FocusNode();
 
     _model.nomeLojaInputTextController ??= TextEditingController();
@@ -66,7 +70,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
 
     return FutureBuilder<ApiCallResponse>(
       future: ActionListDetailCall.call(
-        actionId: widget.actionID,
+        actionId: widget.acao?.actionId,
         jwt: currentAuthenticationToken,
       ),
       builder: (context, snapshot) {
@@ -198,15 +202,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                     0.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                                  .nomeLojaAcaoTextController ??=
-                                                              TextEditingController(
-                                                            text:
-                                                                ActionListDetailCall
-                                                                    .actionName(
-                                                              acaoLojasCreatePageActionListDetailResponse
-                                                                  .jsonBody,
-                                                            ),
-                                                          ),
+                                                              .nomeLojaAcaoTextController,
                                                           focusNode: _model
                                                               .nomeLojaAcaoFocusNode,
                                                           autofocus: true,
@@ -819,8 +815,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                             .text,
                                                         goal: _model
                                                             .sldValorMetaInputValue,
-                                                        actionId:
-                                                            widget.actionID,
+                                                        actionId: widget
+                                                            .acao?.actionId,
                                                         jwt:
                                                             currentAuthenticationToken,
                                                       );
@@ -956,7 +952,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                   future: LojasListAllCall.call(
                                                     jwt:
                                                         currentAuthenticationToken,
-                                                    actionId: widget.actionID,
+                                                    actionId:
+                                                        widget.acao?.actionId,
                                                   ),
                                                   builder: (context, snapshot) {
                                                     // Customize what your widget looks like when it's loading.
@@ -983,7 +980,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
 
                                                     return Builder(
                                                       builder: (context) {
-                                                        final listallLoja =
+                                                        final lojaLista =
                                                             listViewLojasListAllResponse
                                                                 .jsonBody
                                                                 .toList();
@@ -995,17 +992,17 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                           shrinkWrap: true,
                                                           scrollDirection:
                                                               Axis.vertical,
-                                                          itemCount: listallLoja
-                                                              .length,
+                                                          itemCount:
+                                                              lojaLista.length,
                                                           separatorBuilder: (_,
                                                                   __) =>
                                                               const SizedBox(
                                                                   height: 4.0),
                                                           itemBuilder: (context,
-                                                              listallLojaIndex) {
-                                                            final listallLojaItem =
-                                                                listallLoja[
-                                                                    listallLojaIndex];
+                                                              lojaListaIndex) {
+                                                            final lojaListaItem =
+                                                                lojaLista[
+                                                                    lojaListaIndex];
                                                             return Card(
                                                               clipBehavior: Clip
                                                                   .antiAliasWithSaveLayer,
@@ -1049,10 +1046,10 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              getJsonField(
-                                                                                listallLojaItem,
-                                                                                r'''$.name''',
-                                                                              ).toString(),
+                                                                              valueOrDefault<String>(
+                                                                                StoreStruct.maybeFromMap(lojaListaItem)?.name,
+                                                                                '-',
+                                                                              ),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Inter',
                                                                                     fontSize: 12.0,
@@ -1068,10 +1065,10 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              getJsonField(
-                                                                                listallLojaItem,
-                                                                                r'''$.addresses[0].city''',
-                                                                              ).toString(),
+                                                                              valueOrDefault<String>(
+                                                                                StoreStruct.maybeFromMap(lojaListaItem)?.addresses.first.city,
+                                                                                '-',
+                                                                              ),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Inter',
                                                                                     fontSize: 12.0,
@@ -1091,10 +1088,13 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        getJsonField(
-                                                                          listallLojaItem,
-                                                                          r'''$.goal''',
-                                                                        ).toString(),
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          StoreStruct.maybeFromMap(lojaListaItem)
+                                                                              ?.goal
+                                                                              .toString(),
+                                                                          '-',
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -1126,19 +1126,13 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                             'AcaoEquipeCreatePage',
                                                                             queryParameters:
                                                                                 {
-                                                                              'lojaId': serializeParam(
-                                                                                getJsonField(
-                                                                                  listallLojaItem,
-                                                                                  r'''$.storeId''',
-                                                                                ),
-                                                                                ParamType.int,
+                                                                              'store': serializeParam(
+                                                                                StoreStruct.maybeFromMap(lojaListaItem),
+                                                                                ParamType.DataStruct,
                                                                               ),
-                                                                              'lojaacaoId': serializeParam(
-                                                                                getJsonField(
-                                                                                  listallLojaItem,
-                                                                                  r'''$.actionId''',
-                                                                                ),
-                                                                                ParamType.int,
+                                                                              'acao': serializeParam(
+                                                                                widget.acao,
+                                                                                ParamType.DataStruct,
                                                                               ),
                                                                             }.withoutNulls,
                                                                           );
@@ -1177,13 +1171,53 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                                       child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .edit,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            24.0,
+                                                                          InkWell(
+                                                                        splashColor:
+                                                                            Colors.transparent,
+                                                                        focusColor:
+                                                                            Colors.transparent,
+                                                                        hoverColor:
+                                                                            Colors.transparent,
+                                                                        highlightColor:
+                                                                            Colors.transparent,
+                                                                        onTap:
+                                                                            () async {
+                                                                          await showModalBottomSheet(
+                                                                            isScrollControlled:
+                                                                                true,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            enableDrag:
+                                                                                false,
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (context) {
+                                                                              return GestureDetector(
+                                                                                onTap: () => FocusScope.of(context).unfocus(),
+                                                                                child: Padding(
+                                                                                  padding: MediaQuery.viewInsetsOf(context),
+                                                                                  child: EditLojaWidget(
+                                                                                    storeID: getJsonField(
+                                                                                      lojaListaItem,
+                                                                                      r'''$.storeId''',
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              safeSetState(() {}));
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .edit,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          size:
+                                                                              24.0,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],

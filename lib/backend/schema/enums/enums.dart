@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
 
 enum FuncaoEnum {
-  Consultor,
-  Lider,
-  Recepcionista,
+  LIDER,
+  GERENTE,
+  RECEPCIONISTA,
 }
 
 enum MessageTypeEnum {

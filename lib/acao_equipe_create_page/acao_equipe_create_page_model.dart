@@ -12,12 +12,14 @@ class AcaoEquipeCreatePageModel
 
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
-  // State field(s) for inputTeamStoreId widget.
-  String? inputTeamStoreIdValue;
-  FormFieldController<String>? inputTeamStoreIdValueController;
+  // State field(s) for txtAcao widget.
+  FocusNode? txtAcaoFocusNode;
+  TextEditingController? txtAcaoTextController;
+  String? Function(BuildContext, String?)? txtAcaoTextControllerValidator;
+  // State field(s) for txtLoja widget.
+  FocusNode? txtLojaFocusNode;
+  TextEditingController? txtLojaTextController;
+  String? Function(BuildContext, String?)? txtLojaTextControllerValidator;
   // State field(s) for inputTeamName widget.
   FocusNode? inputTeamNameFocusNode;
   TextEditingController? inputTeamNameTextController;
@@ -44,6 +46,12 @@ class AcaoEquipeCreatePageModel
   @override
   void dispose() {
     pgHeaderCmpModel.dispose();
+    txtAcaoFocusNode?.dispose();
+    txtAcaoTextController?.dispose();
+
+    txtLojaFocusNode?.dispose();
+    txtLojaTextController?.dispose();
+
     inputTeamNameFocusNode?.dispose();
     inputTeamNameTextController?.dispose();
 

@@ -12,13 +12,19 @@ class ActionStruct extends BaseStruct {
     String? actionType,
     String? startAt,
     String? finishAt,
+    String? frequency,
+    String? executionInvestment,
     String? actionStatus,
+    int? actionMakerId,
   })  : _actionId = actionId,
         _name = name,
         _actionType = actionType,
         _startAt = startAt,
         _finishAt = finishAt,
-        _actionStatus = actionStatus;
+        _frequency = frequency,
+        _executionInvestment = executionInvestment,
+        _actionStatus = actionStatus,
+        _actionMakerId = actionMakerId;
 
   // "actionId" field.
   int? _actionId;
@@ -57,6 +63,20 @@ class ActionStruct extends BaseStruct {
 
   bool hasFinishAt() => _finishAt != null;
 
+  // "frequency" field.
+  String? _frequency;
+  String get frequency => _frequency ?? '';
+  set frequency(String? val) => _frequency = val;
+
+  bool hasFrequency() => _frequency != null;
+
+  // "executionInvestment" field.
+  String? _executionInvestment;
+  String get executionInvestment => _executionInvestment ?? '';
+  set executionInvestment(String? val) => _executionInvestment = val;
+
+  bool hasExecutionInvestment() => _executionInvestment != null;
+
   // "actionStatus" field.
   String? _actionStatus;
   String get actionStatus => _actionStatus ?? '';
@@ -64,13 +84,26 @@ class ActionStruct extends BaseStruct {
 
   bool hasActionStatus() => _actionStatus != null;
 
+  // "actionMakerId" field.
+  int? _actionMakerId;
+  int get actionMakerId => _actionMakerId ?? 0;
+  set actionMakerId(int? val) => _actionMakerId = val;
+
+  void incrementActionMakerId(int amount) =>
+      actionMakerId = actionMakerId + amount;
+
+  bool hasActionMakerId() => _actionMakerId != null;
+
   static ActionStruct fromMap(Map<String, dynamic> data) => ActionStruct(
         actionId: castToType<int>(data['actionId']),
         name: data['name'] as String?,
         actionType: data['actionType'] as String?,
         startAt: data['startAt'] as String?,
         finishAt: data['finishAt'] as String?,
+        frequency: data['frequency'] as String?,
+        executionInvestment: data['executionInvestment'] as String?,
         actionStatus: data['actionStatus'] as String?,
+        actionMakerId: castToType<int>(data['actionMakerId']),
       );
 
   static ActionStruct? maybeFromMap(dynamic data) =>
@@ -82,7 +115,10 @@ class ActionStruct extends BaseStruct {
         'actionType': _actionType,
         'startAt': _startAt,
         'finishAt': _finishAt,
+        'frequency': _frequency,
+        'executionInvestment': _executionInvestment,
         'actionStatus': _actionStatus,
+        'actionMakerId': _actionMakerId,
       }.withoutNulls;
 
   @override
@@ -107,9 +143,21 @@ class ActionStruct extends BaseStruct {
           _finishAt,
           ParamType.String,
         ),
+        'frequency': serializeParam(
+          _frequency,
+          ParamType.String,
+        ),
+        'executionInvestment': serializeParam(
+          _executionInvestment,
+          ParamType.String,
+        ),
         'actionStatus': serializeParam(
           _actionStatus,
           ParamType.String,
+        ),
+        'actionMakerId': serializeParam(
+          _actionMakerId,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -140,9 +188,24 @@ class ActionStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        frequency: deserializeParam(
+          data['frequency'],
+          ParamType.String,
+          false,
+        ),
+        executionInvestment: deserializeParam(
+          data['executionInvestment'],
+          ParamType.String,
+          false,
+        ),
         actionStatus: deserializeParam(
           data['actionStatus'],
           ParamType.String,
+          false,
+        ),
+        actionMakerId: deserializeParam(
+          data['actionMakerId'],
+          ParamType.int,
           false,
         ),
       );
@@ -158,12 +221,24 @@ class ActionStruct extends BaseStruct {
         actionType == other.actionType &&
         startAt == other.startAt &&
         finishAt == other.finishAt &&
-        actionStatus == other.actionStatus;
+        frequency == other.frequency &&
+        executionInvestment == other.executionInvestment &&
+        actionStatus == other.actionStatus &&
+        actionMakerId == other.actionMakerId;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([actionId, name, actionType, startAt, finishAt, actionStatus]);
+  int get hashCode => const ListEquality().hash([
+        actionId,
+        name,
+        actionType,
+        startAt,
+        finishAt,
+        frequency,
+        executionInvestment,
+        actionStatus,
+        actionMakerId
+      ]);
 }
 
 ActionStruct createActionStruct({
@@ -172,7 +247,10 @@ ActionStruct createActionStruct({
   String? actionType,
   String? startAt,
   String? finishAt,
+  String? frequency,
+  String? executionInvestment,
   String? actionStatus,
+  int? actionMakerId,
 }) =>
     ActionStruct(
       actionId: actionId,
@@ -180,5 +258,8 @@ ActionStruct createActionStruct({
       actionType: actionType,
       startAt: startAt,
       finishAt: finishAt,
+      frequency: frequency,
+      executionInvestment: executionInvestment,
       actionStatus: actionStatus,
+      actionMakerId: actionMakerId,
     );
