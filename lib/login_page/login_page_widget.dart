@@ -1295,7 +1295,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Text(
-                      '2024-08-08',
+                      '2024-08-20',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             fontSize: 8.0,
