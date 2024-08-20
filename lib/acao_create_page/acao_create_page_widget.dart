@@ -2,7 +2,6 @@ import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
-import '/components/edit_acao_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -31,7 +30,24 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
     _model.txtNameTextController ??= TextEditingController();
     _model.txtNameFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    _model.txtInicioTextController ??= TextEditingController();
+    _model.txtInicioFocusNode ??= FocusNode();
+
+    _model.txtFimTextController ??= TextEditingController();
+    _model.txtFimFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.txtInicioTextController?.text = dateTimeFormat(
+            "d/M/y",
+            _model.datePicked1,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+          _model.txtFimTextController?.text = dateTimeFormat(
+            "d/M/y",
+            _model.datePicked1,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+        }));
   }
 
   @override
@@ -271,22 +287,126 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                  Text(
-                                                    dateTimeFormat(
-                                                      "d/M/y",
-                                                      _model.datePicked1,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .txtInicioTextController,
+                                                        focusNode: _model
+                                                            .txtInicioFocusNode,
+                                                        autofocus: true,
+                                                        readOnly: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
                                                         ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                        validator: _model
+                                                            .txtInicioTextControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
                                                   ),
                                                   InkWell(
                                                     splashColor:
@@ -305,7 +425,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         initialDate:
                                                             getCurrentTimestamp,
                                                         firstDate:
-                                                            getCurrentTimestamp,
+                                                            DateTime(1900),
                                                         lastDate:
                                                             DateTime(2050),
                                                         builder:
@@ -375,6 +495,28 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           );
                                                         });
                                                       }
+                                                      setState(() {
+                                                        _model.txtInicioTextController
+                                                                ?.text =
+                                                            valueOrDefault<
+                                                                String>(
+                                                          dateTimeFormat(
+                                                            "d/M/y",
+                                                            _model.datePicked1,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          ),
+                                                          '1',
+                                                        );
+                                                        _model.txtInicioTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .txtInicioTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
                                                     },
                                                     child: Icon(
                                                       Icons.date_range,
@@ -385,32 +527,142 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                       size: 24.0,
                                                     ),
                                                   ),
-                                                  Text(
-                                                    'Fim:',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    dateTimeFormat(
-                                                      "d/M/y",
-                                                      _model.datePicked2,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Fim:',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .txtFimTextController,
+                                                        focusNode: _model
+                                                            .txtFimFocusNode,
+                                                        autofocus: true,
+                                                        readOnly: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
                                                         ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                        validator: _model
+                                                            .txtFimTextControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -502,6 +754,29 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             );
                                                           });
                                                         }
+                                                        setState(() {
+                                                          _model.txtFimTextController
+                                                                  ?.text =
+                                                              valueOrDefault<
+                                                                  String>(
+                                                            dateTimeFormat(
+                                                              "d/M/y",
+                                                              _model
+                                                                  .datePicked2,
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
+                                                            '1',
+                                                          );
+                                                          _model.txtFimTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .txtFimTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
                                                       },
                                                       child: Icon(
                                                         Icons.date_range,
@@ -530,6 +805,12 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                       setState(() {
                                                         _model
                                                             .txtNameTextController
+                                                            ?.clear();
+                                                        _model
+                                                            .txtInicioTextController
+                                                            ?.clear();
+                                                        _model
+                                                            .txtFimTextController
                                                             ?.clear();
                                                       });
                                                     },
@@ -707,7 +988,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                       Container(
                                         height:
                                             MediaQuery.sizeOf(context).height *
-                                                0.604,
+                                                0.56,
                                         decoration: const BoxDecoration(),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ActionListAllCall.call(
@@ -1016,29 +1297,42 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                               .transparent,
                                                                       onTap:
                                                                           () async {
-                                                                        await showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          enableDrag:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return GestureDetector(
-                                                                              onTap: () => FocusScope.of(context).unfocus(),
-                                                                              child: Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: EditAcaoWidget(
-                                                                                  actionID: acaoListItem.actionId,
-                                                                                ),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            safeSetState(() {}));
+                                                                        setState(
+                                                                            () {
+                                                                          _model
+                                                                              .txtNameTextController
+                                                                              ?.text = valueOrDefault<String>(
+                                                                            acaoListItem.name,
+                                                                            '-',
+                                                                          );
+                                                                          _model
+                                                                              .txtNameTextController
+                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtNameTextController!.text.length);
+                                                                        });
+                                                                        setState(
+                                                                            () {
+                                                                          _model
+                                                                              .txtInicioTextController
+                                                                              ?.text = valueOrDefault<String>(
+                                                                            acaoListItem.startAt,
+                                                                            '-',
+                                                                          );
+                                                                          _model
+                                                                              .txtInicioTextController
+                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtInicioTextController!.text.length);
+                                                                        });
+                                                                        setState(
+                                                                            () {
+                                                                          _model
+                                                                              .txtFimTextController
+                                                                              ?.text = valueOrDefault<String>(
+                                                                            acaoListItem.finishAt,
+                                                                            '-',
+                                                                          );
+                                                                          _model
+                                                                              .txtFimTextController
+                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtFimTextController!.text.length);
+                                                                        });
                                                                       },
                                                                       child:
                                                                           Icon(

@@ -1,5 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -29,15 +30,18 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
     super.initState();
     _model = createModel(context, () => OnBoardingPageModel());
 
+    _model.txtFimTextController ??= TextEditingController();
+    _model.txtFimFocusNode ??= FocusNode();
+
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
-    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -187,23 +191,33 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                               FlutterFlowDropDown<
                                                                   String>(
                                                             key: ValueKey(
-                                                                getJsonField(
-                                                              (_model.apiActionID
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$.actionId''',
-                                                            ).toString()),
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              ActionStruct.maybeFromMap((_model
+                                                                          .apiResultadoActionList
+                                                                          ?.jsonBody ??
+                                                                      ''))
+                                                                  ?.actionId
+                                                                  .toString(),
+                                                              '0',
+                                                            )),
                                                             controller: _model
                                                                     .dropDownValueController1 ??=
                                                                 FormFieldController<
                                                                         String>(
                                                                     null),
-                                                            options:
-                                                                ActionListAllCall
-                                                                    .actionName(
-                                                              containerActionListAllResponse
-                                                                  .jsonBody,
-                                                            )!,
+                                                            options: (containerActionListAllResponse
+                                                                        .jsonBody
+                                                                        .toList()
+                                                                        .map<ActionStruct?>(ActionStruct
+                                                                            .maybeFromMap)
+                                                                        .toList()
+                                                                    as Iterable<
+                                                                        ActionStruct?>)
+                                                                .withoutNulls
+                                                                .map((e) =>
+                                                                    e.name)
+                                                                .toList(),
                                                             onChanged:
                                                                 (val) async {
                                                               setState(() =>
@@ -211,7 +225,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       val);
                                                               var shouldSetState =
                                                                   false;
-                                                              _model.apiActionID =
+                                                              _model.apiResultadoActionList =
                                                                   await ActionListAllCall
                                                                       .call(
                                                                 jwt:
@@ -221,16 +235,14 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                               shouldSetState =
                                                                   true;
                                                               if ((_model
-                                                                      .apiActionID
+                                                                      .apiResultadoActionList
                                                                       ?.succeeded ??
                                                                   true)) {
                                                                 _model.selectedActionId =
-                                                                    getJsonField(
-                                                                  (_model.apiActionID
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                  r'''$.actionId''',
-                                                                );
+                                                                    ActionStruct.maybeFromMap((_model
+                                                                            .apiResultadoActionList
+                                                                            ?.jsonBody ??
+                                                                        ''));
                                                                 setState(() {});
                                                                 if (shouldSetState) {
                                                                   setState(
@@ -426,71 +438,135 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
-                                                                      0.0,
+                                                                      4.0,
                                                                       0.0),
-                                                          child:
-                                                              FlutterFlowDropDown<
-                                                                  String>(
+                                                          child: TextFormField(
                                                             controller: _model
-                                                                    .dropDownValueController3 ??=
-                                                                FormFieldController<
-                                                                        String>(
-                                                                    null),
-                                                            options: const [
-                                                              'Option 1'
-                                                            ],
-                                                            onChanged: (val) =>
-                                                                setState(() =>
-                                                                    _model.dropDownValue3 =
-                                                                        val),
-                                                            width: 300.0,
-                                                            height: 56.0,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            hintText:
-                                                                'Please select...',
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded,
-                                                              color: FlutterFlowTheme
+                                                                .txtFimTextController,
+                                                            focusNode: _model
+                                                                .txtFimFocusNode,
+                                                            autofocus: true,
+                                                            readOnly: true,
+                                                            obscureText: false,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Inter',
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              hintStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Inter',
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              focusedErrorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
+                                                                  .secondaryBackground,
                                                             ),
-                                                            fillColor: FlutterFlowTheme
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .secondaryBackground,
-                                                            elevation: 2.0,
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                            borderWidth: 2.0,
-                                                            borderRadius: 8.0,
-                                                            margin:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        4.0,
-                                                                        16.0,
-                                                                        4.0),
-                                                            hidesUnderline:
-                                                                true,
-                                                            isOverButton: true,
-                                                            isSearchable: false,
-                                                            isMultiSelect:
-                                                                false,
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                            validator: _model
+                                                                .txtFimTextControllerValidator
+                                                                .asValidator(
+                                                                    context),
                                                           ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0),
+                                                        child: Icon(
+                                                          Icons.date_range,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent3,
+                                                          size: 24.0,
                                                         ),
                                                       ),
                                                     ],
@@ -499,15 +575,15 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                 Text(
                                                   valueOrDefault<String>(
                                                     _model.selectedActionId
-                                                        ?.toString(),
-                                                    '1',
+                                                        ?.actionId
+                                                        .toString(),
+                                                    '0',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
@@ -594,7 +670,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       TextFormField(
                                                                     controller:
                                                                         _model
-                                                                            .textController1,
+                                                                            .textController2,
                                                                     focusNode:
                                                                         _model
                                                                             .textFieldFocusNode1,
@@ -681,7 +757,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                               0.0,
                                                                         ),
                                                                     validator: _model
-                                                                        .textController1Validator
+                                                                        .textController2Validator
                                                                         .asValidator(
                                                                             context),
                                                                   ),
@@ -709,7 +785,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       TextFormField(
                                                                     controller:
                                                                         _model
-                                                                            .textController2,
+                                                                            .textController3,
                                                                     focusNode:
                                                                         _model
                                                                             .textFieldFocusNode2,
@@ -787,7 +863,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                               0.0,
                                                                         ),
                                                                     validator: _model
-                                                                        .textController2Validator
+                                                                        .textController3Validator
                                                                         .asValidator(
                                                                             context),
                                                                   ),
@@ -815,13 +891,13 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       FlutterFlowDropDown<
                                                                           String>(
                                                                     controller: _model
-                                                                        .dropDownValueController4 ??= FormFieldController<
+                                                                        .dropDownValueController3 ??= FormFieldController<
                                                                             String>(
                                                                         null),
                                                                     options: const <String>[],
                                                                     onChanged: (val) =>
                                                                         setState(() =>
-                                                                            _model.dropDownValue4 =
+                                                                            _model.dropDownValue3 =
                                                                                 val),
                                                                     height:
                                                                         56.0,
@@ -1139,7 +1215,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     child: FlutterFlowDropDown<
                                                                         String>(
                                                                       controller: _model
-                                                                          .dropDownValueController5 ??= FormFieldController<
+                                                                          .dropDownValueController4 ??= FormFieldController<
                                                                               String>(
                                                                           null),
                                                                       options: const [
@@ -1147,7 +1223,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       ],
                                                                       onChanged:
                                                                           (val) =>
-                                                                              setState(() => _model.dropDownValue5 = val),
+                                                                              setState(() => _model.dropDownValue4 = val),
                                                                       width:
                                                                           16.0,
                                                                       height:

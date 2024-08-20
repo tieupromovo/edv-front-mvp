@@ -793,6 +793,32 @@ class TeamCreateCall {
           .toList();
 }
 
+class TeamDeleteCall {
+  static Future<ApiCallResponse> call({
+    String? jwt = '',
+    int? storeId,
+    int? actionId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'TeamDelete',
+      apiUrl:
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class TeamDetailCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',

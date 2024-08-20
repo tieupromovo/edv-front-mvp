@@ -34,6 +34,8 @@ class AcaoEquipeCreatePageModel
   FormFieldController<String>? inputTeamTypeValueController;
   // Stores action output result for [Backend Call - API (TeamCreate)] action in Button widget.
   ApiCallResponse? teamCreateResponse;
+  // Stores action output result for [Backend Call - API (TeamDelete)] action in Icon widget.
+  ApiCallResponse? apiResult2d7;
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 

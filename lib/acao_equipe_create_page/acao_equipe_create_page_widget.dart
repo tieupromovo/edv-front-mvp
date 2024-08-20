@@ -910,14 +910,14 @@ class _AcaoEquipeCreatePageWidgetState
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
-                                                                context
-                                                                    .pushNamed(
+                                                                context.goNamed(
                                                                   'AcaoLojasCreatePage',
                                                                   queryParameters:
                                                                       {
                                                                     'acao':
                                                                         serializeParam(
-                                                                      ActionStruct(),
+                                                                      widget
+                                                                          .acao,
                                                                       ParamType
                                                                           .DataStruct,
                                                                     ),
@@ -982,9 +982,16 @@ class _AcaoEquipeCreatePageWidgetState
                                                                     0.0, 0.0),
                                                             child:
                                                                 FFButtonWidget(
-                                                              onPressed: () {
-                                                                print(
-                                                                    'Button pressed ...');
+                                                              onPressed:
+                                                                  () async {
+                                                                setState(() {
+                                                                  _model
+                                                                      .inputTeamNameTextController
+                                                                      ?.clear();
+                                                                  _model
+                                                                      .inputTeamPhoneTextController
+                                                                      ?.clear();
+                                                                });
                                                               },
                                                               text: 'Limpar',
                                                               options:
@@ -1355,12 +1362,68 @@ class _AcaoEquipeCreatePageWidgetState
                                                                               0.0,
                                                                               0.0),
                                                                           child:
-                                                                              Icon(
-                                                                            Icons.delete,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            size:
-                                                                                24.0,
+                                                                              InkWell(
+                                                                            splashColor:
+                                                                                Colors.transparent,
+                                                                            focusColor:
+                                                                                Colors.transparent,
+                                                                            hoverColor:
+                                                                                Colors.transparent,
+                                                                            highlightColor:
+                                                                                Colors.transparent,
+                                                                            onTap:
+                                                                                () async {
+                                                                              _model.apiResult2d7 = await TeamDeleteCall.call(
+                                                                                jwt: currentAuthenticationToken,
+                                                                                storeId: widget.store?.storeId,
+                                                                                actionId: valueOrDefault<int>(
+                                                                                  widget.acao?.actionId,
+                                                                                  1,
+                                                                                ),
+                                                                              );
+
+                                                                              if ((_model.apiResult2d7?.succeeded ?? true)) {
+                                                                                await showDialog(
+                                                                                  context: context,
+                                                                                  builder: (alertDialogContext) {
+                                                                                    return AlertDialog(
+                                                                                      title: const Text('Equipe'),
+                                                                                      content: const Text('Membro da equipe removido'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                          child: const Text('Ok'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                );
+                                                                              } else {
+                                                                                await showDialog(
+                                                                                  context: context,
+                                                                                  builder: (alertDialogContext) {
+                                                                                    return AlertDialog(
+                                                                                      title: const Text('Equipe'),
+                                                                                      content: const Text('Houve algum erro no backend'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                          child: const Text('Ok'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                );
+                                                                              }
+
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.delete,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              size: 24.0,
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                         Padding(

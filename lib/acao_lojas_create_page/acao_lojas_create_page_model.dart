@@ -19,17 +19,16 @@ class AcaoLojasCreatePageModel
   FocusNode? nomeLojaAcaoFocusNode;
   TextEditingController? nomeLojaAcaoTextController;
   String? Function(BuildContext, String?)? nomeLojaAcaoTextControllerValidator;
-  // State field(s) for nomeLoja_input widget.
-  FocusNode? nomeLojaInputFocusNode;
-  TextEditingController? nomeLojaInputTextController;
-  String? Function(BuildContext, String?)? nomeLojaInputTextControllerValidator;
-  // State field(s) for nomeCidade_input widget.
-  FocusNode? nomeCidadeInputFocusNode;
-  TextEditingController? nomeCidadeInputTextController;
-  String? Function(BuildContext, String?)?
-      nomeCidadeInputTextControllerValidator;
-  // State field(s) for sld_valorMeta_input widget.
-  double? sldValorMetaInputValue;
+  // State field(s) for txtNome widget.
+  FocusNode? txtNomeFocusNode;
+  TextEditingController? txtNomeTextController;
+  String? Function(BuildContext, String?)? txtNomeTextControllerValidator;
+  // State field(s) for txtCidade widget.
+  FocusNode? txtCidadeFocusNode;
+  TextEditingController? txtCidadeTextController;
+  String? Function(BuildContext, String?)? txtCidadeTextControllerValidator;
+  // State field(s) for sldMeta widget.
+  double? sldMetaValue;
   // Stores action output result for [Backend Call - API (LojaCreate)] action in Button widget.
   ApiCallResponse? lojaCreateResponse;
   // Model for DrawerContentCmp component.
@@ -47,11 +46,11 @@ class AcaoLojasCreatePageModel
     nomeLojaAcaoFocusNode?.dispose();
     nomeLojaAcaoTextController?.dispose();
 
-    nomeLojaInputFocusNode?.dispose();
-    nomeLojaInputTextController?.dispose();
+    txtNomeFocusNode?.dispose();
+    txtNomeTextController?.dispose();
 
-    nomeCidadeInputFocusNode?.dispose();
-    nomeCidadeInputTextController?.dispose();
+    txtCidadeFocusNode?.dispose();
+    txtCidadeTextController?.dispose();
 
     drawerContentCmpModel.dispose();
   }

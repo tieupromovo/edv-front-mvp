@@ -14,7 +14,15 @@ class AcaoCreatePageModel extends FlutterFlowModel<AcaoCreatePageWidget> {
   FocusNode? txtNameFocusNode;
   TextEditingController? txtNameTextController;
   String? Function(BuildContext, String?)? txtNameTextControllerValidator;
+  // State field(s) for txtInicio widget.
+  FocusNode? txtInicioFocusNode;
+  TextEditingController? txtInicioTextController;
+  String? Function(BuildContext, String?)? txtInicioTextControllerValidator;
   DateTime? datePicked1;
+  // State field(s) for txtFim widget.
+  FocusNode? txtFimFocusNode;
+  TextEditingController? txtFimTextController;
+  String? Function(BuildContext, String?)? txtFimTextControllerValidator;
   DateTime? datePicked2;
   // Stores action output result for [Backend Call - API (ActionCreate)] action in btn_Save widget.
   ApiCallResponse? actionCreateResponse;
@@ -32,6 +40,12 @@ class AcaoCreatePageModel extends FlutterFlowModel<AcaoCreatePageWidget> {
     pgHeaderCmpModel.dispose();
     txtNameFocusNode?.dispose();
     txtNameTextController?.dispose();
+
+    txtInicioFocusNode?.dispose();
+    txtInicioTextController?.dispose();
+
+    txtFimFocusNode?.dispose();
+    txtFimTextController?.dispose();
 
     drawerContentCmpModel.dispose();
   }
