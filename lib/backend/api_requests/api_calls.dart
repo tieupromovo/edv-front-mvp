@@ -9,6 +9,206 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
+/// Start OnBoarding Group Code
+
+class OnBoardingGroup {
+  static String getBaseUrl({
+    String? jwt = '',
+  }) =>
+      'edv-mvp.eupromovo.com.br:8080/api/v1/onboarding';
+  static Map<String, String> headers = {
+    'Content-type': 'application/json',
+    'Authorization': 'Bearer [jwt]',
+  };
+  static ClientsListCall clientsListCall = ClientsListCall();
+  static ClientsCheckInCall clientsCheckInCall = ClientsCheckInCall();
+  static ClientsCheckOutCall clientsCheckOutCall = ClientsCheckOutCall();
+  static TeamsCheckInCall teamsCheckInCall = TeamsCheckInCall();
+  static TeamsCheckOutCall teamsCheckOutCall = TeamsCheckOutCall();
+  static TeamsListCall teamsListCall = TeamsListCall();
+}
+
+class ClientsListCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Clients List',
+      apiUrl: '$baseUrl/clients',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ClientsCheckInCall {
+  Future<ApiCallResponse> call({
+    String? name = '',
+    String? phone = '',
+    String? invitationType = '',
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "name": "$name",
+  "phone": "$phone",
+  "invitation_type": "$invitationType"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ClientsCheckIn',
+      apiUrl: '$baseUrl/clients',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ClientsCheckOutCall {
+  Future<ApiCallResponse> call({
+    int? id,
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ClientsCheckOut',
+      apiUrl: '$baseUrl/clients/$id/checkout',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      bodyType: BodyType.NONE,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class TeamsCheckInCall {
+  Future<ApiCallResponse> call({
+    int? teamId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Teams CheckIn',
+      apiUrl: '$baseUrl/teams/$teamId/checkin',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class TeamsCheckOutCall {
+  Future<ApiCallResponse> call({
+    int? teamId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Teams CheckOut',
+      apiUrl: '$baseUrl/teams/$teamId/checkout',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class TeamsListCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+  }) async {
+    final baseUrl = OnBoardingGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Teams List',
+      apiUrl: '$baseUrl/teams',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End OnBoarding Group Code
+
 class BffMessageCall {
   static Future<ApiCallResponse> call({
     String? messageType = 'type',
@@ -62,7 +262,7 @@ class LoginCall {
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
-      encodeBodyUtf8: false,
+      encodeBodyUtf8: true,
       decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
@@ -70,26 +270,14 @@ class LoginCall {
     );
   }
 
-  static String? jwt(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.accessToken''',
-      ));
-  static dynamic user(dynamic response) => getJsonField(
+  static dynamic userData(dynamic response) => getJsonField(
         response,
         r'''$.user''',
       );
-  static int? userId(dynamic response) => castToType<int>(getJsonField(
+  static dynamic teamData(dynamic response) => getJsonField(
         response,
-        r'''$.user.user_id''',
-      ));
-  static String? userName(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.user.username''',
-      ));
-  static String? userRole(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.user.role''',
-      ));
+        r'''$.team''',
+      );
 }
 
 class ActionCreateCall {
@@ -675,46 +863,6 @@ class TeamListAllCall {
       alwaysAllowBody: false,
     );
   }
-
-  static List<String>? equipeName(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].name''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<int>? equipePhone(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].phone''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  static List<int>? equipeId(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].storeId''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  static String? profile(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$[:].profile''',
-      ));
-  static int? teamId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].teamId''',
-      ));
-  static int? actionId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$[:].actionId''',
-      ));
 }
 
 class TeamCreateCall {

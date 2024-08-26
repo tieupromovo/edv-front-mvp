@@ -4,14 +4,16 @@
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class LoggedUserStruct extends BaseStruct {
-  LoggedUserStruct({
+class LoginEdvStruct extends BaseStruct {
+  LoginEdvStruct({
     String? accessToken,
     int? expiresIn,
     UserStruct? user,
+    TeamStruct? team,
   })  : _accessToken = accessToken,
         _expiresIn = expiresIn,
-        _user = user;
+        _user = user,
+        _team = team;
 
   // "accessToken" field.
   String? _accessToken;
@@ -40,21 +42,32 @@ class LoggedUserStruct extends BaseStruct {
 
   bool hasUser() => _user != null;
 
-  static LoggedUserStruct fromMap(Map<String, dynamic> data) =>
-      LoggedUserStruct(
+  // "team" field.
+  TeamStruct? _team;
+  TeamStruct get team => _team ?? TeamStruct();
+  set team(TeamStruct? val) => _team = val;
+
+  void updateTeam(Function(TeamStruct) updateFn) {
+    updateFn(_team ??= TeamStruct());
+  }
+
+  bool hasTeam() => _team != null;
+
+  static LoginEdvStruct fromMap(Map<String, dynamic> data) => LoginEdvStruct(
         accessToken: data['accessToken'] as String?,
         expiresIn: castToType<int>(data['expiresIn']),
         user: UserStruct.maybeFromMap(data['user']),
+        team: TeamStruct.maybeFromMap(data['team']),
       );
 
-  static LoggedUserStruct? maybeFromMap(dynamic data) => data is Map
-      ? LoggedUserStruct.fromMap(data.cast<String, dynamic>())
-      : null;
+  static LoginEdvStruct? maybeFromMap(dynamic data) =>
+      data is Map ? LoginEdvStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'accessToken': _accessToken,
         'expiresIn': _expiresIn,
         'user': _user?.toMap(),
+        'team': _team?.toMap(),
       }.withoutNulls;
 
   @override
@@ -71,10 +84,14 @@ class LoggedUserStruct extends BaseStruct {
           _user,
           ParamType.DataStruct,
         ),
+        'team': serializeParam(
+          _team,
+          ParamType.DataStruct,
+        ),
       }.withoutNulls;
 
-  static LoggedUserStruct fromSerializableMap(Map<String, dynamic> data) =>
-      LoggedUserStruct(
+  static LoginEdvStruct fromSerializableMap(Map<String, dynamic> data) =>
+      LoginEdvStruct(
         accessToken: deserializeParam(
           data['accessToken'],
           ParamType.String,
@@ -91,30 +108,40 @@ class LoggedUserStruct extends BaseStruct {
           false,
           structBuilder: UserStruct.fromSerializableMap,
         ),
+        team: deserializeStructParam(
+          data['team'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: TeamStruct.fromSerializableMap,
+        ),
       );
 
   @override
-  String toString() => 'LoggedUserStruct(${toMap()})';
+  String toString() => 'LoginEdvStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
-    return other is LoggedUserStruct &&
+    return other is LoginEdvStruct &&
         accessToken == other.accessToken &&
         expiresIn == other.expiresIn &&
-        user == other.user;
+        user == other.user &&
+        team == other.team;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([accessToken, expiresIn, user]);
+  int get hashCode =>
+      const ListEquality().hash([accessToken, expiresIn, user, team]);
 }
 
-LoggedUserStruct createLoggedUserStruct({
+LoginEdvStruct createLoginEdvStruct({
   String? accessToken,
   int? expiresIn,
   UserStruct? user,
+  TeamStruct? team,
 }) =>
-    LoggedUserStruct(
+    LoginEdvStruct(
       accessToken: accessToken,
       expiresIn: expiresIn,
       user: user ?? UserStruct(),
+      team: team ?? TeamStruct(),
     );

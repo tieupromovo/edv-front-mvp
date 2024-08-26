@@ -135,7 +135,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                 child: Text(
                                   valueOrDefault<String>(
                                     currentUserData?.user.username,
-                                    '??',
+                                    '?',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodySmall

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'acao_equipe_create_page_widget.dart' show AcaoEquipeCreatePageWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AcaoEquipeCreatePageModel
     extends FlutterFlowModel<AcaoEquipeCreatePageWidget> {
@@ -27,6 +28,7 @@ class AcaoEquipeCreatePageModel
   // State field(s) for inputTeamPhone widget.
   FocusNode? inputTeamPhoneFocusNode;
   TextEditingController? inputTeamPhoneTextController;
+  final inputTeamPhoneMask = MaskTextInputFormatter(mask: '(##)#####-####');
   String? Function(BuildContext, String?)?
       inputTeamPhoneTextControllerValidator;
   // State field(s) for InputTeamType widget.

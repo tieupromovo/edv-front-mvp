@@ -22,33 +22,24 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Stores action output result for [Backend Call - API (Login)] action in Button widget.
   ApiCallResponse? apiLoginResult;
-  // State field(s) for name_Create widget.
-  FocusNode? nameCreateFocusNode;
-  TextEditingController? nameCreateTextController;
-  String? Function(BuildContext, String?)? nameCreateTextControllerValidator;
-  // State field(s) for emailAddress_Create widget.
-  FocusNode? emailAddressCreateFocusNode;
-  TextEditingController? emailAddressCreateTextController;
+  // State field(s) for password_newUpdate widget.
+  FocusNode? passwordNewUpdateFocusNode;
+  TextEditingController? passwordNewUpdateTextController;
+  late bool passwordNewUpdateVisibility;
   String? Function(BuildContext, String?)?
-      emailAddressCreateTextControllerValidator;
-  // State field(s) for password_Create widget.
-  FocusNode? passwordCreateFocusNode;
-  TextEditingController? passwordCreateTextController;
-  late bool passwordCreateVisibility;
+      passwordNewUpdateTextControllerValidator;
+  // State field(s) for password_new_Confirm_Update widget.
+  FocusNode? passwordNewConfirmUpdateFocusNode;
+  TextEditingController? passwordNewConfirmUpdateTextController;
+  late bool passwordNewConfirmUpdateVisibility;
   String? Function(BuildContext, String?)?
-      passwordCreateTextControllerValidator;
-  // State field(s) for password_Confirm_Create widget.
-  FocusNode? passwordConfirmCreateFocusNode;
-  TextEditingController? passwordConfirmCreateTextController;
-  late bool passwordConfirmCreateVisibility;
-  String? Function(BuildContext, String?)?
-      passwordConfirmCreateTextControllerValidator;
+      passwordNewConfirmUpdateTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
-    passwordCreateVisibility = false;
-    passwordConfirmCreateVisibility = false;
+    passwordNewUpdateVisibility = false;
+    passwordNewConfirmUpdateVisibility = false;
   }
 
   @override
@@ -60,16 +51,10 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     passwordFocusNode?.dispose();
     passwordTextController?.dispose();
 
-    nameCreateFocusNode?.dispose();
-    nameCreateTextController?.dispose();
+    passwordNewUpdateFocusNode?.dispose();
+    passwordNewUpdateTextController?.dispose();
 
-    emailAddressCreateFocusNode?.dispose();
-    emailAddressCreateTextController?.dispose();
-
-    passwordCreateFocusNode?.dispose();
-    passwordCreateTextController?.dispose();
-
-    passwordConfirmCreateFocusNode?.dispose();
-    passwordConfirmCreateTextController?.dispose();
+    passwordNewConfirmUpdateFocusNode?.dispose();
+    passwordNewConfirmUpdateTextController?.dispose();
   }
 }

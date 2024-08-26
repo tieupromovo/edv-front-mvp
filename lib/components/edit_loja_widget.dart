@@ -1,6 +1,5 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -504,107 +503,8 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 8.0),
                                   child: FFButtonWidget(
-                                    onPressed: () async {
-                                      var shouldSetState = false;
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        'Você quer deletar a ação?'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                false),
-                                                        child: const Text('Cancel'),
-                                                      ),
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext,
-                                                                true),
-                                                        child: const Text('Confirm'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        _model.apiDeleteLoja =
-                                            await LojaDeleteCall.call(
-                                          jwt: currentAuthenticationToken,
-                                          storeId: widget.storeID,
-                                        );
-
-                                        shouldSetState = true;
-                                        if ((_model.apiDeleteLoja?.succeeded ??
-                                            true)) {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text('Sucesso '),
-                                                content:
-                                                    const Text('A loja foi deletada'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-
-                                          context.pushNamed(
-                                            'AcaoLojasCreatePage',
-                                            queryParameters: {
-                                              'acao': serializeParam(
-                                                ActionStruct(),
-                                                ParamType.DataStruct,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-
-                                          if (shouldSetState) setState(() {});
-                                          return;
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text('Erro'),
-                                                content: Text((_model
-                                                        .apiDeleteLoja
-                                                        ?.bodyText ??
-                                                    '')),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                          if (shouldSetState) setState(() {});
-                                          return;
-                                        }
-                                      } else {
-                                        Navigator.pop(context);
-                                        if (shouldSetState) setState(() {});
-                                        return;
-                                      }
-
-                                      if (shouldSetState) setState(() {});
+                                    onPressed: () {
+                                      print('btn_Delete pressed ...');
                                     },
                                     text: 'Deletar',
                                     icon: const Icon(

@@ -39,8 +39,6 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Cadastro de Lojas';
       setState(() {});
-      _model.stateActionID = widget.acao?.actionId;
-      setState(() {});
     });
 
     _model.nomeLojaAcaoTextController ??=
@@ -819,8 +817,14 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                             .text,
                                                         goal:
                                                             _model.sldMetaValue,
-                                                        actionId: widget
-                                                            .acao?.actionId,
+                                                        actionId:
+                                                            valueOrDefault<int>(
+                                                          ActionStruct.maybeFromMap(
+                                                                  widget.acao
+                                                                      ?.toMap())
+                                                              ?.actionId,
+                                                          1,
+                                                        ),
                                                         jwt:
                                                             currentAuthenticationToken,
                                                       );
@@ -1133,14 +1137,14 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           'AcaoEquipeCreatePage',
                                                                           queryParameters:
                                                                               {
+                                                                            'acao':
+                                                                                serializeParam(
+                                                                              ActionStruct.maybeFromMap(widget.acao?.toMap()),
+                                                                              ParamType.DataStruct,
+                                                                            ),
                                                                             'store':
                                                                                 serializeParam(
                                                                               StoreStruct.maybeFromMap(lojaListaItem),
-                                                                              ParamType.DataStruct,
-                                                                            ),
-                                                                            'acao':
-                                                                                serializeParam(
-                                                                              widget.acao,
                                                                               ParamType.DataStruct,
                                                                             ),
                                                                           }.withoutNulls,
@@ -1201,7 +1205,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                             () {
                                                                           _model
                                                                               .txtNomeTextController
-                                                                              ?.text = StoreStruct.maybeFromMap(lojaListaItem)!.name;
+                                                                              ?.text = ActionStruct.maybeFromMap(lojaListaItem)!.name;
                                                                           _model
                                                                               .txtNomeTextController
                                                                               ?.selection = TextSelection.collapsed(offset: _model.txtNomeTextController!.text.length);

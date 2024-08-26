@@ -5,29 +5,29 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'estrutura_basica_model.dart';
-export 'estrutura_basica_model.dart';
+import 'operacao_page_model.dart';
+export 'operacao_page_model.dart';
 
-class EstruturaBasicaWidget extends StatefulWidget {
-  const EstruturaBasicaWidget({super.key});
+class OperacaoPageWidget extends StatefulWidget {
+  const OperacaoPageWidget({super.key});
 
   @override
-  State<EstruturaBasicaWidget> createState() => _EstruturaBasicaWidgetState();
+  State<OperacaoPageWidget> createState() => _OperacaoPageWidgetState();
 }
 
-class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
-  late EstruturaBasicaModel _model;
+class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
+  late OperacaoPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EstruturaBasicaModel());
+    _model = createModel(context, () => OperacaoPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().PageTitle = 'Operação';
+      FFAppState().PageTitle = 'Template';
       setState(() {});
     });
 
@@ -82,10 +82,10 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 0.9,
+                        height: MediaQuery.sizeOf(context).height * 0.85,
                         constraints: const BoxConstraints(
                           maxWidth: 800.0,
                         ),
@@ -98,25 +98,34 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              wrapWithModel(
-                                model: _model.pgHeaderCmpModel,
-                                updateCallback: () => setState(() {}),
-                                child: const PgHeaderCmpWidget(),
-                              ),
-                              Container(
-                                height: MediaQuery.sizeOf(context).height * 0.8,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 16.0, 0.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.pgHeaderCmpModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: const PgHeaderCmpWidget(),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 8.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 1.0, 0.0, 0.0),
+                                child: Container(
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.73,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 8.0, 0.0, 8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [],
+                                    ),
                                   ),
                                 ),
                               ),

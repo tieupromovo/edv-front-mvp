@@ -36,6 +36,14 @@ enum FrequencyEnum {
   Bimestral,
 }
 
+enum TipoConvite {
+  Whatsapp,
+  Folheto,
+  Ligacao,
+  Passante,
+  RedeSocial,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -55,6 +63,8 @@ T? deserializeEnum<T>(String? value) {
       return ActionTypeEnum.values.deserialize(value) as T?;
     case (FrequencyEnum):
       return FrequencyEnum.values.deserialize(value) as T?;
+    case (TipoConvite):
+      return TipoConvite.values.deserialize(value) as T?;
     default:
       return null;
   }

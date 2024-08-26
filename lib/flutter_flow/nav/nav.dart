@@ -123,17 +123,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AcaoEquipeCreatePage',
           path: '/acaoEquipeCreatePage',
           builder: (context, params) => AcaoEquipeCreatePageWidget(
-            store: params.getParam(
-              'store',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: StoreStruct.fromSerializableMap,
-            ),
             acao: params.getParam(
               'acao',
               ParamType.DataStruct,
               isList: false,
               structBuilder: ActionStruct.fromSerializableMap,
+            ),
+            store: params.getParam(
+              'store',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StoreStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -143,16 +143,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EsqueciSenhaPageWidget(),
         ),
         FFRoute(
-          name: 'TrocaSenha',
-          path: '/TrocaSenha',
-          builder: (context, params) => const TrocaSenhaWidget(),
-        ),
-        FFRoute(
           name: 'OnBoardingPage',
           path: '/OnBoardingPage',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'OnBoardingPage')
               : const OnBoardingPageWidget(),
+        ),
+        FFRoute(
+          name: 'OperacaoPage',
+          path: '/operacaoPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'OperacaoPage')
+              : const OperacaoPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

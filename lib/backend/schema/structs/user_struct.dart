@@ -7,12 +7,21 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class UserStruct extends BaseStruct {
   UserStruct({
+    int? userId,
     String? username,
-    String? role,
-    String? userId,
-  })  : _username = username,
-        _role = role,
-        _userId = userId;
+    String? roles,
+  })  : _userId = userId,
+        _username = username,
+        _roles = roles;
+
+  // "userId" field.
+  int? _userId;
+  int get userId => _userId ?? 0;
+  set userId(int? val) => _userId = val;
+
+  void incrementUserId(int amount) => userId = userId + amount;
+
+  bool hasUserId() => _userId != null;
 
   // "username" field.
   String? _username;
@@ -21,65 +30,58 @@ class UserStruct extends BaseStruct {
 
   bool hasUsername() => _username != null;
 
-  // "role" field.
-  String? _role;
-  String get role => _role ?? '';
-  set role(String? val) => _role = val;
+  // "roles" field.
+  String? _roles;
+  String get roles => _roles ?? '';
+  set roles(String? val) => _roles = val;
 
-  bool hasRole() => _role != null;
-
-  // "user_id" field.
-  String? _userId;
-  String get userId => _userId ?? '';
-  set userId(String? val) => _userId = val;
-
-  bool hasUserId() => _userId != null;
+  bool hasRoles() => _roles != null;
 
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
+        userId: castToType<int>(data['userId']),
         username: data['username'] as String?,
-        role: data['role'] as String?,
-        userId: data['user_id'] as String?,
+        roles: data['roles'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
       data is Map ? UserStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
+        'userId': _userId,
         'username': _username,
-        'role': _role,
-        'user_id': _userId,
+        'roles': _roles,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
+        'userId': serializeParam(
+          _userId,
+          ParamType.int,
+        ),
         'username': serializeParam(
           _username,
           ParamType.String,
         ),
-        'role': serializeParam(
-          _role,
-          ParamType.String,
-        ),
-        'user_id': serializeParam(
-          _userId,
+        'roles': serializeParam(
+          _roles,
           ParamType.String,
         ),
       }.withoutNulls;
 
   static UserStruct fromSerializableMap(Map<String, dynamic> data) =>
       UserStruct(
+        userId: deserializeParam(
+          data['userId'],
+          ParamType.int,
+          false,
+        ),
         username: deserializeParam(
           data['username'],
           ParamType.String,
           false,
         ),
-        role: deserializeParam(
-          data['role'],
-          ParamType.String,
-          false,
-        ),
-        userId: deserializeParam(
-          data['user_id'],
+        roles: deserializeParam(
+          data['roles'],
           ParamType.String,
           false,
         ),
@@ -91,22 +93,22 @@ class UserStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is UserStruct &&
+        userId == other.userId &&
         username == other.username &&
-        role == other.role &&
-        userId == other.userId;
+        roles == other.roles;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([username, role, userId]);
+  int get hashCode => const ListEquality().hash([userId, username, roles]);
 }
 
 UserStruct createUserStruct({
+  int? userId,
   String? username,
-  String? role,
-  String? userId,
+  String? roles,
 }) =>
     UserStruct(
-      username: username,
-      role: role,
       userId: userId,
+      username: username,
+      roles: roles,
     );

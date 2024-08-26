@@ -34,7 +34,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().PageTitle = ' ';
+      FFAppState().PageTitle = ' Home Page';
       setState(() {});
     });
 

@@ -10,4 +10,4 @@ String get currentUserUid => currentUser?.uid ?? '';
 String? get currentAuthenticationToken => authManager.authenticationToken;
 String? get currentAuthRefreshToken => authManager.refreshToken;
 DateTime? get currentAuthTokenExpiration => authManager.tokenExpiration;
-LoggedUserStruct? get currentUserData => currentUser?.userData;
+LoginEdvStruct? get currentUserData => currentUser?.userData;

@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'acao_create_page_model.dart';
 export 'acao_create_page_model.dart';
 
@@ -26,6 +28,12 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AcaoCreatePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().PageTitle = 'Cadastro de Ação';
+      setState(() {});
+    });
 
     _model.txtNameTextController ??= TextEditingController();
     _model.txtNameFocusNode ??= FocusNode();
@@ -59,6 +67,8 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

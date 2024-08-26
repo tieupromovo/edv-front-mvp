@@ -1,60 +1,45 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'on_boarding_page_widget.dart' show OnBoardingPageWidget;
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
-  ///  Local state fields for this page.
-
-  ActionStruct? selectedActionId;
-  void updateSelectedActionIdStruct(Function(ActionStruct) updateFn) {
-    updateFn(selectedActionId ??= ActionStruct());
-  }
-
-  StoreStruct? selectedLojaId;
-  void updateSelectedLojaIdStruct(Function(StoreStruct) updateFn) {
-    updateFn(selectedLojaId ??= StoreStruct());
-  }
-
   ///  State fields for stateful widgets in this page.
 
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // Stores action output result for [Backend Call - API (ActionListAll)] action in DropDown widget.
-  ApiCallResponse? apiResultadoActionList;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
-  // State field(s) for txtFim widget.
-  FocusNode? txtFimFocusNode;
-  TextEditingController? txtFimTextController;
-  String? Function(BuildContext, String?)? txtFimTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
+  // State field(s) for txt_name widget.
+  FocusNode? txtNameFocusNode;
+  TextEditingController? txtNameTextController;
+  String? Function(BuildContext, String?)? txtNameTextControllerValidator;
+  // State field(s) for txt_phone widget.
+  FocusNode? txtPhoneFocusNode;
+  TextEditingController? txtPhoneTextController;
+  final txtPhoneMask = MaskTextInputFormatter(mask: '(##)#####-####');
+  String? Function(BuildContext, String?)? txtPhoneTextControllerValidator;
+  // State field(s) for cmb_convite widget.
+  String? cmbConviteValue;
+  FormFieldController<String>? cmbConviteValueController;
+  // Stores action output result for [Backend Call - API (ClientsCheckIn)] action in Button widget.
+  ApiCallResponse? apiResultg9b;
+  // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
+  ApiCallResponse? apiResultg0m;
   // State field(s) for DropDown widget.
-  String? dropDownValue3;
-  FormFieldController<String>? dropDownValueController3;
-  // State field(s) for DropDown widget.
-  String? dropDownValue4;
-  FormFieldController<String>? dropDownValueController4;
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
+  // Stores action output result for [Backend Call - API (Teams CheckIn)] action in Button widget.
+  ApiCallResponse? apiResultsnh;
+  // Stores action output result for [Backend Call - API (Teams CheckOut)] action in Button widget.
+  ApiCallResponse? apiResult5qc;
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 
@@ -67,15 +52,12 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   @override
   void dispose() {
     pgHeaderCmpModel.dispose();
-    txtFimFocusNode?.dispose();
-    txtFimTextController?.dispose();
-
     tabBarController?.dispose();
-    textFieldFocusNode1?.dispose();
-    textController2?.dispose();
+    txtNameFocusNode?.dispose();
+    txtNameTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController3?.dispose();
+    txtPhoneFocusNode?.dispose();
+    txtPhoneTextController?.dispose();
 
     drawerContentCmpModel.dispose();
   }

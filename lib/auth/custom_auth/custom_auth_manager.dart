@@ -22,7 +22,7 @@ class CustomAuthManager {
   DateTime? tokenExpiration;
   // User attributes
   String? uid;
-  LoggedUserStruct? userData;
+  LoginEdvStruct? userData;
 
   Future signOut() async {
     authenticationToken = null;
@@ -42,7 +42,7 @@ class CustomAuthManager {
     String? refreshToken,
     DateTime? tokenExpiration,
     String? authUid,
-    LoggedUserStruct? userData,
+    LoginEdvStruct? userData,
   }) async =>
       _updateCurrentUser(
         authenticationToken: authenticationToken,
@@ -57,7 +57,7 @@ class CustomAuthManager {
     String? refreshToken,
     DateTime? tokenExpiration,
     String? authUid,
-    LoggedUserStruct? userData,
+    LoginEdvStruct? userData,
   }) {
     assert(
       currentUser?.loggedIn ?? false,
@@ -78,7 +78,7 @@ class CustomAuthManager {
     String? refreshToken,
     DateTime? tokenExpiration,
     String? authUid,
-    LoggedUserStruct? userData,
+    LoginEdvStruct? userData,
   }) {
     this.authenticationToken = authenticationToken;
     this.refreshToken = refreshToken;
@@ -109,7 +109,7 @@ class CustomAuthManager {
           : null;
       uid = _prefs.getString(_kUidKey);
       userData = _prefs.getString(_kUserDataKey) != null
-          ? LoggedUserStruct.fromSerializableMap(
+          ? LoginEdvStruct.fromSerializableMap(
               (jsonDecode(_prefs.getString(_kUserDataKey)!) as Map)
                   .cast<String, dynamic>(),
             )

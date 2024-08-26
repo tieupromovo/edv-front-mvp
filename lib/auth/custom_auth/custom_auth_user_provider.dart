@@ -12,7 +12,7 @@ class EsquadraoDeVendasMVPAuthUser {
 
   bool loggedIn;
   String? uid;
-  LoggedUserStruct? userData;
+  LoginEdvStruct? userData;
 }
 
 /// Generates a stream of the authenticated user.
