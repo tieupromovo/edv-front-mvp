@@ -173,7 +173,7 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.rule,
+              Icons.router,
               size: 24.0,
             ),
             label: 'Home',

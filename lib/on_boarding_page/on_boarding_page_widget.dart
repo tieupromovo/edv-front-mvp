@@ -200,7 +200,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                         ),
                                               ),
                                               Text(
-                                                ' / Loja: ',
+                                                'Loja: ',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -555,73 +555,73 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     MainAxisAlignment
                                                                         .spaceBetween,
                                                                 children: [
-                                                                  FlutterFlowDropDown<
-                                                                      String>(
-                                                                    controller: _model
-                                                                        .cmbConviteValueController ??= FormFieldController<
-                                                                            String>(
-                                                                        null),
-                                                                    options: TipoConvite
-                                                                        .values
-                                                                        .map((e) =>
-                                                                            e.name)
-                                                                        .toList(),
-                                                                    onChanged: (val) =>
-                                                                        setState(() =>
-                                                                            _model.cmbConviteValue =
-                                                                                val),
-                                                                    width:
-                                                                        225.0,
-                                                                    height:
-                                                                        56.0,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                    hintText:
-                                                                        'Tipo de convite',
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_down_rounded,
-                                                                      color: FlutterFlowTheme.of(
+                                                                  Expanded(
+                                                                    child: FlutterFlowDropDown<
+                                                                        String>(
+                                                                      controller: _model
+                                                                          .cmbConviteValueController ??= FormFieldController<
+                                                                              String>(
+                                                                          null),
+                                                                      options: TipoConvite
+                                                                          .values
+                                                                          .map((e) =>
+                                                                              e.name)
+                                                                          .toList(),
+                                                                      onChanged:
+                                                                          (val) =>
+                                                                              setState(() => _model.cmbConviteValue = val),
+                                                                      width:
+                                                                          225.0,
+                                                                      height:
+                                                                          56.0,
+                                                                      textStyle: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          24.0,
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Inter',
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                      hintText:
+                                                                          'Tipo de convite',
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .keyboard_arrow_down_rounded,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                      fillColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                      elevation:
+                                                                          2.0,
+                                                                      borderColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .alternate,
+                                                                      borderWidth:
+                                                                          2.0,
+                                                                      borderRadius:
+                                                                          8.0,
+                                                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                                                          16.0,
+                                                                          4.0,
+                                                                          0.0,
+                                                                          4.0),
+                                                                      hidesUnderline:
+                                                                          true,
+                                                                      isOverButton:
+                                                                          true,
+                                                                      isSearchable:
+                                                                          false,
+                                                                      isMultiSelect:
+                                                                          false,
                                                                     ),
-                                                                    fillColor: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    elevation:
-                                                                        2.0,
-                                                                    borderColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                    borderWidth:
-                                                                        2.0,
-                                                                    borderRadius:
-                                                                        8.0,
-                                                                    margin: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                    hidesUnderline:
-                                                                        true,
-                                                                    isOverButton:
-                                                                        true,
-                                                                    isSearchable:
-                                                                        false,
-                                                                    isMultiSelect:
-                                                                        false,
                                                                   ),
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
@@ -758,234 +758,230 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     ),
                                                               ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: FutureBuilder<
-                                                                  ApiCallResponse>(
-                                                                future: OnBoardingGroup
-                                                                    .clientsListCall
-                                                                    .call(
-                                                                  jwt:
-                                                                      currentAuthenticationToken,
-                                                                ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            4.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: FutureBuilder<
+                                                                    ApiCallResponse>(
+                                                                  future: OnBoardingGroup
+                                                                      .clientsListCall
+                                                                      .call(
+                                                                    jwt:
+                                                                        currentAuthenticationToken,
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          valueColor:
-                                                                              AlwaysStoppedAnimation<Color>(
-                                                                            FlutterFlowTheme.of(context).primary,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  final listViewClientsListResponse =
-                                                                      snapshot
-                                                                          .data!;
-
-                                                                  return Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final onboardingClientList =
-                                                                          (listViewClientsListResponse.jsonBody.toList().map<ClientStruct?>(ClientStruct.maybeFromMap).toList() as Iterable<ClientStruct?>).withoutNulls.toList() ??
-                                                                              [];
-
-                                                                      return ListView
-                                                                          .builder(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        shrinkWrap:
-                                                                            true,
-                                                                        scrollDirection:
-                                                                            Axis.vertical,
-                                                                        itemCount:
-                                                                            onboardingClientList.length,
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                onboardingClientListIndex) {
-                                                                          final onboardingClientListItem =
-                                                                              onboardingClientList[onboardingClientListIndex];
-                                                                          return Card(
-                                                                            clipBehavior:
-                                                                                Clip.antiAliasWithSaveLayer,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            elevation:
-                                                                                4.0,
-                                                                            shape:
-                                                                                RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(8.0),
-                                                                            ),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                                                                              child: Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                                children: [
-                                                                                  Expanded(
-                                                                                    child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-                                                                                      child: Column(
-                                                                                        mainAxisSize: MainAxisSize.max,
-                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                        children: [
-                                                                                          Row(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                            children: [
-                                                                                              Text(
-                                                                                                valueOrDefault<String>(
-                                                                                                  onboardingClientListItem.name,
-                                                                                                  '?',
-                                                                                                ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                      fontWeight: FontWeight.w600,
-                                                                                                    ),
-                                                                                              ),
-                                                                                              Text(
-                                                                                                onboardingClientListItem.checkinAt,
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                      fontWeight: FontWeight.normal,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ].divide(const SizedBox(width: 16.0)),
-                                                                                          ),
-                                                                                          Row(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                            children: [
-                                                                                              Text(
-                                                                                                valueOrDefault<String>(
-                                                                                                  onboardingClientListItem.phone,
-                                                                                                  '?',
-                                                                                                ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                      fontStyle: FontStyle.italic,
-                                                                                                    ),
-                                                                                              ),
-                                                                                              Text(
-                                                                                                valueOrDefault<String>(
-                                                                                                  onboardingClientListItem.checkoutAt,
-                                                                                                  '?',
-                                                                                                ),
-                                                                                                textAlign: TextAlign.end,
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ].divide(const SizedBox(width: 16.0)),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
-                                                                                    child: FFButtonWidget(
-                                                                                      onPressed: () async {
-                                                                                        _model.apiResultg0m = await OnBoardingGroup.clientsCheckOutCall.call(
-                                                                                          jwt: currentAuthenticationToken,
-                                                                                          id: valueOrDefault<int>(
-                                                                                            onboardingClientListItem.onboardingClientId,
-                                                                                            0,
-                                                                                          ),
-                                                                                        );
-
-                                                                                        if ((_model.apiResultg0m?.succeeded ?? true)) {
-                                                                                          await showDialog(
-                                                                                            context: context,
-                                                                                            builder: (alertDialogContext) {
-                                                                                              return AlertDialog(
-                                                                                                title: const Text('Checkout'),
-                                                                                                content: const Text('Lead deixou a loja'),
-                                                                                                actions: [
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: const Text('Ok'),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              );
-                                                                                            },
-                                                                                          );
-                                                                                        } else {
-                                                                                          await showDialog(
-                                                                                            context: context,
-                                                                                            builder: (alertDialogContext) {
-                                                                                              return AlertDialog(
-                                                                                                title: const Text('ERRO'),
-                                                                                                content: const Text('Ocorreu algum erro'),
-                                                                                                actions: [
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: const Text('Ok'),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              );
-                                                                                            },
-                                                                                          );
-                                                                                        }
-
-                                                                                        setState(() {});
-                                                                                      },
-                                                                                      text: 'Saída',
-                                                                                      options: FFButtonOptions(
-                                                                                        height: 35.0,
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                              fontFamily: 'Inter',
-                                                                                              color: Colors.white,
-                                                                                              fontSize: 9.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                            ),
-                                                                                        elevation: 3.0,
-                                                                                        borderSide: const BorderSide(
-                                                                                          color: Colors.transparent,
-                                                                                          width: 1.0,
-                                                                                        ),
-                                                                                        borderRadius: BorderRadius.circular(8.0),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
                                                                       );
-                                                                    },
-                                                                  );
-                                                                },
+                                                                    }
+                                                                    final listViewClientsListResponse =
+                                                                        snapshot
+                                                                            .data!;
+
+                                                                    return Builder(
+                                                                      builder:
+                                                                          (context) {
+                                                                        final onboardingClientList =
+                                                                            (listViewClientsListResponse.jsonBody.toList().map<ClientStruct?>(ClientStruct.maybeFromMap).toList() as Iterable<ClientStruct?>).withoutNulls.toList() ??
+                                                                                [];
+
+                                                                        return ListView
+                                                                            .builder(
+                                                                          padding:
+                                                                              EdgeInsets.zero,
+                                                                          shrinkWrap:
+                                                                              true,
+                                                                          scrollDirection:
+                                                                              Axis.vertical,
+                                                                          itemCount:
+                                                                              onboardingClientList.length,
+                                                                          itemBuilder:
+                                                                              (context, onboardingClientListIndex) {
+                                                                            final onboardingClientListItem =
+                                                                                onboardingClientList[onboardingClientListIndex];
+                                                                            return Card(
+                                                                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              elevation: 4.0,
+                                                                              shape: RoundedRectangleBorder(
+                                                                                borderRadius: BorderRadius.circular(8.0),
+                                                                              ),
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                                  children: [
+                                                                                    Expanded(
+                                                                                      child: Padding(
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                                        child: Column(
+                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                          children: [
+                                                                                            Row(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                              children: [
+                                                                                                Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    onboardingClientListItem.name,
+                                                                                                    '?',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontWeight: FontWeight.w600,
+                                                                                                      ),
+                                                                                                ),
+                                                                                                Text(
+                                                                                                  onboardingClientListItem.checkinAt,
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontWeight: FontWeight.normal,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ].divide(const SizedBox(width: 16.0)),
+                                                                                            ),
+                                                                                            Row(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                              children: [
+                                                                                                Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    onboardingClientListItem.phone,
+                                                                                                    '?',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontStyle: FontStyle.italic,
+                                                                                                      ),
+                                                                                                ),
+                                                                                                Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    onboardingClientListItem.checkoutAt,
+                                                                                                    '?',
+                                                                                                  ),
+                                                                                                  textAlign: TextAlign.end,
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ].divide(const SizedBox(width: 16.0)),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
+                                                                                      child: FFButtonWidget(
+                                                                                        onPressed: () async {
+                                                                                          _model.apiResultg0m = await OnBoardingGroup.clientsCheckOutCall.call(
+                                                                                            jwt: currentAuthenticationToken,
+                                                                                            id: valueOrDefault<int>(
+                                                                                              onboardingClientListItem.onboardingClientId,
+                                                                                              0,
+                                                                                            ),
+                                                                                          );
+
+                                                                                          if ((_model.apiResultg0m?.succeeded ?? true)) {
+                                                                                            await showDialog(
+                                                                                              context: context,
+                                                                                              builder: (alertDialogContext) {
+                                                                                                return AlertDialog(
+                                                                                                  title: const Text('Checkout'),
+                                                                                                  content: const Text('Lead deixou a loja'),
+                                                                                                  actions: [
+                                                                                                    TextButton(
+                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                      child: const Text('Ok'),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                );
+                                                                                              },
+                                                                                            );
+                                                                                          } else {
+                                                                                            await showDialog(
+                                                                                              context: context,
+                                                                                              builder: (alertDialogContext) {
+                                                                                                return AlertDialog(
+                                                                                                  title: const Text('ERRO'),
+                                                                                                  content: const Text('Ocorreu algum erro'),
+                                                                                                  actions: [
+                                                                                                    TextButton(
+                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                      child: const Text('Ok'),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                );
+                                                                                              },
+                                                                                            );
+                                                                                          }
+
+                                                                                          setState(() {});
+                                                                                        },
+                                                                                        text: 'Saída',
+                                                                                        options: FFButtonOptions(
+                                                                                          height: 35.0,
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                                fontFamily: 'Inter',
+                                                                                                color: Colors.white,
+                                                                                                fontSize: 9.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                              ),
+                                                                                          elevation: 3.0,
+                                                                                          borderSide: const BorderSide(
+                                                                                            color: Colors.transparent,
+                                                                                            width: 1.0,
+                                                                                          ),
+                                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  },
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
@@ -1244,226 +1240,229 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     ),
                                                               ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: FutureBuilder<
-                                                                  ApiCallResponse>(
-                                                                future: OnBoardingGroup
-                                                                    .teamsListCall
-                                                                    .call(
-                                                                  jwt:
-                                                                      currentAuthenticationToken,
-                                                                ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            50.0,
-                                                                        height:
-                                                                            50.0,
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            4.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: FutureBuilder<
+                                                                    ApiCallResponse>(
+                                                                  future: OnBoardingGroup
+                                                                      .teamsListCall
+                                                                      .call(
+                                                                    jwt:
+                                                                        currentAuthenticationToken,
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
                                                                         child:
-                                                                            CircularProgressIndicator(
-                                                                          valueColor:
-                                                                              AlwaysStoppedAnimation<Color>(
-                                                                            FlutterFlowTheme.of(context).primary,
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  final listViewTeamsListResponse =
-                                                                      snapshot
-                                                                          .data!;
+                                                                      );
+                                                                    }
+                                                                    final listViewTeamsListResponse =
+                                                                        snapshot
+                                                                            .data!;
 
-                                                                  return Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final onboardingTeamList =
-                                                                          (listViewTeamsListResponse.jsonBody.toList().map<OnboargingTeamStruct?>(OnboargingTeamStruct.maybeFromMap).toList() as Iterable<OnboargingTeamStruct?>).withoutNulls.toList() ??
-                                                                              [];
+                                                                    return Builder(
+                                                                      builder:
+                                                                          (context) {
+                                                                        final onboardingTeamList =
+                                                                            (listViewTeamsListResponse.jsonBody.toList().map<OnboargingTeamStruct?>(OnboargingTeamStruct.maybeFromMap).toList() as Iterable<OnboargingTeamStruct?>).withoutNulls.toList() ??
+                                                                                [];
+                                                                        if (onboardingTeamList
+                                                                            .isEmpty) {
+                                                                          return Image
+                                                                              .asset(
+                                                                            'assets/images/edv.jpg',
+                                                                          );
+                                                                        }
 
-                                                                      return ListView
-                                                                          .builder(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        shrinkWrap:
-                                                                            true,
-                                                                        scrollDirection:
-                                                                            Axis.vertical,
-                                                                        itemCount:
-                                                                            onboardingTeamList.length,
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                onboardingTeamListIndex) {
-                                                                          final onboardingTeamListItem =
-                                                                              onboardingTeamList[onboardingTeamListIndex];
-                                                                          return Card(
-                                                                            clipBehavior:
-                                                                                Clip.antiAliasWithSaveLayer,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            elevation:
-                                                                                4.0,
-                                                                            shape:
-                                                                                RoundedRectangleBorder(
-                                                                              borderRadius: BorderRadius.circular(8.0),
-                                                                            ),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                                                                              child: Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Expanded(
-                                                                                    child: Column(
-                                                                                      mainAxisSize: MainAxisSize.max,
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              valueOrDefault<String>(
-                                                                                                onboardingTeamListItem.name,
-                                                                                                '?',
+                                                                        return ListView
+                                                                            .builder(
+                                                                          padding:
+                                                                              EdgeInsets.zero,
+                                                                          shrinkWrap:
+                                                                              true,
+                                                                          scrollDirection:
+                                                                              Axis.vertical,
+                                                                          itemCount:
+                                                                              onboardingTeamList.length,
+                                                                          itemBuilder:
+                                                                              (context, onboardingTeamListIndex) {
+                                                                            final onboardingTeamListItem =
+                                                                                onboardingTeamList[onboardingTeamListIndex];
+                                                                            return Card(
+                                                                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              elevation: 4.0,
+                                                                              shape: RoundedRectangleBorder(
+                                                                                borderRadius: BorderRadius.circular(8.0),
+                                                                              ),
+                                                                              child: Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  children: [
+                                                                                    Expanded(
+                                                                                      child: Column(
+                                                                                        mainAxisSize: MainAxisSize.max,
+                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                        children: [
+                                                                                          Row(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                            children: [
+                                                                                              Text(
+                                                                                                valueOrDefault<String>(
+                                                                                                  onboardingTeamListItem.name,
+                                                                                                  '?',
+                                                                                                ),
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: 'Inter',
+                                                                                                      fontSize: 11.0,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontWeight: FontWeight.w600,
+                                                                                                    ),
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: 'Inter',
-                                                                                                    fontSize: 11.0,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.w600,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              onboardingTeamListItem.checkinAt,
-                                                                                              textAlign: TextAlign.end,
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: 'Inter',
-                                                                                                    fontSize: 11.0,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontWeight: FontWeight.normal,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                        Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                          children: [
-                                                                                            Text(
-                                                                                              valueOrDefault<String>(
-                                                                                                onboardingTeamListItem.profile,
-                                                                                                '-',
+                                                                                              Text(
+                                                                                                onboardingTeamListItem.checkinAt,
+                                                                                                textAlign: TextAlign.end,
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: 'Inter',
+                                                                                                      fontSize: 11.0,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontWeight: FontWeight.normal,
+                                                                                                    ),
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: 'Inter',
-                                                                                                    fontSize: 11.0,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                    fontStyle: FontStyle.italic,
-                                                                                                  ),
-                                                                                            ),
-                                                                                            Text(
-                                                                                              onboardingTeamListItem.checkinOut,
-                                                                                              textAlign: TextAlign.end,
-                                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                    fontFamily: 'Inter',
-                                                                                                    fontSize: 11.0,
-                                                                                                    letterSpacing: 0.0,
-                                                                                                  ),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
-                                                                                    child: FFButtonWidget(
-                                                                                      onPressed: () async {
-                                                                                        _model.apiResult5qc = await OnBoardingGroup.teamsCheckOutCall.call(
-                                                                                          jwt: currentAuthenticationToken,
-                                                                                          teamId: onboardingTeamListItem.registredTeamId,
-                                                                                        );
-
-                                                                                        if ((_model.apiResult5qc?.succeeded ?? true)) {
-                                                                                          await showDialog(
-                                                                                            context: context,
-                                                                                            builder: (alertDialogContext) {
-                                                                                              return AlertDialog(
-                                                                                                title: const Text('Checkout'),
-                                                                                                content: const Text('Membro da equipe saiu da operação'),
-                                                                                                actions: [
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: const Text('Ok'),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              );
-                                                                                            },
-                                                                                          );
-                                                                                        } else {
-                                                                                          await showDialog(
-                                                                                            context: context,
-                                                                                            builder: (alertDialogContext) {
-                                                                                              return AlertDialog(
-                                                                                                title: const Text('ERRO'),
-                                                                                                content: const Text('Ocorreu algum erro no backend'),
-                                                                                                actions: [
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: const Text('Ok'),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              );
-                                                                                            },
-                                                                                          );
-                                                                                        }
-
-                                                                                        setState(() {});
-                                                                                      },
-                                                                                      text: 'Saída',
-                                                                                      options: FFButtonOptions(
-                                                                                        height: 40.0,
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                              fontFamily: 'Inter',
-                                                                                              color: Colors.white,
-                                                                                              fontSize: 10.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                            ),
-                                                                                        elevation: 3.0,
-                                                                                        borderSide: const BorderSide(
-                                                                                          color: Colors.transparent,
-                                                                                          width: 1.0,
-                                                                                        ),
-                                                                                        borderRadius: BorderRadius.circular(8.0),
+                                                                                            ],
+                                                                                          ),
+                                                                                          Row(
+                                                                                            mainAxisSize: MainAxisSize.max,
+                                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                            children: [
+                                                                                              Text(
+                                                                                                valueOrDefault<String>(
+                                                                                                  onboardingTeamListItem.profile,
+                                                                                                  '-',
+                                                                                                ),
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: 'Inter',
+                                                                                                      fontSize: 11.0,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontStyle: FontStyle.italic,
+                                                                                                    ),
+                                                                                              ),
+                                                                                              Text(
+                                                                                                onboardingTeamListItem.checkinOut,
+                                                                                                textAlign: TextAlign.end,
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: 'Inter',
+                                                                                                      fontSize: 11.0,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                    ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          ),
+                                                                                        ],
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ],
+                                                                                    Padding(
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
+                                                                                      child: FFButtonWidget(
+                                                                                        onPressed: () async {
+                                                                                          _model.apiResult5qc = await OnBoardingGroup.teamsCheckOutCall.call(
+                                                                                            jwt: currentAuthenticationToken,
+                                                                                            teamId: onboardingTeamListItem.registredTeamId,
+                                                                                          );
+
+                                                                                          if ((_model.apiResult5qc?.succeeded ?? true)) {
+                                                                                            await showDialog(
+                                                                                              context: context,
+                                                                                              builder: (alertDialogContext) {
+                                                                                                return AlertDialog(
+                                                                                                  title: const Text('Checkout'),
+                                                                                                  content: const Text('Membro da equipe saiu da operação'),
+                                                                                                  actions: [
+                                                                                                    TextButton(
+                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                      child: const Text('Ok'),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                );
+                                                                                              },
+                                                                                            );
+                                                                                          } else {
+                                                                                            await showDialog(
+                                                                                              context: context,
+                                                                                              builder: (alertDialogContext) {
+                                                                                                return AlertDialog(
+                                                                                                  title: const Text('ERRO'),
+                                                                                                  content: const Text('Ocorreu algum erro no backend'),
+                                                                                                  actions: [
+                                                                                                    TextButton(
+                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                      child: const Text('Ok'),
+                                                                                                    ),
+                                                                                                  ],
+                                                                                                );
+                                                                                              },
+                                                                                            );
+                                                                                          }
+
+                                                                                          setState(() {});
+                                                                                        },
+                                                                                        text: 'Saída',
+                                                                                        options: FFButtonOptions(
+                                                                                          height: 40.0,
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                                fontFamily: 'Inter',
+                                                                                                color: Colors.white,
+                                                                                                fontSize: 10.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                              ),
+                                                                                          elevation: 3.0,
+                                                                                          borderSide: const BorderSide(
+                                                                                            color: Colors.transparent,
+                                                                                            width: 1.0,
+                                                                                          ),
+                                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                },
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  },
+                                                                ),
                                                               ),
                                                             ),
                                                           ],

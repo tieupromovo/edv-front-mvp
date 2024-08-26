@@ -9,6 +9,11 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
 
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 
@@ -21,6 +26,7 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
   @override
   void dispose() {
     pgHeaderCmpModel.dispose();
+    tabBarController?.dispose();
     drawerContentCmpModel.dispose();
   }
 }
