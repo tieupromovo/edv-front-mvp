@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for username widget.
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;

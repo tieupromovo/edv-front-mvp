@@ -4,6 +4,7 @@ enum FuncaoEnum {
   LIDER,
   GERENTE,
   RECEPCIONISTA,
+  VENDEDOR,
 }
 
 enum MessageTypeEnum {

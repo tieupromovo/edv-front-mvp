@@ -10,6 +10,7 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // State field(s) for TabBar widget.
@@ -32,7 +33,7 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   // Stores action output result for [Backend Call - API (ClientsCheckIn)] action in Button widget.
   ApiCallResponse? apiResultg9b;
   // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
-  ApiCallResponse? apiResultg0m;
+  ApiCallResponse? apiResultjyo;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class EstruturaBasicaModel extends FlutterFlowModel<EstruturaBasicaWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // Model for DrawerContentCmp component.

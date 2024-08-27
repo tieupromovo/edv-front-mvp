@@ -432,8 +432,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   'OnBoardingPage',
                                                   context.mounted);
                                             } else {
-                                              context.goNamedAuth(
-                                                  'HomePage', context.mounted);
+                                              if (currentUserData
+                                                      ?.team.profile ==
+                                                  'LIDER') {
+                                                context.pushNamedAuth(
+                                                    'OperacaoPage',
+                                                    context.mounted);
+                                              } else {
+                                                context.goNamedAuth('HomePage',
+                                                    context.mounted);
+                                              }
                                             }
                                           } else {
                                             await showDialog(
@@ -569,7 +577,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Text(
-                      '2024-08-26.4',
+                      '2024-08-27.1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             fontSize: 8.0,

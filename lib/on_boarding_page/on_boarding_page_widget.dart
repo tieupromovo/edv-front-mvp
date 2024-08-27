@@ -804,7 +804,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                     return Builder(
                                                                       builder:
                                                                           (context) {
-                                                                        final onboardingClientList =
+                                                                        final apiClientList =
                                                                             (listViewClientsListResponse.jsonBody.toList().map<ClientStruct?>(ClientStruct.maybeFromMap).toList() as Iterable<ClientStruct?>).withoutNulls.toList() ??
                                                                                 [];
 
@@ -817,11 +817,11 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                           scrollDirection:
                                                                               Axis.vertical,
                                                                           itemCount:
-                                                                              onboardingClientList.length,
+                                                                              apiClientList.length,
                                                                           itemBuilder:
-                                                                              (context, onboardingClientListIndex) {
-                                                                            final onboardingClientListItem =
-                                                                                onboardingClientList[onboardingClientListIndex];
+                                                                              (context, apiClientListIndex) {
+                                                                            final apiClientListItem =
+                                                                                apiClientList[apiClientListIndex];
                                                                             return Card(
                                                                               clipBehavior: Clip.antiAliasWithSaveLayer,
                                                                               color: FlutterFlowTheme.of(context).primaryBackground,
@@ -848,8 +848,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                               children: [
                                                                                                 Text(
                                                                                                   valueOrDefault<String>(
-                                                                                                    onboardingClientListItem.name,
-                                                                                                    '?',
+                                                                                                    apiClientListItem.name,
+                                                                                                    'nome',
                                                                                                   ),
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
@@ -859,7 +859,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                       ),
                                                                                                 ),
                                                                                                 Text(
-                                                                                                  onboardingClientListItem.checkinAt,
+                                                                                                  apiClientListItem.checkinAt,
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
                                                                                                         fontSize: 11.0,
@@ -874,10 +874,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                               children: [
                                                                                                 Text(
-                                                                                                  valueOrDefault<String>(
-                                                                                                    onboardingClientListItem.phone,
-                                                                                                    '?',
-                                                                                                  ),
+                                                                                                  apiClientListItem.phone,
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
                                                                                                         fontSize: 11.0,
@@ -886,10 +883,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                       ),
                                                                                                 ),
                                                                                                 Text(
-                                                                                                  valueOrDefault<String>(
-                                                                                                    onboardingClientListItem.checkoutAt,
-                                                                                                    '?',
-                                                                                                  ),
+                                                                                                  apiClientListItem.checkoutAt,
                                                                                                   textAlign: TextAlign.end,
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
@@ -907,21 +901,18 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                       padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
                                                                                       child: FFButtonWidget(
                                                                                         onPressed: () async {
-                                                                                          _model.apiResultg0m = await OnBoardingGroup.clientsCheckOutCall.call(
+                                                                                          _model.apiResultjyo = await OnBoardingGroup.clientsCheckOutCall.call(
                                                                                             jwt: currentAuthenticationToken,
-                                                                                            id: valueOrDefault<int>(
-                                                                                              onboardingClientListItem.onboardingClientId,
-                                                                                              0,
-                                                                                            ),
+                                                                                            id: apiClientListItem.onboardingClientId,
                                                                                           );
 
-                                                                                          if ((_model.apiResultg0m?.succeeded ?? true)) {
+                                                                                          if ((_model.apiResultjyo?.succeeded ?? true)) {
                                                                                             await showDialog(
                                                                                               context: context,
                                                                                               builder: (alertDialogContext) {
                                                                                                 return AlertDialog(
-                                                                                                  title: const Text('Checkout'),
-                                                                                                  content: const Text('Lead deixou a loja'),
+                                                                                                  title: const Text('CheckOut'),
+                                                                                                  content: const Text('Cliente saiu da operação'),
                                                                                                   actions: [
                                                                                                     TextButton(
                                                                                                       onPressed: () => Navigator.pop(alertDialogContext),
@@ -937,7 +928,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                               builder: (alertDialogContext) {
                                                                                                 return AlertDialog(
                                                                                                   title: const Text('ERRO'),
-                                                                                                  content: const Text('Ocorreu algum erro'),
+                                                                                                  content: const Text('Houve algum erro no backend'),
                                                                                                   actions: [
                                                                                                     TextButton(
                                                                                                       onPressed: () => Navigator.pop(alertDialogContext),

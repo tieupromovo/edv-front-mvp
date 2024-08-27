@@ -13,6 +13,7 @@ class AcaoLojasCreatePageModel
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // State field(s) for nomeLoja_acao widget.
