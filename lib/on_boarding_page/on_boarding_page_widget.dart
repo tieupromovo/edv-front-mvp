@@ -692,7 +692,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                             () {});
                                                                       },
                                                                       text:
-                                                                          'Entrada',
+                                                                          'Checkin',
                                                                       options:
                                                                           FFButtonOptions(
                                                                         height:
@@ -942,7 +942,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
 
                                                                                           setState(() {});
                                                                                         },
-                                                                                        text: 'Saída',
+                                                                                        text: 'Checkout',
                                                                                         options: FFButtonOptions(
                                                                                           height: 35.0,
                                                                                           padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
@@ -1161,7 +1161,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                         () {});
                                                                   },
                                                                   text:
-                                                                      'Entrada',
+                                                                      'Checkin',
                                                                   options:
                                                                       FFButtonOptions(
                                                                     height:
@@ -1423,7 +1423,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
 
                                                                                           setState(() {});
                                                                                         },
-                                                                                        text: 'Saída',
+                                                                                        text: 'Checkout',
                                                                                         options: FFButtonOptions(
                                                                                           height: 40.0,
                                                                                           padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
