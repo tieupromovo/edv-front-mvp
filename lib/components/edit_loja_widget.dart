@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'edit_loja_model.dart';
 export 'edit_loja_model.dart';
@@ -11,9 +12,11 @@ class EditLojaWidget extends StatefulWidget {
   const EditLojaWidget({
     super.key,
     this.storeID,
+    this.actionID,
   });
 
   final int? storeID;
+  final int? actionID;
 
   @override
   State<EditLojaWidget> createState() => _EditLojaWidgetState();
@@ -126,10 +129,10 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         controller: _model
                                                 .nomeLojaInputTextController ??=
                                             TextEditingController(
-                                          text: LojasListDetailCall.lojaName(
-                                            cntBodyPrincipalLojasListDetailResponse
-                                                .jsonBody,
-                                          ),
+                                          text: StoreStruct.maybeFromMap(
+                                                  cntBodyPrincipalLojasListDetailResponse
+                                                      .jsonBody)
+                                              ?.name,
                                         ),
                                         focusNode:
                                             _model.nomeLojaInputFocusNode,
@@ -239,10 +242,10 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         controller: _model
                                                 .nomeCidadeInputTextController ??=
                                             TextEditingController(
-                                          text: LojasListDetailCall.lojaCity(
-                                            cntBodyPrincipalLojasListDetailResponse
-                                                .jsonBody,
-                                          ),
+                                          text: AddressesStruct.maybeFromMap(
+                                                  cntBodyPrincipalLojasListDetailResponse
+                                                      .jsonBody)
+                                              ?.city,
                                         ),
                                         focusNode:
                                             _model.nomeCidadeInputFocusNode,
@@ -372,10 +375,11 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                       max: 1000.0,
                                       value: _model.sldValorMetaInputValue ??=
                                           valueOrDefault<double>(
-                                        LojasListDetailCall.lojaGoal(
-                                          cntBodyPrincipalLojasListDetailResponse
-                                              .jsonBody,
-                                        )?.toDouble(),
+                                        StoreStruct.maybeFromMap(
+                                                cntBodyPrincipalLojasListDetailResponse
+                                                    .jsonBody)
+                                            ?.goal
+                                            .toDouble(),
                                         100.0,
                                       ),
                                       label: _model.sldValorMetaInputValue
@@ -503,8 +507,98 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 8.0),
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('btn_Delete pressed ...');
+                                    onPressed: () async {
+                                      var shouldSetState = false;
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: const Text('Atenção!'),
+                                                    content: const Text(
+                                                        'Você deseja deletar a loja?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: const Text('Cancelar'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: const Text('Confirm'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.apiDelete =
+                                            await LojaDeleteCall.call(
+                                          jwt: currentAuthenticationToken,
+                                          storeId: widget.storeID,
+                                          actionId: widget.actionID,
+                                        );
+
+                                        shouldSetState = true;
+                                        if ((_model.apiDelete?.succeeded ??
+                                            true)) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('Sucesso!'),
+                                                content:
+                                                    const Text('A loja foi deletada'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                          Navigator.pop(context);
+                                          if (shouldSetState) setState(() {});
+                                          return;
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('Erro'),
+                                                content: Text((_model
+                                                        .apiDelete?.bodyText ??
+                                                    '')),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                          if (shouldSetState) setState(() {});
+                                          return;
+                                        }
+                                      } else {
+                                        Navigator.pop(context);
+                                        if (shouldSetState) setState(() {});
+                                        return;
+                                      }
+
+                                      if (shouldSetState) setState(() {});
                                     },
                                     text: 'Deletar',
                                     icon: const Icon(
@@ -534,6 +628,30 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    widget.storeID?.toString(),
+                                    '1',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    widget.actionID?.toString(),
+                                    '1',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                               ],
                             ),

@@ -32,8 +32,6 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   FormFieldController<String>? cmbConviteValueController;
   // Stores action output result for [Backend Call - API (ClientsCheckIn)] action in Button widget.
   ApiCallResponse? apiResultg9b;
-  // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
-  ApiCallResponse? apiResultjyo;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;

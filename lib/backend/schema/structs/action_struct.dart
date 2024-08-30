@@ -13,7 +13,7 @@ class ActionStruct extends BaseStruct {
     String? startAt,
     String? finishAt,
     String? frequency,
-    String? executionInvestment,
+    double? executionInvestment,
     String? actionStatus,
     int? actionMakerId,
   })  : _actionId = actionId,
@@ -71,9 +71,12 @@ class ActionStruct extends BaseStruct {
   bool hasFrequency() => _frequency != null;
 
   // "executionInvestment" field.
-  String? _executionInvestment;
-  String get executionInvestment => _executionInvestment ?? '';
-  set executionInvestment(String? val) => _executionInvestment = val;
+  double? _executionInvestment;
+  double get executionInvestment => _executionInvestment ?? 0.0;
+  set executionInvestment(double? val) => _executionInvestment = val;
+
+  void incrementExecutionInvestment(double amount) =>
+      executionInvestment = executionInvestment + amount;
 
   bool hasExecutionInvestment() => _executionInvestment != null;
 
@@ -101,7 +104,7 @@ class ActionStruct extends BaseStruct {
         startAt: data['startAt'] as String?,
         finishAt: data['finishAt'] as String?,
         frequency: data['frequency'] as String?,
-        executionInvestment: data['executionInvestment'] as String?,
+        executionInvestment: castToType<double>(data['executionInvestment']),
         actionStatus: data['actionStatus'] as String?,
         actionMakerId: castToType<int>(data['actionMakerId']),
       );
@@ -149,7 +152,7 @@ class ActionStruct extends BaseStruct {
         ),
         'executionInvestment': serializeParam(
           _executionInvestment,
-          ParamType.String,
+          ParamType.double,
         ),
         'actionStatus': serializeParam(
           _actionStatus,
@@ -195,7 +198,7 @@ class ActionStruct extends BaseStruct {
         ),
         executionInvestment: deserializeParam(
           data['executionInvestment'],
-          ParamType.String,
+          ParamType.double,
           false,
         ),
         actionStatus: deserializeParam(
@@ -248,7 +251,7 @@ ActionStruct createActionStruct({
   String? startAt,
   String? finishAt,
   String? frequency,
-  String? executionInvestment,
+  double? executionInvestment,
   String? actionStatus,
   int? actionMakerId,
 }) =>

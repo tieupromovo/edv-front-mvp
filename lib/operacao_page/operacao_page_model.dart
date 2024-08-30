@@ -1,7 +1,7 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'operacao_page_widget.dart' show OperacaoPageWidget;
 import 'package:flutter/material.dart';
 
@@ -11,17 +11,8 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
   final unfocusNode = FocusNode();
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
+  ApiCallResponse? apiResultClientqc;
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 
@@ -34,7 +25,6 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
   @override
   void dispose() {
     pgHeaderCmpModel.dispose();
-    tabBarController?.dispose();
     drawerContentCmpModel.dispose();
   }
 }

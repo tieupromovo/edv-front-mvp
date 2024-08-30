@@ -869,97 +869,34 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                 ),
                                                                                               ].divide(const SizedBox(width: 16.0)),
                                                                                             ),
-                                                                                            Row(
-                                                                                              mainAxisSize: MainAxisSize.max,
-                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                              children: [
-                                                                                                Text(
-                                                                                                  apiClientListItem.phone,
-                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                        fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
-                                                                                                        letterSpacing: 0.0,
-                                                                                                        fontStyle: FontStyle.italic,
-                                                                                                      ),
-                                                                                                ),
-                                                                                                Text(
-                                                                                                  apiClientListItem.checkoutAt,
-                                                                                                  textAlign: TextAlign.end,
-                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                        fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
-                                                                                                        letterSpacing: 0.0,
-                                                                                                      ),
-                                                                                                ),
-                                                                                              ].divide(const SizedBox(width: 16.0)),
+                                                                                            Padding(
+                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                              child: Row(
+                                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                                children: [
+                                                                                                  Text(
+                                                                                                    apiClientListItem.phone,
+                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                          fontFamily: 'Inter',
+                                                                                                          fontSize: 11.0,
+                                                                                                          letterSpacing: 0.0,
+                                                                                                          fontStyle: FontStyle.italic,
+                                                                                                        ),
+                                                                                                  ),
+                                                                                                  Text(
+                                                                                                    apiClientListItem.checkoutAt,
+                                                                                                    textAlign: TextAlign.end,
+                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                          fontFamily: 'Inter',
+                                                                                                          fontSize: 11.0,
+                                                                                                          letterSpacing: 0.0,
+                                                                                                        ),
+                                                                                                  ),
+                                                                                                ].divide(const SizedBox(width: 16.0)),
+                                                                                              ),
                                                                                             ),
                                                                                           ],
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
-                                                                                      child: FFButtonWidget(
-                                                                                        onPressed: () async {
-                                                                                          _model.apiResultjyo = await OnBoardingGroup.clientsCheckOutCall.call(
-                                                                                            jwt: currentAuthenticationToken,
-                                                                                            id: apiClientListItem.onboardingClientId,
-                                                                                          );
-
-                                                                                          if ((_model.apiResultjyo?.succeeded ?? true)) {
-                                                                                            await showDialog(
-                                                                                              context: context,
-                                                                                              builder: (alertDialogContext) {
-                                                                                                return AlertDialog(
-                                                                                                  title: const Text('CheckOut'),
-                                                                                                  content: const Text('Cliente saiu da operação'),
-                                                                                                  actions: [
-                                                                                                    TextButton(
-                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                      child: const Text('Ok'),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                );
-                                                                                              },
-                                                                                            );
-                                                                                          } else {
-                                                                                            await showDialog(
-                                                                                              context: context,
-                                                                                              builder: (alertDialogContext) {
-                                                                                                return AlertDialog(
-                                                                                                  title: const Text('ERRO'),
-                                                                                                  content: const Text('Houve algum erro no backend'),
-                                                                                                  actions: [
-                                                                                                    TextButton(
-                                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                      child: const Text('Ok'),
-                                                                                                    ),
-                                                                                                  ],
-                                                                                                );
-                                                                                              },
-                                                                                            );
-                                                                                          }
-
-                                                                                          setState(() {});
-                                                                                        },
-                                                                                        text: 'Checkout',
-                                                                                        options: FFButtonOptions(
-                                                                                          height: 35.0,
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                          color: FlutterFlowTheme.of(context).primary,
-                                                                                          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                                fontFamily: 'Inter',
-                                                                                                color: Colors.white,
-                                                                                                fontSize: 9.0,
-                                                                                                letterSpacing: 0.0,
-                                                                                              ),
-                                                                                          elevation: 3.0,
-                                                                                          borderSide: const BorderSide(
-                                                                                            color: Colors.transparent,
-                                                                                            width: 1.0,
-                                                                                          ),
-                                                                                          borderRadius: BorderRadius.circular(8.0),
                                                                                         ),
                                                                                       ),
                                                                                     ),
@@ -1348,32 +1285,35 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                               ),
                                                                                             ],
                                                                                           ),
-                                                                                          Row(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                            children: [
-                                                                                              Text(
-                                                                                                valueOrDefault<String>(
-                                                                                                  onboardingTeamListItem.profile,
-                                                                                                  '-',
+                                                                                          Padding(
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                            child: Row(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                              children: [
+                                                                                                Text(
+                                                                                                  valueOrDefault<String>(
+                                                                                                    onboardingTeamListItem.profile,
+                                                                                                    '-',
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                        fontStyle: FontStyle.italic,
+                                                                                                      ),
                                                                                                 ),
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                      fontStyle: FontStyle.italic,
-                                                                                                    ),
-                                                                                              ),
-                                                                                              Text(
-                                                                                                onboardingTeamListItem.checkinOut,
-                                                                                                textAlign: TextAlign.end,
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                    ),
-                                                                                              ),
-                                                                                            ],
+                                                                                                Text(
+                                                                                                  onboardingTeamListItem.checkinOut,
+                                                                                                  textAlign: TextAlign.end,
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        fontFamily: 'Inter',
+                                                                                                        fontSize: 11.0,
+                                                                                                        letterSpacing: 0.0,
+                                                                                                      ),
+                                                                                                ),
+                                                                                              ],
+                                                                                            ),
                                                                                           ),
                                                                                         ],
                                                                                       ),
@@ -1384,7 +1324,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                         onPressed: () async {
                                                                                           _model.apiResult5qc = await OnBoardingGroup.teamsCheckOutCall.call(
                                                                                             jwt: currentAuthenticationToken,
-                                                                                            teamId: onboardingTeamListItem.registredTeamId,
+                                                                                            teamId: onboardingTeamListItem.onboardingTeamId,
                                                                                           );
 
                                                                                           if ((_model.apiResult5qc?.succeeded ?? true)) {

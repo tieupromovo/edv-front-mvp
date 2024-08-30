@@ -168,7 +168,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.sticky_note_2_sharp,
               size: 24.0,
             ),
-            label: 'Home',
+            label: 'Onboarding',
             tooltip: '',
           ),
           BottomNavigationBarItem(

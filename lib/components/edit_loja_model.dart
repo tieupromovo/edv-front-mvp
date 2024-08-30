@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'edit_loja_widget.dart' show EditLojaWidget;
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class EditLojaModel extends FlutterFlowModel<EditLojaWidget> {
       nomeCidadeInputTextControllerValidator;
   // State field(s) for sld_valorMeta_input widget.
   double? sldValorMetaInputValue;
+  // Stores action output result for [Backend Call - API (LojaDelete)] action in btn_Delete widget.
+  ApiCallResponse? apiDelete;
 
   @override
   void initState(BuildContext context) {}

@@ -17,6 +17,8 @@ class ClientStruct extends BaseStruct {
     int? teamId,
     DateTime? checkinDatetime,
     DateTime? checkoutDatetime,
+    String? salesManName,
+    bool? completedSale,
   })  : _onboardingClientId = onboardingClientId,
         _clientId = clientId,
         _name = name,
@@ -26,7 +28,9 @@ class ClientStruct extends BaseStruct {
         _checkoutAt = checkoutAt,
         _teamId = teamId,
         _checkinDatetime = checkinDatetime,
-        _checkoutDatetime = checkoutDatetime;
+        _checkoutDatetime = checkoutDatetime,
+        _salesManName = salesManName,
+        _completedSale = completedSale;
 
   // "OnboardingClient_id" field.
   int? _onboardingClientId;
@@ -105,6 +109,20 @@ class ClientStruct extends BaseStruct {
 
   bool hasCheckoutDatetime() => _checkoutDatetime != null;
 
+  // "salesMan_name" field.
+  String? _salesManName;
+  String get salesManName => _salesManName ?? '';
+  set salesManName(String? val) => _salesManName = val;
+
+  bool hasSalesManName() => _salesManName != null;
+
+  // "completed_sale" field.
+  bool? _completedSale;
+  bool get completedSale => _completedSale ?? false;
+  set completedSale(bool? val) => _completedSale = val;
+
+  bool hasCompletedSale() => _completedSale != null;
+
   static ClientStruct fromMap(Map<String, dynamic> data) => ClientStruct(
         onboardingClientId: castToType<int>(data['OnboardingClient_id']),
         clientId: castToType<int>(data['client_id']),
@@ -116,6 +134,8 @@ class ClientStruct extends BaseStruct {
         teamId: castToType<int>(data['team_id']),
         checkinDatetime: data['checkin_datetime'] as DateTime?,
         checkoutDatetime: data['checkout_datetime'] as DateTime?,
+        salesManName: data['salesMan_name'] as String?,
+        completedSale: data['completed_sale'] as bool?,
       );
 
   static ClientStruct? maybeFromMap(dynamic data) =>
@@ -132,6 +152,8 @@ class ClientStruct extends BaseStruct {
         'team_id': _teamId,
         'checkin_datetime': _checkinDatetime,
         'checkout_datetime': _checkoutDatetime,
+        'salesMan_name': _salesManName,
+        'completed_sale': _completedSale,
       }.withoutNulls;
 
   @override
@@ -175,6 +197,14 @@ class ClientStruct extends BaseStruct {
         'checkout_datetime': serializeParam(
           _checkoutDatetime,
           ParamType.DateTime,
+        ),
+        'salesMan_name': serializeParam(
+          _salesManName,
+          ParamType.String,
+        ),
+        'completed_sale': serializeParam(
+          _completedSale,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -230,6 +260,16 @@ class ClientStruct extends BaseStruct {
           ParamType.DateTime,
           false,
         ),
+        salesManName: deserializeParam(
+          data['salesMan_name'],
+          ParamType.String,
+          false,
+        ),
+        completedSale: deserializeParam(
+          data['completed_sale'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -247,7 +287,9 @@ class ClientStruct extends BaseStruct {
         checkoutAt == other.checkoutAt &&
         teamId == other.teamId &&
         checkinDatetime == other.checkinDatetime &&
-        checkoutDatetime == other.checkoutDatetime;
+        checkoutDatetime == other.checkoutDatetime &&
+        salesManName == other.salesManName &&
+        completedSale == other.completedSale;
   }
 
   @override
@@ -261,7 +303,9 @@ class ClientStruct extends BaseStruct {
         checkoutAt,
         teamId,
         checkinDatetime,
-        checkoutDatetime
+        checkoutDatetime,
+        salesManName,
+        completedSale
       ]);
 }
 
@@ -276,6 +320,8 @@ ClientStruct createClientStruct({
   int? teamId,
   DateTime? checkinDatetime,
   DateTime? checkoutDatetime,
+  String? salesManName,
+  bool? completedSale,
 }) =>
     ClientStruct(
       onboardingClientId: onboardingClientId,
@@ -288,4 +334,6 @@ ClientStruct createClientStruct({
       teamId: teamId,
       checkinDatetime: checkinDatetime,
       checkoutDatetime: checkoutDatetime,
+      salesManName: salesManName,
+      completedSale: completedSale,
     );

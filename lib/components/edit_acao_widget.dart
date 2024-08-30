@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'edit_acao_model.dart';
 export 'edit_acao_model.dart';
@@ -115,10 +116,10 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                 child: TextFormField(
                                   controller: _model.txtNameTextController ??=
                                       TextEditingController(
-                                    text: ActionListDetailCall.actionName(
-                                      cntBodyPrincipalActionListDetailResponse
-                                          .jsonBody,
-                                    ),
+                                    text: ActionStruct.maybeFromMap(
+                                            cntBodyPrincipalActionListDetailResponse
+                                                .jsonBody)
+                                        ?.name,
                                   ),
                                   focusNode: _model.txtNameFocusNode,
                                   autofocus: true,
@@ -206,11 +207,12 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                     ),
                               ),
                               Text(
-                                dateTimeFormat(
-                                  "d/M/y",
-                                  _model.datePicked1,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
+                                valueOrDefault<String>(
+                                  ActionStruct.maybeFromMap(
+                                          cntBodyPrincipalActionListDetailResponse
+                                              .jsonBody)
+                                      ?.startAt,
+                                  '?',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -299,11 +301,12 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                     ),
                               ),
                               Text(
-                                dateTimeFormat(
-                                  "d/M/y",
-                                  _model.datePicked2,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
+                                valueOrDefault<String>(
+                                  ActionStruct.maybeFromMap(
+                                          cntBodyPrincipalActionListDetailResponse
+                                              .jsonBody)
+                                      ?.finishAt,
+                                  '?',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
