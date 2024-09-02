@@ -23,7 +23,7 @@ class AcaoEquipeCreatePageWidget extends StatefulWidget {
   });
 
   final ActionStruct? acao;
-  final StoreStruct? store;
+  final StoreEdvStruct? store;
 
   @override
   State<AcaoEquipeCreatePageWidget> createState() =>
@@ -157,7 +157,7 @@ class _AcaoEquipeCreatePageWidgetState
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Text(
-                                              'Ação',
+                                              'Ação:',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -273,7 +273,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                   .fromSTEB(
                                                       16.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                'Loja',
+                                                'Loja:',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -401,7 +401,7 @@ class _AcaoEquipeCreatePageWidgetState
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Nome da pessoa: ',
+                                                  'Nome:',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -795,7 +795,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .secondary,
+                                                                .alternate,
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1142,8 +1142,10 @@ class _AcaoEquipeCreatePageWidgetState
                                                                             ).toString(),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Inter',
-                                                                                  fontSize: 12.0,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  fontSize: 14.0,
                                                                                   letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w600,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -1288,25 +1290,10 @@ class _AcaoEquipeCreatePageWidgetState
                                                                           .delete,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primaryText,
+                                                                          .primary,
                                                                       size:
-                                                                          24.0,
+                                                                          32.0,
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Icon(
-                                                                    Icons.edit,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
                                                                   ),
                                                                 ),
                                                               ],

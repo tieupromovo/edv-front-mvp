@@ -13,8 +13,6 @@ class DrawerContentCmpModel extends FlutterFlowModel<DrawerContentCmpWidget> {
   bool mouseRegionHovered3 = false;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered4 = false;
-  // State field(s) for MouseRegion widget.
-  bool mouseRegionHovered5 = false;
 
   @override
   void initState(BuildContext context) {}

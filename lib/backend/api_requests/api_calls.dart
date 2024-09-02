@@ -253,6 +253,50 @@ class OperationGroup {
 
 /// End Operation Group Code
 
+/// Start Action Group Code
+
+class ActionGroup {
+  static String getBaseUrl({
+    String? jwt = '',
+  }) =>
+      'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions';
+  static Map<String, String> headers = {
+    'Content-type': 'application/json',
+    'Authorization': 'Bearer [jwt]',
+  };
+  static StoreGetAllCall storeGetAllCall = StoreGetAllCall();
+}
+
+class StoreGetAllCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = ActionGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Store GetAll',
+      apiUrl: '$baseUrl/edv/$actionId/stores',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Action Group Code
+
 class BffMessageCall {
   static Future<ApiCallResponse> call({
     String? messageType = 'type',
@@ -463,13 +507,8 @@ class LojaUpdateCall {
     final ffApiRequestBody = '''
 {
   "name": "$name",
-  "storeType": null,
-  "cnpj": null,
-  "ie": null,
-  "logoPath": null,
-  "active": null,
   "goal": $goal,
-  "region": "CITY",
+
   "addresses": [
     {
       "city": "$city"
@@ -1004,11 +1043,12 @@ class TeamDeleteCall {
     String? jwt = '',
     int? storeId,
     int? actionId,
+    int? teamId,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamDelete',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams/$teamId',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',

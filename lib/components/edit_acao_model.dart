@@ -9,7 +9,15 @@ class EditAcaoModel extends FlutterFlowModel<EditAcaoWidget> {
   FocusNode? txtNameFocusNode;
   TextEditingController? txtNameTextController;
   String? Function(BuildContext, String?)? txtNameTextControllerValidator;
+  // State field(s) for txtInicio widget.
+  FocusNode? txtInicioFocusNode;
+  TextEditingController? txtInicioTextController;
+  String? Function(BuildContext, String?)? txtInicioTextControllerValidator;
   DateTime? datePicked1;
+  // State field(s) for txtFim widget.
+  FocusNode? txtFimFocusNode;
+  TextEditingController? txtFimTextController;
+  String? Function(BuildContext, String?)? txtFimTextControllerValidator;
   DateTime? datePicked2;
 
   @override
@@ -19,5 +27,11 @@ class EditAcaoModel extends FlutterFlowModel<EditAcaoWidget> {
   void dispose() {
     txtNameFocusNode?.dispose();
     txtNameTextController?.dispose();
+
+    txtInicioFocusNode?.dispose();
+    txtInicioTextController?.dispose();
+
+    txtFimFocusNode?.dispose();
+    txtFimTextController?.dispose();
   }
 }

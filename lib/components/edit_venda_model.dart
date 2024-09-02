@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 class EditVendaModel extends FlutterFlowModel<EditVendaWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for cmbTeam widget.
+  int? cmbTeamValue;
+  FormFieldController<int>? cmbTeamValueController;
   // Stores action output result for [Backend Call - API (Completed Sale)] action in btn_Save widget.
-  ApiCallResponse? apiResultk1h;
+  ApiCallResponse? apiResultSales;
 
   @override
   void initState(BuildContext context) {}

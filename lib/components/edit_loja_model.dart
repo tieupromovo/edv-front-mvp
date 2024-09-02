@@ -17,6 +17,8 @@ class EditLojaModel extends FlutterFlowModel<EditLojaWidget> {
       nomeCidadeInputTextControllerValidator;
   // State field(s) for sld_valorMeta_input widget.
   double? sldValorMetaInputValue;
+  // Stores action output result for [Backend Call - API (LojaUpdate)] action in btn_Save widget.
+  ApiCallResponse? apiResulUpdateStore;
   // Stores action output result for [Backend Call - API (LojaDelete)] action in btn_Delete widget.
   ApiCallResponse? apiDelete;
 

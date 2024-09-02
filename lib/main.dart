@@ -160,7 +160,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.campaign_sharp,
               size: 24.0,
             ),
-            label: 'Home',
+            label: 'Acao',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -168,7 +168,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.sticky_note_2_sharp,
               size: 24.0,
             ),
-            label: 'Onboarding',
+            label: 'Check-in',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -176,7 +176,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.router,
               size: 24.0,
             ),
-            label: 'Home',
+            label: 'Check-out',
             tooltip: '',
           )
         ],

@@ -8,5 +8,6 @@ export 'addresses_struct.dart';
 export 'client_struct.dart';
 export 'promoter_struct.dart';
 export 'store_struct.dart';
+export 'store_edv_struct.dart';
 export 'team_struct.dart';
 export 'user_struct.dart';

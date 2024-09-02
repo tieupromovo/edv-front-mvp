@@ -603,12 +603,12 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                 context)
                                                             .alternate,
                                                     min: 1.0,
-                                                    max: 1000.0,
+                                                    max: 250.0,
                                                     value: _model
                                                         .sldMetaValue ??= 100.0,
                                                     label: _model.sldMetaValue
                                                         ?.toStringAsFixed(0),
-                                                    divisions: 999,
+                                                    divisions: 249,
                                                     onChanged: (newValue) {
                                                       newValue = double.parse(
                                                           newValue
@@ -844,12 +844,16 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                         child: Container(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
-                                              0.4,
+                                              0.36,
                                           decoration: const BoxDecoration(),
                                           child: FutureBuilder<ApiCallResponse>(
-                                            future: LojasListAllCall.call(
+                                            future: ActionGroup.storeGetAllCall
+                                                .call(
                                               jwt: currentAuthenticationToken,
-                                              actionId: widget.acao?.actionId,
+                                              actionId: valueOrDefault<int>(
+                                                widget.acao?.actionId,
+                                                0,
+                                              ),
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -871,15 +875,23 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                   ),
                                                 );
                                               }
-                                              final listViewLojasListAllResponse =
+                                              final listViewStoreGetAllResponse =
                                                   snapshot.data!;
 
                                               return Builder(
                                                 builder: (context) {
-                                                  final lojaLista =
-                                                      listViewLojasListAllResponse
-                                                          .jsonBody
-                                                          .toList();
+                                                  final lojaLista = (listViewStoreGetAllResponse
+                                                                  .jsonBody
+                                                                  .toList()
+                                                                  .map<StoreEdvStruct?>(
+                                                                      StoreEdvStruct
+                                                                          .maybeFromMap)
+                                                                  .toList()
+                                                              as Iterable<
+                                                                  StoreEdvStruct?>)
+                                                          .withoutNulls
+                                                          .toList() ??
+                                                      [];
 
                                                   return ListView.separated(
                                                     padding: EdgeInsets.zero,
@@ -939,16 +951,17 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           Text(
                                                                         valueOrDefault<
                                                                             String>(
-                                                                          StoreStruct.maybeFromMap(lojaListaItem)
-                                                                              ?.name,
+                                                                          lojaListaItem
+                                                                              .name,
                                                                           '-',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Inter',
-                                                                              fontSize: 12.0,
+                                                                              fontSize: 14.0,
                                                                               letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -962,9 +975,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           Text(
                                                                         valueOrDefault<
                                                                             String>(
-                                                                          StoreStruct.maybeFromMap(lojaListaItem)
-                                                                              ?.addresses
-                                                                              .first
+                                                                          lojaListaItem
                                                                               .city,
                                                                           '-',
                                                                         ),
@@ -987,14 +998,38 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  'Objetivo:',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Inter',
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            4.0,
+                                                                            0.0,
                                                                             16.0,
                                                                             0.0),
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    StoreStruct.maybeFromMap(
-                                                                            lojaListaItem)
-                                                                        ?.goal
+                                                                    lojaListaItem
+                                                                        .goal
                                                                         .toString(),
                                                                     '-',
                                                                   ),
@@ -1004,8 +1039,12 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Inter',
+                                                                        fontSize:
+                                                                            12.0,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
                                                                       ),
                                                                 ),
                                                               ),
@@ -1045,8 +1084,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                         ),
                                                                         'store':
                                                                             serializeParam(
-                                                                          StoreStruct.maybeFromMap(
-                                                                              lojaListaItem),
+                                                                          StoreEdvStruct.maybeFromMap(
+                                                                              lojaListaItem.toMap()),
                                                                           ParamType
                                                                               .DataStruct,
                                                                         ),
@@ -1058,8 +1097,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                         .people,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
+                                                                        .primary,
+                                                                    size: 32.0,
                                                                   ),
                                                                 ),
                                                               ),
@@ -1105,8 +1144,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                                 MediaQuery.viewInsetsOf(context),
                                                                             child:
                                                                                 EditLojaWidget(
-                                                                              storeID: StoreStruct.maybeFromMap(lojaListaItem)?.storeId,
-                                                                              actionID: ActionStruct.maybeFromMap(lojaListaItem)?.actionId,
+                                                                              selectedStore: StoreEdvStruct.maybeFromMap(lojaListaItem.toMap())!,
+                                                                              selectedAction: widget.acao!,
                                                                             ),
                                                                           ),
                                                                         );
@@ -1119,8 +1158,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                     Icons.edit,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
+                                                                        .primary,
+                                                                    size: 32.0,
                                                                   ),
                                                                 ),
                                                               ),

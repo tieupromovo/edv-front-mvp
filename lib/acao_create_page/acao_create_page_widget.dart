@@ -2,7 +2,6 @@ import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
-import '/components/edit_acao_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -107,10 +106,10 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 0.9,
+                        height: MediaQuery.sizeOf(context).height * 0.896,
                         constraints: const BoxConstraints(
                           maxWidth: 800.0,
                         ),
@@ -130,7 +129,8 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                               ),
                               Container(
                                 width: double.infinity,
-                                height: MediaQuery.sizeOf(context).height * 0.8,
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.772,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
@@ -295,6 +295,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -550,6 +551,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily: 'Inter',
+                                                            fontSize: 12.0,
                                                             letterSpacing: 0.0,
                                                           ),
                                                     ),
@@ -855,6 +857,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                     'Inter',
                                                                 color: Colors
                                                                     .white,
+                                                                fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -921,27 +924,104 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           },
                                                         );
                                                       } else {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title:
-                                                                  const Text('ERRO'),
-                                                              content: const Text(
-                                                                  'Houve algum problema com o backend'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: const Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
+                                                        if (_model
+                                                                .txtNameTextController
+                                                                .text ==
+                                                            '') {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Erro'),
+                                                                content: const Text(
+                                                                    'Preencha os valores corretamente.'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        } else if (_model
+                                                                .txtInicioTextController
+                                                                .text ==
+                                                            '') {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Erro'),
+                                                                content: const Text(
+                                                                    'Preencha os valores corretamente.'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        } else if (_model
+                                                                .txtFimTextController
+                                                                .text ==
+                                                            '') {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Erro'),
+                                                                content: const Text(
+                                                                    'Preencha os valores corretamente.'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        } else {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'ERRO'),
+                                                                content: const Text(
+                                                                    'Houve algum problema com o backend'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        }
                                                       }
 
                                                       setState(() {});
@@ -976,6 +1056,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                     'Inter',
                                                                 color: Colors
                                                                     .white,
+                                                                fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -999,7 +1080,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                       Container(
                                         height:
                                             MediaQuery.sizeOf(context).height *
-                                                0.56,
+                                                0.494,
                                         decoration: const BoxDecoration(),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ActionListAllCall.call(
@@ -1094,10 +1175,12 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             children: [
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                          .all(
-                                                                              8.0),
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          4.0,
+                                                                          4.0,
+                                                                          0.0,
+                                                                          4.0),
                                                                   child: Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -1125,8 +1208,10 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                               acaoListItem.name,
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Inter',
-                                                                                    fontSize: 12.0,
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 14.0,
                                                                                     letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.w600,
                                                                                   ),
                                                                             ),
                                                                           ),
@@ -1179,15 +1264,13 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                acaoListItem.actionStatus,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Inter',
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
+                                                                            Container(
+                                                                              width: 75.0,
+                                                                              height: 24.0,
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                                                borderRadius: BorderRadius.circular(24.0),
+                                                                                shape: BoxShape.rectangle,
                                                                               ),
                                                                             ),
                                                                             Row(
@@ -1288,121 +1371,19 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                         Icons
                                                                             .store,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
+                                                                            .primary,
                                                                         size:
-                                                                            24.0,
+                                                                            32.0,
                                                                       ),
                                                                     ),
-                                                                    InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        setState(
-                                                                            () {
-                                                                          _model
-                                                                              .txtNameTextController
-                                                                              ?.text = valueOrDefault<String>(
-                                                                            acaoListItem.name,
-                                                                            '-',
-                                                                          );
-                                                                          _model
-                                                                              .txtNameTextController
-                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtNameTextController!.text.length);
-                                                                        });
-                                                                        setState(
-                                                                            () {
-                                                                          _model
-                                                                              .txtInicioTextController
-                                                                              ?.text = valueOrDefault<String>(
-                                                                            acaoListItem.startAt,
-                                                                            '-',
-                                                                          );
-                                                                          _model
-                                                                              .txtInicioTextController
-                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtInicioTextController!.text.length);
-                                                                        });
-                                                                        setState(
-                                                                            () {
-                                                                          _model
-                                                                              .txtFimTextController
-                                                                              ?.text = valueOrDefault<String>(
-                                                                            acaoListItem.finishAt,
-                                                                            '-',
-                                                                          );
-                                                                          _model
-                                                                              .txtFimTextController
-                                                                              ?.selection = TextSelection.collapsed(offset: _model.txtFimTextController!.text.length);
-                                                                        });
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .edit,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                    ),
-                                                                    InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        await showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          enableDrag:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return GestureDetector(
-                                                                              onTap: () => FocusScope.of(context).unfocus(),
-                                                                              child: Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: EditAcaoWidget(
-                                                                                  actionID: acaoListItem.actionId,
-                                                                                ),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            safeSetState(() {}));
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .edit,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
+                                                                    Icon(
+                                                                      Icons
+                                                                          .edit,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      size:
+                                                                          32.0,
                                                                     ),
                                                                   ],
                                                                 ),

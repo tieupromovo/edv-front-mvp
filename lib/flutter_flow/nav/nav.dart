@@ -90,6 +90,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'HomePage')
               : const HomePageWidget(),
@@ -133,7 +134,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'store',
               ParamType.DataStruct,
               isList: false,
-              structBuilder: StoreStruct.fromSerializableMap,
+              structBuilder: StoreEdvStruct.fromSerializableMap,
             ),
           ),
         ),

@@ -58,7 +58,7 @@ class _PgHeaderCmpWidgetState extends State<PgHeaderCmpWidget> {
             child: Icon(
               Icons.menu,
               color: FlutterFlowTheme.of(context).secondaryText,
-              size: 24.0,
+              size: 32.0,
             ),
           ),
           Column(

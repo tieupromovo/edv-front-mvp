@@ -35,7 +35,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().PageTitle = 'OnBoarding';
+      FFAppState().PageTitle = 'Check-in';
       setState(() {});
     });
 
@@ -180,6 +180,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -194,6 +195,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -206,6 +208,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -220,6 +223,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -853,7 +857,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                   ),
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
+                                                                                                        color: FlutterFlowTheme.of(context).primary,
+                                                                                                        fontSize: 14.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.w600,
                                                                                                       ),
@@ -862,7 +867,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                   apiClientListItem.checkinAt,
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.normal,
                                                                                                       ),
@@ -879,7 +884,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                     apiClientListItem.phone,
                                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                           fontFamily: 'Inter',
-                                                                                                          fontSize: 11.0,
+                                                                                                          fontSize: 12.0,
                                                                                                           letterSpacing: 0.0,
                                                                                                           fontStyle: FontStyle.italic,
                                                                                                         ),
@@ -889,7 +894,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                     textAlign: TextAlign.end,
                                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                           fontFamily: 'Inter',
-                                                                                                          fontSize: 11.0,
+                                                                                                          fontSize: 12.0,
                                                                                                           letterSpacing: 0.0,
                                                                                                         ),
                                                                                                   ),
@@ -1127,7 +1132,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                           color:
                                                                               Colors.white,
                                                                           fontSize:
-                                                                              10.0,
+                                                                              12.0,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
@@ -1268,7 +1273,8 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                 ),
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                       fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
+                                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                                      fontSize: 14.0,
                                                                                                       letterSpacing: 0.0,
                                                                                                       fontWeight: FontWeight.w600,
                                                                                                     ),
@@ -1278,7 +1284,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                 textAlign: TextAlign.end,
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                       fontFamily: 'Inter',
-                                                                                                      fontSize: 11.0,
+                                                                                                      fontSize: 12.0,
                                                                                                       letterSpacing: 0.0,
                                                                                                       fontWeight: FontWeight.normal,
                                                                                                     ),
@@ -1298,7 +1304,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                   ),
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontStyle: FontStyle.italic,
                                                                                                       ),
@@ -1308,7 +1314,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                                   textAlign: TextAlign.end,
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         fontFamily: 'Inter',
-                                                                                                        fontSize: 11.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                       ),
                                                                                                 ),
@@ -1372,7 +1378,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                                           textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                                 fontFamily: 'Inter',
                                                                                                 color: Colors.white,
-                                                                                                fontSize: 10.0,
+                                                                                                fontSize: 12.0,
                                                                                                 letterSpacing: 0.0,
                                                                                               ),
                                                                                           elevation: 3.0,

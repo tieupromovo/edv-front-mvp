@@ -206,12 +206,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                         autofillHints: const [AutofillHints.email],
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Email',
+                                          labelText: 'Usuário',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelLarge
                                                   .override(
                                                     fontFamily: 'Inter',
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -267,6 +268,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             .bodyLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                         keyboardType:
@@ -296,6 +298,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   .labelLarge
                                                   .override(
                                                     fontFamily: 'Inter',
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           enabledBorder: OutlineInputBorder(
@@ -369,6 +372,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             .bodyLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                         validator: _model
@@ -488,6 +492,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   .override(
                                                     fontFamily: 'Inter',
                                                     color: Colors.white,
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
@@ -544,6 +549,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
