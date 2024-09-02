@@ -106,7 +106,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
         body: Stack(
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 32.0, 32.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 32.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 191.0,
@@ -125,7 +125,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             Align(
               alignment: const AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 170.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -138,7 +138,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             ? 530.0
                             : 630.0,
                         constraints: const BoxConstraints(
-                          maxWidth: 570.0,
+                          maxWidth: 500.0,
+                          maxHeight: 500.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -583,7 +584,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Text(
-                      '2024-08-30.1',
+                      '2024-08-02.1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             fontSize: 8.0,
