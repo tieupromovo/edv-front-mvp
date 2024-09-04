@@ -11,6 +11,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'acao_equipe_create_page_model.dart';
 export 'acao_equipe_create_page_model.dart';
@@ -48,11 +50,11 @@ class _AcaoEquipeCreatePageWidgetState
     });
 
     _model.txtAcaoTextController ??=
-        TextEditingController(text: widget.acao?.name);
+        TextEditingController(text: widget!.acao?.name);
     _model.txtAcaoFocusNode ??= FocusNode();
 
     _model.txtLojaTextController ??=
-        TextEditingController(text: widget.store?.name);
+        TextEditingController(text: widget!.store?.name);
     _model.txtLojaFocusNode ??= FocusNode();
 
     _model.inputTeamNameTextController ??= TextEditingController();
@@ -85,7 +87,7 @@ class _AcaoEquipeCreatePageWidgetState
           child: wrapWithModel(
             model: _model.drawerContentCmpModel,
             updateCallback: () => setState(() {}),
-            child: const DrawerContentCmpWidget(),
+            child: DrawerContentCmpWidget(),
           ),
         ),
         body: Container(
@@ -101,10 +103,10 @@ class _AcaoEquipeCreatePageWidgetState
               Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 0.95,
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   maxWidth: 1000.0,
                 ),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0x3FF1F4F8),
                 ),
                 child: Column(
@@ -113,18 +115,18 @@ class _AcaoEquipeCreatePageWidgetState
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 8.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.907,
-                        constraints: const BoxConstraints(
+                        constraints: BoxConstraints(
                           maxWidth: 800.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 16.0, 8.0, 16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -132,7 +134,7 @@ class _AcaoEquipeCreatePageWidgetState
                               wrapWithModel(
                                 model: _model.pgHeaderCmpModel,
                                 updateCallback: () => setState(() {}),
-                                child: const PgHeaderCmpWidget(),
+                                child: PgHeaderCmpWidget(),
                               ),
                               Container(
                                 width: double.infinity,
@@ -143,7 +145,7 @@ class _AcaoEquipeCreatePageWidgetState
                                       .primaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -151,7 +153,7 @@ class _AcaoEquipeCreatePageWidgetState
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -169,7 +171,7 @@ class _AcaoEquipeCreatePageWidgetState
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: TextFormField(
@@ -269,7 +271,7 @@ class _AcaoEquipeCreatePageWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -286,7 +288,7 @@ class _AcaoEquipeCreatePageWidgetState
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: TextFormField(
@@ -395,7 +397,7 @@ class _AcaoEquipeCreatePageWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -414,7 +416,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -530,7 +532,7 @@ class _AcaoEquipeCreatePageWidgetState
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -549,7 +551,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -665,7 +667,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -724,7 +726,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                           .alternate,
                                                   borderWidth: 2.0,
                                                   borderRadius: 8.0,
-                                                  margin: const EdgeInsetsDirectional
+                                                  margin: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 4.0, 0.0, 4.0),
                                                   hidesUnderline: true,
@@ -737,9 +739,9 @@ class _AcaoEquipeCreatePageWidgetState
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -751,7 +753,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
@@ -762,7 +764,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                 serializeParam(
                                                               ActionStruct
                                                                   .maybeFromMap(
-                                                                      widget
+                                                                      widget!
                                                                           .acao
                                                                           ?.toMap()),
                                                               ParamType
@@ -772,21 +774,21 @@ class _AcaoEquipeCreatePageWidgetState
                                                         );
                                                       },
                                                       text: 'Voltar',
-                                                      icon: const Icon(
+                                                      icon: Icon(
                                                         Icons.campaign_sharp,
                                                         size: 20.0,
                                                       ),
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -811,7 +813,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -824,7 +826,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
@@ -841,14 +843,14 @@ class _AcaoEquipeCreatePageWidgetState
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -873,7 +875,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -886,11 +888,11 @@ class _AcaoEquipeCreatePageWidgetState
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
-                                                        var shouldSetState =
+                                                        var _shouldSetState =
                                                             false;
                                                         _model.teamCreateResponse =
                                                             await TeamCreateCall
@@ -908,15 +910,15 @@ class _AcaoEquipeCreatePageWidgetState
                                                           storeId:
                                                               valueOrDefault<
                                                                   int>(
-                                                            widget
+                                                            widget!
                                                                 .store?.storeId,
                                                             1,
                                                           ),
-                                                          actionId: widget
+                                                          actionId: widget!
                                                               .acao?.actionId,
                                                         );
 
-                                                        shouldSetState = true;
+                                                        _shouldSetState = true;
                                                         if ((_model
                                                                 .teamCreateResponse
                                                                 ?.succeeded ??
@@ -926,25 +928,24 @@ class _AcaoEquipeCreatePageWidgetState
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: const Text(
+                                                                title: Text(
                                                                     'Sucesso!'),
-                                                                content: const Text(
+                                                                content: Text(
                                                                     'Equipe Cadastrada'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: const Text(
+                                                                    child: Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
                                                               );
                                                             },
                                                           );
-                                                          if (shouldSetState) {
+                                                          if (_shouldSetState)
                                                             setState(() {});
-                                                          }
                                                           return;
                                                         } else {
                                                           await showDialog(
@@ -952,44 +953,42 @@ class _AcaoEquipeCreatePageWidgetState
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: const Text(
+                                                                title: Text(
                                                                     'Error'),
-                                                                content: const Text(
+                                                                content: Text(
                                                                     'Erros no backend'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: const Text(
+                                                                    child: Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
                                                               );
                                                             },
                                                           );
-                                                          if (shouldSetState) {
+                                                          if (_shouldSetState)
                                                             setState(() {});
-                                                          }
                                                           return;
                                                         }
 
-                                                        if (shouldSetState) {
+                                                        if (_shouldSetState)
                                                           setState(() {});
-                                                        }
                                                       },
                                                       text: 'Adicionar',
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1014,7 +1013,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -1031,15 +1030,15 @@ class _AcaoEquipeCreatePageWidgetState
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child:
                                                 FutureBuilder<ApiCallResponse>(
                                               future: TeamListAllCall.call(
                                                 jwt: currentAuthenticationToken,
                                                 actionId:
-                                                    widget.acao?.actionId,
-                                                storeId: widget.store?.storeId,
+                                                    widget!.acao?.actionId,
+                                                storeId: widget!.store?.storeId,
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
@@ -1099,7 +1098,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         4.0,
@@ -1117,7 +1116,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                   child:
                                                                       Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             8.0),
                                                                     child:
                                                                         Column(
@@ -1129,7 +1128,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1150,7 +1149,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1163,7 +1162,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   getJsonField(
                                                                                     equipeListItensItem,
@@ -1177,7 +1176,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   getJsonField(
                                                                                     equipeListItensItem,
@@ -1198,7 +1197,7 @@ class _AcaoEquipeCreatePageWidgetState
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
@@ -1220,70 +1219,102 @@ class _AcaoEquipeCreatePageWidgetState
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      _model.apiResult2d7 =
-                                                                          await TeamDeleteCall
-                                                                              .call(
-                                                                        jwt:
-                                                                            currentAuthenticationToken,
-                                                                        storeId:
-                                                                            valueOrDefault<int>(
-                                                                          widget
+                                                                      var _shouldSetState =
+                                                                          false;
+                                                                      var confirmDialogResponse = await showDialog<
+                                                                              bool>(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Você deseja retirar este funcionário da equipe?'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Cancelar'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Confirm'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          ) ??
+                                                                          false;
+                                                                      if (confirmDialogResponse) {
+                                                                        _model.apiDeleteTeam =
+                                                                            await TeamDeleteCall.call(
+                                                                          jwt:
+                                                                              currentAuthenticationToken,
+                                                                          storeId: widget!
                                                                               .store
                                                                               ?.storeId,
-                                                                          1,
-                                                                        ),
-                                                                        actionId:
-                                                                            valueOrDefault<int>(
-                                                                          widget
+                                                                          actionId: widget!
                                                                               .acao
                                                                               ?.actionId,
-                                                                          1,
-                                                                        ),
-                                                                      );
+                                                                          teamId:
+                                                                              TeamStruct.maybeFromMap(equipeListItensItem)?.teamId,
+                                                                        );
 
-                                                                      if ((_model
-                                                                              .apiResult2d7
-                                                                              ?.succeeded ??
-                                                                          true)) {
-                                                                        await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: const Text('Equipe'),
-                                                                              content: const Text('Membro da equipe removido'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            );
-                                                                          },
-                                                                        );
+                                                                        _shouldSetState =
+                                                                            true;
+                                                                        if ((_model.apiDeleteTeam?.succeeded ??
+                                                                            true)) {
+                                                                          await showDialog(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Sucesso!'),
+                                                                                content: Text('O funcionário foi retirado da equipe'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          );
+                                                                          if (_shouldSetState)
+                                                                            setState(() {});
+                                                                          return;
+                                                                        } else {
+                                                                          await showDialog(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (alertDialogContext) {
+                                                                              return AlertDialog(
+                                                                                title: Text('Erro'),
+                                                                                content: Text((_model.apiDeleteTeam?.bodyText ?? '')),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
+                                                                              );
+                                                                            },
+                                                                          );
+                                                                          if (_shouldSetState)
+                                                                            setState(() {});
+                                                                          return;
+                                                                        }
                                                                       } else {
-                                                                        await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: const Text('Equipe'),
-                                                                              content: const Text('Houve algum erro no backend'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            );
-                                                                          },
-                                                                        );
+                                                                        if (_shouldSetState)
+                                                                          setState(
+                                                                              () {});
+                                                                        return;
                                                                       }
 
-                                                                      setState(
-                                                                          () {});
+                                                                      if (_shouldSetState)
+                                                                        setState(
+                                                                            () {});
                                                                     },
                                                                     child: Icon(
                                                                       Icons

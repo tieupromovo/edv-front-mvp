@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_loja_model.dart';
 export 'edit_loja_model.dart';
 
@@ -38,14 +40,14 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
 
     _model.nomeLojaInputTextController ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.selectedStore?.name,
+      widget!.selectedStore?.name,
       '?',
     ));
     _model.nomeLojaInputFocusNode ??= FocusNode();
 
     _model.nomeCidadeInputTextController ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.selectedStore?.city,
+      widget!.selectedStore?.city,
       '-',
     ));
     _model.nomeCidadeInputFocusNode ??= FocusNode();
@@ -63,11 +65,11 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: MediaQuery.sizeOf(context).height * 0.8,
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxWidth: 800.0,
           maxHeight: 300.0,
         ),
@@ -77,13 +79,13 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
           shape: BoxShape.rectangle,
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -92,7 +94,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -110,7 +112,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -190,7 +192,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -208,7 +210,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -288,7 +290,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -304,7 +306,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   formatNumber(
@@ -331,7 +333,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                   max: 250.0,
                                   value: _model.sldValorMetaInputValue ??=
                                       valueOrDefault<double>(
-                                    widget.selectedStore?.goal.toDouble(),
+                                    widget!.selectedStore?.goal?.toDouble(),
                                     100.0,
                                   ),
                                   label: _model.sldValorMetaInputValue
@@ -353,22 +355,22 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 8.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   Navigator.pop(context);
                                 },
                                 text: 'Voltar',
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.campaign_sharp,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).alternate,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -380,7 +382,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -389,11 +391,11 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 8.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  var shouldSetState = false;
+                                  var _shouldSetState = false;
                                   _model.apiResulUpdateStore =
                                       await LojaUpdateCall.call(
                                     name:
@@ -402,38 +404,38 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         .nomeCidadeInputTextController.text,
                                     goal: _model.sldValorMetaInputValue,
                                     jwt: currentAuthenticationToken,
-                                    actionId: widget.selectedAction?.actionId,
-                                    storeId: widget.selectedStore?.storeId,
+                                    actionId: widget!.selectedAction?.actionId,
+                                    storeId: widget!.selectedStore?.storeId,
                                   );
 
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if ((_model.apiResulUpdateStore?.succeeded ??
                                       true)) {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Loja'),
-                                          content: const Text('Loja Atualizada'),
+                                          title: Text('Loja'),
+                                          content: Text('Loja Atualizada'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
                                       },
                                     );
                                     Navigator.pop(context);
-                                    if (shouldSetState) setState(() {});
+                                    if (_shouldSetState) setState(() {});
                                     return;
                                   } else {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: const Text('Error'),
+                                          title: Text('Error'),
                                           content: Text((_model
                                                   .apiResulUpdateStore
                                                   ?.bodyText ??
@@ -442,24 +444,24 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: const Text('Ok'),
+                                              child: Text('Ok'),
                                             ),
                                           ],
                                         );
                                       },
                                     );
-                                    if (shouldSetState) setState(() {});
+                                    if (_shouldSetState) setState(() {});
                                     return;
                                   }
 
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                 },
                                 text: 'Atualizar',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).tertiary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -471,7 +473,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -480,18 +482,18 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 8.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  var shouldSetState = false;
+                                  var _shouldSetState = false;
                                   var confirmDialogResponse =
                                       await showDialog<bool>(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text('Atenção!'),
-                                                content: const Text(
+                                                title: Text('Atenção!'),
+                                                content: Text(
                                                     'Você deseja deletar a loja?'),
                                                 actions: [
                                                   TextButton(
@@ -499,14 +501,14 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: const Text('Cancelar'),
+                                                    child: Text('Cancelar'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: const Text('Confirm'),
+                                                    child: Text('Confirm'),
                                                   ),
                                                 ],
                                               );
@@ -517,39 +519,39 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                     _model.apiDelete =
                                         await LojaDeleteCall.call(
                                       jwt: currentAuthenticationToken,
-                                      storeId: widget.selectedStore?.storeId,
+                                      storeId: widget!.selectedStore?.storeId,
                                       actionId:
-                                          widget.selectedAction?.actionId,
+                                          widget!.selectedAction?.actionId,
                                     );
 
-                                    shouldSetState = true;
+                                    _shouldSetState = true;
                                     if ((_model.apiDelete?.succeeded ?? true)) {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Sucesso!'),
+                                            title: Text('Sucesso!'),
                                             content:
-                                                const Text('A loja foi deletada'),
+                                                Text('A loja foi deletada'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: const Text('Ok'),
+                                                child: Text('Ok'),
                                               ),
                                             ],
                                           );
                                         },
                                       );
                                       Navigator.pop(context);
-                                      if (shouldSetState) setState(() {});
+                                      if (_shouldSetState) setState(() {});
                                       return;
                                     } else {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Erro'),
+                                            title: Text('Erro'),
                                             content: Text(
                                                 (_model.apiDelete?.bodyText ??
                                                     '')),
@@ -557,33 +559,33 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: const Text('Ok'),
+                                                child: Text('Ok'),
                                               ),
                                             ],
                                           );
                                         },
                                       );
-                                      if (shouldSetState) setState(() {});
+                                      if (_shouldSetState) setState(() {});
                                       return;
                                     }
                                   } else {
                                     Navigator.pop(context);
-                                    if (shouldSetState) setState(() {});
+                                    if (_shouldSetState) setState(() {});
                                     return;
                                   }
 
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                 },
                                 text: 'Deletar',
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.delete,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).error,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -595,7 +597,7 @@ class _EditLojaWidgetState extends State<EditLojaWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

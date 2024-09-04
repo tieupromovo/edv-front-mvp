@@ -2,8 +2,11 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_acao_model.dart';
 export 'edit_acao_model.dart';
 
@@ -40,17 +43,17 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
 
     _model.txtNameTextController ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.selectedAction?.name,
+      widget!.selectedAction?.name,
       '?',
     ));
     _model.txtNameFocusNode ??= FocusNode();
 
     _model.txtInicioTextController ??=
-        TextEditingController(text: widget.selectedAction?.startAt);
+        TextEditingController(text: widget!.selectedAction?.startAt);
     _model.txtInicioFocusNode ??= FocusNode();
 
     _model.txtFimTextController ??=
-        TextEditingController(text: widget.selectedAction?.finishAt);
+        TextEditingController(text: widget!.selectedAction?.finishAt);
     _model.txtFimFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -66,11 +69,11 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: MediaQuery.sizeOf(context).height * 0.8,
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxWidth: 800.0,
           maxHeight: 225.0,
         ),
@@ -80,14 +83,14 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
           shape: BoxShape.rectangle,
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -105,7 +108,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 4.0, 0.0),
                             child: TextFormField(
                               controller: _model.txtNameTextController,
@@ -176,7 +179,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,7 +195,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 4.0, 0.0),
                               child: TextFormField(
                                 controller: _model.txtInicioTextController,
@@ -268,7 +271,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              final datePicked1Date = await showDatePicker(
+                              final _datePicked1Date = await showDatePicker(
                                 context: context,
                                 initialDate: getCurrentTimestamp,
                                 firstDate: getCurrentTimestamp,
@@ -308,12 +311,12 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                 },
                               );
 
-                              if (datePicked1Date != null) {
+                              if (_datePicked1Date != null) {
                                 safeSetState(() {
                                   _model.datePicked1 = DateTime(
-                                    datePicked1Date.year,
-                                    datePicked1Date.month,
-                                    datePicked1Date.day,
+                                    _datePicked1Date.year,
+                                    _datePicked1Date.month,
+                                    _datePicked1Date.day,
                                   );
                                 });
                               }
@@ -325,7 +328,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Fim:',
@@ -339,7 +342,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 4.0, 0.0),
                               child: TextFormField(
                                 controller: _model.txtFimTextController,
@@ -409,7 +412,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 4.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -417,7 +420,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePicked2Date = await showDatePicker(
+                                final _datePicked2Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: getCurrentTimestamp,
@@ -457,12 +460,12 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                   },
                                 );
 
-                                if (datePicked2Date != null) {
+                                if (_datePicked2Date != null) {
                                   safeSetState(() {
                                     _model.datePicked2 = DateTime(
-                                      datePicked2Date.year,
-                                      datePicked2Date.month,
-                                      datePicked2Date.day,
+                                      _datePicked2Date.year,
+                                      _datePicked2Date.month,
+                                      _datePicked2Date.day,
                                     );
                                   });
                                 }
@@ -498,22 +501,22 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 8.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               Navigator.pop(context);
                             },
                             text: 'Voltar',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.campaign_sharp,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
@@ -524,7 +527,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -533,7 +536,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 8.0),
                           child: FFButtonWidget(
                             onPressed: () {
@@ -542,9 +545,9 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                             text: 'Salvar',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).tertiary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -555,7 +558,7 @@ class _EditAcaoWidgetState extends State<EditAcaoWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

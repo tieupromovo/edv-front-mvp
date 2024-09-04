@@ -1,11 +1,20 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'on_boarding_page_widget.dart' show OnBoardingPageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   ///  State fields for stateful widgets in this page.
@@ -18,10 +27,11 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for txt_name widget.
-  FocusNode? txtNameFocusNode;
-  TextEditingController? txtNameTextController;
-  String? Function(BuildContext, String?)? txtNameTextControllerValidator;
+  // State field(s) for txt_cliente_name widget.
+  FocusNode? txtClienteNameFocusNode;
+  TextEditingController? txtClienteNameTextController;
+  String? Function(BuildContext, String?)?
+      txtClienteNameTextControllerValidator;
   // State field(s) for txt_phone widget.
   FocusNode? txtPhoneFocusNode;
   TextEditingController? txtPhoneTextController;
@@ -37,6 +47,8 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   FormFieldController<String>? dropDownValueController;
   // Stores action output result for [Backend Call - API (Teams CheckIn)] action in Button widget.
   ApiCallResponse? apiResultsnh;
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // Stores action output result for [Backend Call - API (Teams CheckOut)] action in Button widget.
   ApiCallResponse? apiResult5qc;
   // Model for DrawerContentCmp component.
@@ -52,8 +64,8 @@ class OnBoardingPageModel extends FlutterFlowModel<OnBoardingPageWidget> {
   void dispose() {
     pgHeaderCmpModel.dispose();
     tabBarController?.dispose();
-    txtNameFocusNode?.dispose();
-    txtNameTextController?.dispose();
+    txtClienteNameFocusNode?.dispose();
+    txtClienteNameTextController?.dispose();
 
     txtPhoneFocusNode?.dispose();
     txtPhoneTextController?.dispose();

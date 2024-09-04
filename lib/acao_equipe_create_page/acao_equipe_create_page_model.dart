@@ -1,11 +1,20 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'acao_equipe_create_page_widget.dart' show AcaoEquipeCreatePageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 
 class AcaoEquipeCreatePageModel
     extends FlutterFlowModel<AcaoEquipeCreatePageWidget> {
@@ -38,7 +47,7 @@ class AcaoEquipeCreatePageModel
   // Stores action output result for [Backend Call - API (TeamCreate)] action in Button widget.
   ApiCallResponse? teamCreateResponse;
   // Stores action output result for [Backend Call - API (TeamDelete)] action in Icon widget.
-  ApiCallResponse? apiResult2d7;
+  ApiCallResponse? apiDeleteTeam;
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 

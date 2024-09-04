@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'acao_lojas_create_page_model.dart';
 export 'acao_lojas_create_page_model.dart';
@@ -43,7 +44,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
     });
 
     _model.nomeLojaAcaoTextController ??=
-        TextEditingController(text: widget.acao?.name);
+        TextEditingController(text: widget!.acao?.name);
     _model.nomeLojaAcaoFocusNode ??= FocusNode();
 
     _model.txtNomeTextController ??= TextEditingController();
@@ -76,7 +77,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
           child: wrapWithModel(
             model: _model.drawerContentCmpModel,
             updateCallback: () => setState(() {}),
-            child: const DrawerContentCmpWidget(),
+            child: DrawerContentCmpWidget(),
           ),
         ),
         body: Container(
@@ -91,10 +92,10 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
             children: [
               Container(
                 width: double.infinity,
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   maxWidth: 1000.0,
                 ),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0x3FF1F4F8),
                 ),
                 child: Column(
@@ -103,17 +104,17 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
                       child: Container(
                         width: double.infinity,
-                        constraints: const BoxConstraints(
+                        constraints: BoxConstraints(
                           maxWidth: 800.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 16.0, 8.0, 16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -121,7 +122,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                               wrapWithModel(
                                 model: _model.pgHeaderCmpModel,
                                 updateCallback: () => setState(() {}),
-                                child: const PgHeaderCmpWidget(),
+                                child: PgHeaderCmpWidget(),
                               ),
                               Container(
                                 width: double.infinity,
@@ -132,7 +133,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                       .primaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -146,7 +147,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -165,7 +166,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -282,7 +283,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -302,7 +303,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -418,7 +419,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -438,7 +439,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -554,7 +555,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -571,7 +572,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                       ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -629,7 +630,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
@@ -637,18 +638,18 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                         'AcaoCreatePage');
                                                   },
                                                   text: 'Voltar',
-                                                  icon: const Icon(
+                                                  icon: Icon(
                                                     Icons.campaign_sharp,
                                                     size: 20.0,
                                                   ),
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -664,7 +665,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -687,11 +688,11 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 text: 'Limpar',
                                                 options: FFButtonOptions(
                                                   height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -708,7 +709,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -719,7 +720,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  var shouldSetState = false;
+                                                  var _shouldSetState = false;
                                                   _model.lojaCreateResponse =
                                                       await LojaCreateCall.call(
                                                     name: _model
@@ -732,7 +733,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                     actionId:
                                                         valueOrDefault<int>(
                                                       ActionStruct.maybeFromMap(
-                                                              widget.acao
+                                                              widget!.acao
                                                                   ?.toMap())
                                                           ?.actionId,
                                                       1,
@@ -741,7 +742,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                         currentAuthenticationToken,
                                                   );
 
-                                                  shouldSetState = true;
+                                                  _shouldSetState = true;
                                                   if ((_model.lojaCreateResponse
                                                           ?.succeeded ??
                                                       true)) {
@@ -751,23 +752,22 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                           (alertDialogContext) {
                                                         return AlertDialog(
                                                           title:
-                                                              const Text('Sucesso!'),
-                                                          content: const Text(
+                                                              Text('Sucesso!'),
+                                                          content: Text(
                                                               'Loja Cadastrada'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: const Text('Ok'),
+                                                              child: Text('Ok'),
                                                             ),
                                                           ],
                                                         );
                                                       },
                                                     );
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       setState(() {});
-                                                    }
                                                     return;
                                                   } else {
                                                     await showDialog(
@@ -775,7 +775,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                       builder:
                                                           (alertDialogContext) {
                                                         return AlertDialog(
-                                                          title: const Text('Error'),
+                                                          title: Text('Error'),
                                                           content: Text((_model
                                                                   .lojaCreateResponse
                                                                   ?.bodyText ??
@@ -785,30 +785,28 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: const Text('Ok'),
+                                                              child: Text('Ok'),
                                                             ),
                                                           ],
                                                         );
                                                       },
                                                     );
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       setState(() {});
-                                                    }
                                                     return;
                                                   }
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     setState(() {});
-                                                  }
                                                 },
                                                 text: 'Adicionar Loja',
                                                 options: FFButtonOptions(
                                                   height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -825,7 +823,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -839,19 +837,19 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 8.0),
                                         child: Container(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
                                               0.36,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: FutureBuilder<ApiCallResponse>(
                                             future: ActionGroup.storeGetAllCall
                                                 .call(
                                               jwt: currentAuthenticationToken,
                                               actionId: valueOrDefault<int>(
-                                                widget.acao?.actionId,
+                                                widget!.acao?.actionId,
                                                 0,
                                               ),
                                             ),
@@ -890,7 +888,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               as Iterable<
                                                                   StoreEdvStruct?>)
                                                           .withoutNulls
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [];
 
                                                   return ListView.separated(
@@ -900,7 +898,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                         Axis.vertical,
                                                     itemCount: lojaLista.length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 4.0),
+                                                        SizedBox(height: 4.0),
                                                     itemBuilder: (context,
                                                         lojaListaIndex) {
                                                       final lojaListaItem =
@@ -922,7 +920,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   8.0),
                                                           child: Row(
                                                             mainAxisSize:
@@ -942,7 +940,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           .stretch,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           4.0,
                                                                           0.0,
@@ -966,7 +964,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           4.0,
                                                                           0.0,
@@ -994,7 +992,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1019,7 +1017,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -1050,7 +1048,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1076,7 +1074,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                           {
                                                                         'acao':
                                                                             serializeParam(
-                                                                          ActionStruct.maybeFromMap(widget
+                                                                          ActionStruct.maybeFromMap(widget!
                                                                               .acao
                                                                               ?.toMap()),
                                                                           ParamType
@@ -1104,7 +1102,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1145,7 +1143,7 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                                             child:
                                                                                 EditLojaWidget(
                                                                               selectedStore: StoreEdvStruct.maybeFromMap(lojaListaItem.toMap())!,
-                                                                              selectedAction: widget.acao!,
+                                                                              selectedAction: widget!.acao!,
                                                                             ),
                                                                           ),
                                                                         );
