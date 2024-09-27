@@ -1,15 +1,21 @@
 import '/auth/custom_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'drawer_content_cmp_model.dart';
 export 'drawer_content_cmp_model.dart';
 
 class DrawerContentCmpWidget extends StatefulWidget {
-  const DrawerContentCmpWidget({super.key});
+  const DrawerContentCmpWidget({
+    super.key,
+    this.acao,
+    this.store,
+  });
+
+  final ActionStruct? acao;
+  final StoreStruct? store;
 
   @override
   State<DrawerContentCmpWidget> createState() => _DrawerContentCmpWidgetState();
@@ -29,7 +35,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
     super.initState();
     _model = createModel(context, () => DrawerContentCmpModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -42,13 +48,13 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 0.0, 32.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 0.0, 32.0),
       child: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -65,14 +71,14 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
@@ -84,7 +90,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 0.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 0.0, 8.0),
                     child: Text(
                       'Menu Principal',
                       textAlign: TextAlign.start,
@@ -97,12 +103,12 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 8.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(40.0),
@@ -115,7 +121,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               4.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -124,7 +130,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  currentUserData?.team?.name,
+                                  currentUserData?.team.name,
                                   'ADMIN',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -136,11 +142,11 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    currentUserData?.user?.username,
+                                    currentUserData?.user.username,
                                     '?',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -166,20 +172,27 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                   MouseRegion(
                     opaque: false,
                     cursor: MouseCursor.defer ?? MouseCursor.defer,
+                    onEnter: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered1 = true);
+                    }),
+                    onExit: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered1 = false);
+                    }),
                     child: Visibility(
-                      visible: currentUserData?.user?.roles == 'ADMIN',
+                      visible: (currentUserData?.user.roles == 'ADMIN') ||
+                          (currentUserData?.team.profile == 'LIDER'),
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 150),
+                        duration: const Duration(milliseconds: 150),
                         curve: Curves.easeInOut,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: _model.mouseRegionHovered1!
+                          color: _model.mouseRegionHovered1
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -187,13 +200,34 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed('AcaoCreatePage');
+                              if (currentUserData?.team.profile == 'LIDER') {
+                                context.pushNamed(
+                                  'AcaoEquipeCreatePage',
+                                  queryParameters: {
+                                    'acao': serializeParam(
+                                      ActionStruct.maybeFromMap(currentUserData
+                                          ?.team.action
+                                          .toMap()),
+                                      ParamType.DataStruct,
+                                    ),
+                                    'store': serializeParam(
+                                      StoreEdvStruct.maybeFromMap(
+                                          currentUserData?.team.store
+                                              .toMap()),
+                                      ParamType.DataStruct,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              } else if (currentUserData?.user.roles ==
+                                  'ADMIN') {
+                                context.pushNamed('AcaoCreatePage');
+                              }
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.campaign_sharp,
@@ -204,7 +238,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Ação',
@@ -223,33 +257,33 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                         ),
                       ),
                     ),
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered1 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered1 = false);
-                    }),
                   ),
                   MouseRegion(
                     opaque: false,
                     cursor: MouseCursor.defer ?? MouseCursor.defer,
+                    onEnter: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered2 = true);
+                    }),
+                    onExit: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered2 = false);
+                    }),
                     child: Visibility(
                       visible:
-                          (currentUserData?.team?.profile == 'RECEPCIONISTA') ||
-                              (currentUserData?.team?.profile == 'LIDER') ||
-                              (currentUserData?.team?.profile == 'GERENTE'),
+                          (currentUserData?.team.profile == 'RECEPCIONISTA') ||
+                              (currentUserData?.team.profile == 'LIDER') ||
+                              (currentUserData?.team.profile == 'GERENTE'),
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 150),
+                        duration: const Duration(milliseconds: 150),
                         curve: Curves.easeInOut,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: _model.mouseRegionHovered2!
+                          color: _model.mouseRegionHovered2
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -263,7 +297,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.sticky_note_2_sharp,
@@ -274,7 +308,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Check-in',
@@ -293,32 +327,32 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                         ),
                       ),
                     ),
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered2 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered2 = false);
-                    }),
                   ),
                   MouseRegion(
                     opaque: false,
                     cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
+                    onEnter: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered3 = true);
+                    }),
+                    onExit: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered3 = false);
+                    }),
                     child: Visibility(
-                      visible: (currentUserData?.team?.profile == 'LIDER') ||
-                          (currentUserData?.team?.profile == 'RECEPCIONISTA') ||
-                          (currentUserData?.team?.profile == 'GERENTE'),
+                      visible: (currentUserData?.team.profile == 'LIDER') ||
+                          (currentUserData?.team.profile == 'RECEPCIONISTA') ||
+                          (currentUserData?.team.profile == 'GERENTE'),
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 150),
+                        duration: const Duration(milliseconds: 150),
                         curve: Curves.easeInOut,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: _model.mouseRegionHovered3!
+                          color: _model.mouseRegionHovered3
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -332,7 +366,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.router,
@@ -343,7 +377,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Check-out',
@@ -362,77 +396,80 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                         ),
                       ),
                     ),
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered3 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered3 = false);
-                    }),
                   ),
                   MouseRegion(
                     opaque: false,
                     cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
+                    onEnter: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered4 = true);
+                    }),
+                    onExit: ((event) async {
+                      safeSetState(() => _model.mouseRegionHovered4 = false);
+                    }),
                     child: Visibility(
-                      visible: (currentUserData?.team?.profile == 'GERENTE') ||
-                          (currentUserData?.user?.roles == 'ADMIN'),
+                      visible: (currentUserData?.team.profile == 'GERENTE') ||
+                          (currentUserData?.user.roles == 'ADMIN'),
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 150),
+                        duration: const Duration(milliseconds: 150),
                         curve: Curves.easeInOut,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: _model.mouseRegionHovered4!
+                          color: _model.mouseRegionHovered4
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Icon(
-                                  Icons.list_alt,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('HomePage');
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Relatórios',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
-                                        ),
+                                  child: Icon(
+                                    Icons.list_alt,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 20.0,
                                   ),
                                 ),
-                              ),
-                            ],
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Relatórios',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    onEnter: ((event) async {
-                      setState(() => _model.mouseRegionHovered4 = true);
-                    }),
-                    onExit: ((event) async {
-                      setState(() => _model.mouseRegionHovered4 = false);
-                    }),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -449,9 +486,9 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).secondary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -460,7 +497,7 @@ class _DrawerContentCmpWidgetState extends State<DrawerContentCmpWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

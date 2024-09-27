@@ -14,3 +14,8 @@ export '/esqueci_senha_page/esqueci_senha_page_widget.dart'
 export '/on_boarding_page/on_boarding_page_widget.dart'
     show OnBoardingPageWidget;
 export '/operacao_page/operacao_page_widget.dart' show OperacaoPageWidget;
+export '/relatorio_loja/relatorio_loja_widget.dart' show RelatorioLojaWidget;
+export '/relatorio_presenca/relatorio_presenca_widget.dart'
+    show RelatorioPresencaWidget;
+export '/relatorio_vendas/relatorio_vendas_widget.dart'
+    show RelatorioVendasWidget;

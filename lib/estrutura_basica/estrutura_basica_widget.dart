@@ -2,10 +2,8 @@ import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'estrutura_basica_model.dart';
 export 'estrutura_basica_model.dart';
@@ -30,10 +28,10 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Operação';
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,8 +54,8 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
           elevation: 16.0,
           child: wrapWithModel(
             model: _model.drawerContentCmpModel,
-            updateCallback: () => setState(() {}),
-            child: DrawerContentCmpWidget(),
+            updateCallback: () => safeSetState(() {}),
+            child: const DrawerContentCmpWidget(),
           ),
         ),
         body: Container(
@@ -72,10 +70,10 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
             children: [
               Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 1000.0,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0x3FF1F4F8),
                 ),
                 child: Column(
@@ -84,26 +82,26 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.9,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 800.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 16.0, 8.0, 16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               wrapWithModel(
                                 model: _model.pgHeaderCmpModel,
-                                updateCallback: () => setState(() {}),
-                                child: PgHeaderCmpWidget(),
+                                updateCallback: () => safeSetState(() {}),
+                                child: const PgHeaderCmpWidget(),
                               ),
                               Container(
                                 height: MediaQuery.sizeOf(context).height * 0.8,
@@ -111,7 +109,7 @@ class _EstruturaBasicaWidgetState extends State<EstruturaBasicaWidget> {
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                 ),
-                                child: Padding(
+                                child: const Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(

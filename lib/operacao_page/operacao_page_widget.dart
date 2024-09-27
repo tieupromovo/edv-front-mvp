@@ -7,9 +7,10 @@ import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'operacao_page_model.dart';
 export 'operacao_page_model.dart';
@@ -33,11 +34,19 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().PageTitle = 'Operação';
-      setState(() {});
+      FFAppState().PageTitle = 'Check-out';
+      safeSetState(() {});
+      _model.instantTimer = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 1000),
+        callback: (timer) async {
+          _model.dataAutal = getCurrentTimestamp;
+          safeSetState(() {});
+        },
+        startImmediately: true,
+      );
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -55,8 +64,8 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
       future: _model.teamListAllcache(
         requestFn: () => TeamListAllCall.call(
           jwt: currentAuthenticationToken,
-          actionId: currentUserData?.team?.action?.actionId,
-          storeId: currentUserData?.team?.store?.storeId,
+          actionId: currentUserData?.team.action.actionId,
+          storeId: currentUserData?.team.store.storeId,
         ),
       ),
       builder: (context, snapshot) {
@@ -88,8 +97,8 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
               elevation: 16.0,
               child: wrapWithModel(
                 model: _model.drawerContentCmpModel,
-                updateCallback: () => setState(() {}),
-                child: DrawerContentCmpWidget(),
+                updateCallback: () => safeSetState(() {}),
+                child: const DrawerContentCmpWidget(),
               ),
             ),
             body: Container(
@@ -104,10 +113,10 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                 children: [
                   Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 1000.0,
                     ),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0x3FF1F4F8),
                     ),
                     child: Column(
@@ -115,12 +124,12 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 16.0, 8.0, 0.0),
                           child: Container(
                             width: double.infinity,
                             height: MediaQuery.sizeOf(context).height * 0.85,
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 800.0,
                             ),
                             decoration: BoxDecoration(
@@ -128,22 +137,22 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                   .primaryBackground,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 16.0, 8.0, 16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 16.0, 0.0, 0.0),
                                     child: wrapWithModel(
                                       model: _model.pgHeaderCmpModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: PgHeaderCmpWidget(),
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: const PgHeaderCmpWidget(),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 1.0, 0.0, 0.0),
                                     child: Container(
                                       height:
@@ -154,7 +163,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                             .primaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8.0, 16.0, 8.0, 0.0),
                                         child: SingleChildScrollView(
                                           primary: false,
@@ -180,7 +189,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                   Text(
                                                     valueOrDefault<String>(
                                                       currentUserData
-                                                          ?.team?.action?.name,
+                                                          ?.team.action.name,
                                                       '?',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -206,7 +215,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                   Text(
                                                     valueOrDefault<String>(
                                                       currentUserData
-                                                          ?.team?.store?.name,
+                                                          ?.team.store.name,
                                                       '?',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -222,7 +231,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 4.0, 0.0, 0.0),
                                                 child: Column(
@@ -234,7 +243,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   16.0,
@@ -259,7 +268,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -307,7 +316,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                               ClientStruct.maybeFromMap)
                                                                           .toList() as Iterable<ClientStruct?>)
                                                                       .withoutNulls
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [];
 
                                                               return ListView
@@ -347,7 +356,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                       ),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             4.0,
                                                                             4.0,
                                                                             4.0,
@@ -361,7 +370,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                           children: [
                                                                             Expanded(
                                                                               child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -382,7 +391,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                                 ),
                                                                                           ),
                                                                                         ),
-                                                                                      ].divide(SizedBox(width: 16.0)),
+                                                                                      ].divide(const SizedBox(width: 16.0)),
                                                                                     ),
                                                                                     Row(
                                                                                       mainAxisSize: MainAxisSize.max,
@@ -397,10 +406,10 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                                 ),
                                                                                           ),
                                                                                         ),
-                                                                                      ].divide(SizedBox(width: 16.0)),
+                                                                                      ].divide(const SizedBox(width: 16.0)),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                                                                                       child: Row(
                                                                                         mainAxisSize: MainAxisSize.max,
                                                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -414,22 +423,48 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                                   ),
                                                                                             ),
                                                                                           ),
-                                                                                        ].divide(SizedBox(width: 16.0)),
+                                                                                        ].divide(const SizedBox(width: 16.0)),
                                                                                       ),
+                                                                                    ),
+                                                                                    Row(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      children: [
+                                                                                        if (functions.functionValidationHour(functions.functionHourConvert(_model.dataAutal), apiClienteListItem.toMap()) == false)
+                                                                                          Container(
+                                                                                            width: 75.0,
+                                                                                            height: 24.0,
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: FlutterFlowTheme.of(context).tertiary,
+                                                                                              borderRadius: BorderRadius.circular(24.0),
+                                                                                              shape: BoxShape.rectangle,
+                                                                                            ),
+                                                                                          ),
+                                                                                        if (functions.functionValidationHour(functions.functionHourConvert(_model.dataAutal), apiClienteListItem.toMap()) == true)
+                                                                                          Container(
+                                                                                            width: 75.0,
+                                                                                            height: 24.0,
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                                              borderRadius: BorderRadius.circular(24.0),
+                                                                                              shape: BoxShape.rectangle,
+                                                                                            ),
+                                                                                          ),
+                                                                                      ],
                                                                                     ),
                                                                                   ],
                                                                                 ),
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 8.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 8.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                                                                                     child: FFButtonWidget(
                                                                                       onPressed: () async {
                                                                                         await showModalBottomSheet(
@@ -454,8 +489,8 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                       text: 'Vendeu',
                                                                                       options: FFButtonOptions(
                                                                                         height: 40.0,
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                                                                         color: FlutterFlowTheme.of(context).tertiary,
                                                                                         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                               fontFamily: 'Inter',
@@ -464,7 +499,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                               letterSpacing: 0.0,
                                                                                             ),
                                                                                         elevation: 3.0,
-                                                                                        borderSide: BorderSide(
+                                                                                        borderSide: const BorderSide(
                                                                                           color: Colors.transparent,
                                                                                           width: 1.0,
                                                                                         ),
@@ -473,7 +508,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                    alignment: const AlignmentDirectional(1.0, 0.0),
                                                                                     child: FFButtonWidget(
                                                                                       onPressed: () async {
                                                                                         _model.apiResultClientqc = await OnBoardingGroup.clientsCheckOutCall.call(
@@ -486,12 +521,12 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                             context: context,
                                                                                             builder: (alertDialogContext) {
                                                                                               return AlertDialog(
-                                                                                                title: Text('Checkout'),
-                                                                                                content: Text('Lead não efetuou a compra'),
+                                                                                                title: const Text('Checkout'),
+                                                                                                content: const Text('Lead não efetuou a compra'),
                                                                                                 actions: [
                                                                                                   TextButton(
                                                                                                     onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: Text('Ok'),
+                                                                                                    child: const Text('Ok'),
                                                                                                   ),
                                                                                                 ],
                                                                                               );
@@ -502,12 +537,12 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                             context: context,
                                                                                             builder: (alertDialogContext) {
                                                                                               return AlertDialog(
-                                                                                                title: Text('ERRO'),
-                                                                                                content: Text('Ocorreu algum erro no backend'),
+                                                                                                title: const Text('ERRO'),
+                                                                                                content: const Text('Ocorreu algum erro no backend'),
                                                                                                 actions: [
                                                                                                   TextButton(
                                                                                                     onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                    child: Text('Ok'),
+                                                                                                    child: const Text('Ok'),
                                                                                                   ),
                                                                                                 ],
                                                                                               );
@@ -515,13 +550,13 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                           );
                                                                                         }
 
-                                                                                        setState(() {});
+                                                                                        safeSetState(() {});
                                                                                       },
                                                                                       text: 'Não vendeu',
                                                                                       options: FFButtonOptions(
                                                                                         height: 40.0,
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                                                                         color: FlutterFlowTheme.of(context).primary,
                                                                                         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                               fontFamily: 'Inter',
@@ -530,7 +565,7 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                                                               letterSpacing: 0.0,
                                                                                             ),
                                                                                         elevation: 3.0,
-                                                                                        borderSide: BorderSide(
+                                                                                        borderSide: const BorderSide(
                                                                                           color: Colors.transparent,
                                                                                           width: 1.0,
                                                                                         ),
@@ -556,6 +591,27 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                   ],
                                                 ),
                                               ),
+                                              if (responsiveVisibility(
+                                                context: context,
+                                                phone: false,
+                                                tablet: false,
+                                                tabletLandscape: false,
+                                                desktop: false,
+                                              ))
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    _model.dataAutal
+                                                        ?.toString(),
+                                                    '0',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
                                             ],
                                           ),
                                         ),

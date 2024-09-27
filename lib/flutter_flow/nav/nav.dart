@@ -1,22 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 
 import '/auth/custom_auth/custom_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -81,39 +74,39 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'EstruturaBasica',
           path: '/estruturaBasica',
-          builder: (context, params) => EstruturaBasicaWidget(),
+          builder: (context, params) => const EstruturaBasicaWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+              ? const NavBarPage(initialPage: 'HomePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
           path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => const LoginPageWidget(),
         ),
         FFRoute(
           name: 'AcaoCreatePage',
           path: '/acaoCreatePage',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'AcaoCreatePage')
-              : AcaoCreatePageWidget(),
+              ? const NavBarPage(initialPage: 'AcaoCreatePage')
+              : const AcaoCreatePageWidget(),
         ),
         FFRoute(
           name: 'AcaoLojasCreatePage',
@@ -148,22 +141,74 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'EsqueciSenhaPage',
           path: '/EsqueciSenhaPage',
-          builder: (context, params) => EsqueciSenhaPageWidget(),
+          builder: (context, params) => const EsqueciSenhaPageWidget(),
         ),
         FFRoute(
           name: 'OnBoardingPage',
           path: '/OnBoardingPage',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'OnBoardingPage')
-              : OnBoardingPageWidget(),
+              ? const NavBarPage(initialPage: 'OnBoardingPage')
+              : OnBoardingPageWidget(
+                  lead: params.getParam<LeadsStruct>(
+                    'lead',
+                    ParamType.DataStruct,
+                    isList: true,
+                    structBuilder: LeadsStruct.fromSerializableMap,
+                  ),
+                ),
         ),
         FFRoute(
           name: 'OperacaoPage',
           path: '/operacaoPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'OperacaoPage')
-              : OperacaoPageWidget(),
+              ? const NavBarPage(initialPage: 'OperacaoPage')
+              : const OperacaoPageWidget(),
+        ),
+        FFRoute(
+          name: 'RelatorioLoja',
+          path: '/relatorioLoja',
+          requireAuth: true,
+          builder: (context, params) => RelatorioLojaWidget(
+            actionSelected: params.getParam(
+              'actionSelected',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ReportsHomeStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'RelatorioPresenca',
+          path: '/relatorioPresenca',
+          requireAuth: true,
+          builder: (context, params) => RelatorioPresencaWidget(
+            actionSelected: params.getParam(
+              'actionSelected',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ReportsHomeStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'RelatorioVendas',
+          path: '/relatorioVendas',
+          requireAuth: true,
+          builder: (context, params) => RelatorioVendasWidget(
+            actionSelected: params.getParam(
+              'actionSelected',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ReportsHomeStruct.fromSerializableMap,
+            ),
+            dropdownRange: params.getParam<ReportsHomeStruct>(
+              'dropdownRange',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: ReportsHomeStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -397,7 +442,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

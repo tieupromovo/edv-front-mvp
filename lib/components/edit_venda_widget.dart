@@ -7,8 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'edit_venda_model.dart';
 export 'edit_venda_model.dart';
 
@@ -40,7 +38,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
     super.initState();
     _model = createModel(context, () => EditVendaModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -53,11 +51,11 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: MediaQuery.sizeOf(context).height * 0.8,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: 600.0,
           maxHeight: 200.0,
         ),
@@ -67,14 +65,14 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
           shape: BoxShape.rectangle,
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -89,10 +87,10 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget!.selectedClient?.name,
+                          widget.selectedClient?.name,
                           '?',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -106,7 +104,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,19 +122,19 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                           FormFieldController<int>(
                         _model.cmbTeamValue ??= 0,
                       ),
-                      options: List<int>.from(widget!.teamList!
+                      options: List<int>.from(widget.teamList!
                           .map((e) => valueOrDefault<int>(
                                 TeamStruct.maybeFromMap(e.toMap())
                                     ?.promoter
-                                    ?.promoterId,
+                                    .promoterId,
                                 0,
                               ))
                           .toList()),
-                      optionLabels: widget!.teamList!
+                      optionLabels: widget.teamList!
                           .map((e) => e.promoter.name)
                           .toList(),
                       onChanged: (val) =>
-                          setState(() => _model.cmbTeamValue = val),
+                          safeSetState(() => _model.cmbTeamValue = val),
                       width: 250.0,
                       height: 56.0,
                       textStyle:
@@ -158,7 +156,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -168,7 +166,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -178,16 +176,16 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                         Navigator.pop(context);
                       },
                       text: 'Voltar',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_sharp,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).alternate,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -197,7 +195,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -210,7 +208,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                             await OnBoardingGroup.completedSaleCall.call(
                           jwt: currentAuthenticationToken,
                           onboardingclientId:
-                              widget!.selectedClient?.onboardingClientId,
+                              widget.selectedClient?.onboardingClientId,
                           promoterId: valueOrDefault<int>(
                             _model.cmbTeamValue,
                             0,
@@ -222,13 +220,13 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: Text('Venda'),
-                                content: Text('Venda anotada'),
+                                title: const Text('Venda'),
+                                content: const Text('Venda anotada'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
+                                    child: const Text('Ok'),
                                   ),
                                 ],
                               );
@@ -239,13 +237,13 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: Text('ERRO'),
-                                content: Text('Ocorreu algum erro no backend'),
+                                title: const Text('ERRO'),
+                                content: const Text('Ocorreu algum erro no backend'),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
+                                    child: const Text('Ok'),
                                   ),
                                 ],
                               );
@@ -255,15 +253,15 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
 
                         Navigator.pop(context);
 
-                        setState(() {});
+                        safeSetState(() {});
                       },
                       text: 'Confirmar Venda',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).tertiary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -273,7 +271,7 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

@@ -4,13 +4,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -56,15 +52,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.0, 80.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 80.0),
+            end: const Offset(0.0, 0.0),
           ),
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.8, 0.8),
-            end: Offset(1.0, 1.0),
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -83,14 +79,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -110,7 +106,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
         body: Stack(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 32.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 32.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 191.0,
@@ -123,31 +119,31 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                   ),
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).width >= 768.0
                             ? 530.0
                             : 630.0,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 500.0,
                           maxHeight: 500.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4.0,
                               color: Color(0x33000000),
@@ -165,9 +161,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           ),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 16.0, 24.0, 0.0),
                             child: SingleChildScrollView(
                               child: Column(
@@ -185,7 +181,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 24.0),
                                     child: Text(
                                       'Preencha os dados abaixo para ter acesso ',
@@ -199,16 +195,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
                                             _model.usernameTextController,
                                         focusNode: _model.usernameFocusNode,
                                         autofocus: true,
-                                        autofillHints: [AutofillHints.email],
+                                        autofillHints: const [AutofillHints.email],
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Usuário',
@@ -266,7 +262,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 24.0, 0.0, 24.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -285,16 +281,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
                                             _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         autofocus: true,
-                                        autofillHints: [AutofillHints.password],
+                                        autofillHints: const [AutofillHints.password],
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           labelText: 'Senha',
@@ -352,10 +348,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 24.0, 0.0, 24.0),
                                           suffixIcon: InkWell(
-                                            onTap: () => setState(
+                                            onTap: () => safeSetState(
                                               () => _model.passwordVisibility =
                                                   !_model.passwordVisibility,
                                             ),
@@ -387,106 +383,123 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: FFButtonWidget(
-                                        onPressed: () async {
-                                          var _shouldSetState = false;
-                                          _model.apiLoginResult =
-                                              await LoginCall.call(
-                                            username: _model
-                                                .usernameTextController.text,
-                                            password: _model
-                                                .passwordTextController.text,
-                                          );
-
-                                          _shouldSetState = true;
-                                          if ((_model
-                                                  .apiLoginResult?.succeeded ??
-                                              true)) {
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-                                            await authManager.signIn(
-                                              authenticationToken:
-                                                  valueOrDefault<String>(
-                                                getJsonField(
-                                                  (_model.apiLoginResult
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.accessToken''',
-                                                )?.toString(),
-                                                'vazio',
-                                              ),
-                                              authUid: valueOrDefault<String>(
-                                                getJsonField(
-                                                  (_model.apiLoginResult
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.user.user_id''',
-                                                )?.toString(),
-                                                '000',
-                                              ),
-                                              userData:
-                                                  LoginEdvStruct.maybeFromMap(
-                                                      (_model.apiLoginResult
-                                                              ?.jsonBody ??
-                                                          '')),
-                                            );
-                                            if (currentUserData
-                                                    ?.team?.profile ==
-                                                'RECEPCIONISTA') {
-                                              context.pushNamedAuth(
-                                                  'OnBoardingPage',
-                                                  context.mounted);
-                                            } else {
-                                              if (currentUserData
-                                                      ?.team?.profile ==
-                                                  'LIDER') {
-                                                context.pushNamedAuth(
-                                                    'OperacaoPage',
-                                                    context.mounted);
-                                              } else {
-                                                context.goNamedAuth('HomePage',
-                                                    context.mounted);
-                                              }
-                                            }
-                                          } else {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text('Erro no login'),
-                                                  content: Text(
-                                                      'Usuário ou senha inválidos'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
+                                        onPressed: ((_model
+                                                        .usernameTextController
+                                                        .text ==
+                                                    '') ||
+                                                (_model.passwordTextController
+                                                        .text ==
+                                                    ''))
+                                            ? null
+                                            : () async {
+                                                var shouldSetState = false;
+                                                _model.apiLoginResult =
+                                                    await LoginCall.call(
+                                                  username: _model
+                                                      .usernameTextController
+                                                      .text,
+                                                  password: _model
+                                                      .passwordTextController
+                                                      .text,
                                                 );
-                                              },
-                                            );
-                                            if (_shouldSetState)
-                                              setState(() {});
-                                            return;
-                                          }
 
-                                          if (_shouldSetState) setState(() {});
-                                        },
+                                                shouldSetState = true;
+                                                if ((_model.apiLoginResult
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  GoRouter.of(context)
+                                                      .prepareAuthEvent();
+                                                  await authManager.signIn(
+                                                    authenticationToken:
+                                                        valueOrDefault<String>(
+                                                      getJsonField(
+                                                        (_model.apiLoginResult
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.accessToken''',
+                                                      )?.toString(),
+                                                      'vazio',
+                                                    ),
+                                                    authUid:
+                                                        valueOrDefault<String>(
+                                                      getJsonField(
+                                                        (_model.apiLoginResult
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.user.user_id''',
+                                                      )?.toString(),
+                                                      '000',
+                                                    ),
+                                                    userData: LoginEdvStruct
+                                                        .maybeFromMap((_model
+                                                                .apiLoginResult
+                                                                ?.jsonBody ??
+                                                            '')),
+                                                  );
+                                                  if (currentUserData
+                                                          ?.team.profile ==
+                                                      'RECEPCIONISTA') {
+                                                    context.pushNamedAuth(
+                                                        'OnBoardingPage',
+                                                        context.mounted);
+                                                  } else {
+                                                    if (currentUserData
+                                                            ?.team.profile ==
+                                                        'LIDER') {
+                                                      context.pushNamedAuth(
+                                                          'OperacaoPage',
+                                                          context.mounted);
+                                                    } else {
+                                                      context.goNamedAuth(
+                                                          'HomePage',
+                                                          context.mounted);
+                                                    }
+                                                  }
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: const Text(
+                                                            'Erro no login'),
+                                                        content: const Text(
+                                                            'Usuário ou senha inválidos'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: const Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                }
+
+                                                if (shouldSetState) {
+                                                  safeSetState(() {});
+                                                }
+                                              },
                                         text: 'Entrar',
                                         options: FFButtonOptions(
                                           width: 230.0,
                                           height: 52.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -500,7 +513,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -511,7 +524,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Wrap(
                                       spacing: 16.0,
                                       runSpacing: 0.0,
@@ -525,7 +538,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               context.pushNamed(
@@ -534,10 +547,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             text: 'Esqueceu a senha?',
                                             options: FFButtonOptions(
                                               height: 44.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       32.0, 0.0, 32.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -580,7 +593,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Text(
-                      '2024-09-04.1',
+                      '2024-09-27.1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             fontSize: 8.0,

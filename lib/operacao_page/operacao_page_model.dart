@@ -1,24 +1,21 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/drawer_content_cmp_widget.dart';
-import '/components/edit_venda_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/request_manager.dart';
 
 import 'operacao_page_widget.dart' show OperacaoPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
+  ///  Local state fields for this page.
+
+  DateTime? dataAutal;
+
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
+  InstantTimer? instantTimer;
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
@@ -51,6 +48,7 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
 
   @override
   void dispose() {
+    instantTimer?.cancel();
     pgHeaderCmpModel.dispose();
     drawerContentCmpModel.dispose();
 

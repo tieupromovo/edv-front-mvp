@@ -6,10 +6,8 @@ import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'acao_create_page_model.dart';
 export 'acao_create_page_model.dart';
@@ -34,26 +32,26 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Cadastro de Ação';
-      setState(() {});
-      if (currentUserData?.user?.roles != 'ADMIN') {
+      safeSetState(() {});
+      if (currentUserData?.user.roles != 'ADMIN') {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
-              title: Text('Erro'),
-              content: Text(
+              title: const Text('Erro'),
+              content: const Text(
                   'Você não tem acesso a essa tela, acesse com outro usuário.'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
+                  child: const Text('Ok'),
                 ),
               ],
             );
           },
         );
 
-        context.pushNamed('LoginPage');
+        context.goNamed('OnBoardingPage');
       }
     });
 
@@ -66,7 +64,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
     _model.txtFimTextController ??= TextEditingController();
     _model.txtFimFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
           _model.txtInicioTextController?.text = dateTimeFormat(
             "d/M/y",
             _model.datePicked1,
@@ -100,8 +98,8 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
           elevation: 16.0,
           child: wrapWithModel(
             model: _model.drawerContentCmpModel,
-            updateCallback: () => setState(() {}),
-            child: DrawerContentCmpWidget(),
+            updateCallback: () => safeSetState(() {}),
+            child: const DrawerContentCmpWidget(),
           ),
         ),
         body: Container(
@@ -116,10 +114,10 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
             children: [
               Container(
                 width: double.infinity,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 1000.0,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0x3FF1F4F8),
                 ),
                 child: Column(
@@ -128,26 +126,26 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.896,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 800.0,
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 16.0, 8.0, 16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               wrapWithModel(
                                 model: _model.pgHeaderCmpModel,
-                                updateCallback: () => setState(() {}),
-                                child: PgHeaderCmpWidget(),
+                                updateCallback: () => safeSetState(() {}),
+                                child: const PgHeaderCmpWidget(),
                               ),
                               Container(
                                 width: double.infinity,
@@ -158,7 +156,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                       .primaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -166,7 +164,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -188,7 +186,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: TextFormField(
@@ -197,6 +195,9 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                       focusNode: _model
                                                           .txtNameFocusNode,
                                                       autofocus: true,
+                                                      textCapitalization:
+                                                          TextCapitalization
+                                                              .words,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
@@ -293,6 +294,8 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             fontSize: 12.0,
                                                             letterSpacing: 0.0,
                                                           ),
+                                                      keyboardType:
+                                                          TextInputType.name,
                                                       validator: _model
                                                           .txtNameTextControllerValidator
                                                           .asValidator(context),
@@ -302,7 +305,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -324,7 +327,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -453,7 +456,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       // DataInicial
-                                                      final _datePicked1Date =
+                                                      final datePicked1Date =
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
@@ -515,21 +518,21 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         },
                                                       );
 
-                                                      if (_datePicked1Date !=
+                                                      if (datePicked1Date !=
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked1 =
                                                               DateTime(
-                                                            _datePicked1Date
+                                                            datePicked1Date
                                                                 .year,
-                                                            _datePicked1Date
+                                                            datePicked1Date
                                                                 .month,
-                                                            _datePicked1Date
+                                                            datePicked1Date
                                                                 .day,
                                                           );
                                                         });
                                                       }
-                                                      setState(() {
+                                                      safeSetState(() {
                                                         _model.txtInicioTextController
                                                                 ?.text =
                                                             valueOrDefault<
@@ -563,7 +566,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -581,7 +584,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -701,7 +704,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: InkWell(
@@ -714,7 +717,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        final _datePicked2Date =
+                                                        final datePicked2Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate:
@@ -775,21 +778,21 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           },
                                                         );
 
-                                                        if (_datePicked2Date !=
+                                                        if (datePicked2Date !=
                                                             null) {
                                                           safeSetState(() {
                                                             _model.datePicked2 =
                                                                 DateTime(
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .year,
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .month,
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .day,
                                                             );
                                                           });
                                                         }
-                                                        setState(() {
+                                                        safeSetState(() {
                                                           _model.txtFimTextController
                                                                   ?.text =
                                                               valueOrDefault<
@@ -832,12 +835,12 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 8.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
-                                                      setState(() {
+                                                      safeSetState(() {
                                                         _model
                                                             .txtNameTextController
                                                             ?.clear();
@@ -853,14 +856,14 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -884,7 +887,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -896,7 +899,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 8.0),
                                                   child: FFButtonWidget(
@@ -910,11 +913,11 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         startAt: _model
                                                             .datePicked1
                                                             ?.millisecondsSinceEpoch
-                                                            ?.toString(),
+                                                            .toString(),
                                                         finishAt: _model
                                                             .datePicked2
                                                             ?.millisecondsSinceEpoch
-                                                            ?.toString(),
+                                                            .toString(),
                                                         jwt:
                                                             currentAuthenticationToken,
                                                         actionMakerId: 1,
@@ -929,16 +932,16 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                           builder:
                                                               (alertDialogContext) {
                                                             return AlertDialog(
-                                                              title: Text(
+                                                              title: const Text(
                                                                   'Sucesso'),
-                                                              content: Text(
+                                                              content: const Text(
                                                                   'Ação criada com sucesso'),
                                                               actions: [
                                                                 TextButton(
                                                                   onPressed: () =>
                                                                       Navigator.pop(
                                                                           alertDialogContext),
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Ok'),
                                                                 ),
                                                               ],
@@ -955,16 +958,16 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: Text(
+                                                                title: const Text(
                                                                     'Erro'),
-                                                                content: Text(
+                                                                content: const Text(
                                                                     'Preencha os valores corretamente.'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: Text(
+                                                                    child: const Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
@@ -980,16 +983,16 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: Text(
+                                                                title: const Text(
                                                                     'Erro'),
-                                                                content: Text(
+                                                                content: const Text(
                                                                     'Preencha os valores corretamente.'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: Text(
+                                                                    child: const Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
@@ -1005,16 +1008,16 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: Text(
+                                                                title: const Text(
                                                                     'Erro'),
-                                                                content: Text(
+                                                                content: const Text(
                                                                     'Preencha os valores corretamente.'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: Text(
+                                                                    child: const Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
@@ -1027,16 +1030,16 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             builder:
                                                                 (alertDialogContext) {
                                                               return AlertDialog(
-                                                                title: Text(
+                                                                title: const Text(
                                                                     'ERRO'),
-                                                                content: Text(
+                                                                content: const Text(
                                                                     'Houve algum problema com o backend'),
                                                                 actions: [
                                                                   TextButton(
                                                                     onPressed: () =>
                                                                         Navigator.pop(
                                                                             alertDialogContext),
-                                                                    child: Text(
+                                                                    child: const Text(
                                                                         'Ok'),
                                                                   ),
                                                                 ],
@@ -1046,20 +1049,20 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         }
                                                       }
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     text: 'Salvar',
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1083,7 +1086,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -1103,7 +1106,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                         height:
                                             MediaQuery.sizeOf(context).height *
                                                 0.494,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: ActionListAllCall.call(
                                             jwt: currentAuthenticationToken,
@@ -1143,7 +1146,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             as Iterable<
                                                                 ActionStruct?>)
                                                         .withoutNulls
-                                                        ?.toList() ??
+                                                        .toList() ??
                                                     [];
 
                                                 return ListView.separated(
@@ -1152,14 +1155,14 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                       Axis.vertical,
                                                   itemCount: acaoList.length,
                                                   separatorBuilder: (_, __) =>
-                                                      SizedBox(height: 4.0),
+                                                      const SizedBox(height: 4.0),
                                                   itemBuilder:
                                                       (context, acaoListIndex) {
                                                     final acaoListItem =
                                                         acaoList[acaoListIndex];
                                                     return Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1181,7 +1184,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       4.0,
                                                                       4.0,
@@ -1197,7 +1200,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                             children: [
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           4.0,
                                                                           4.0,
@@ -1220,7 +1223,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                             CrossAxisAlignment.start,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -1246,7 +1249,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   'Início: ',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1257,7 +1260,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   acaoListItem.startAt,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1272,7 +1275,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                         ],
                                                                       ),
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             4.0,
                                                                             0.0,
@@ -1301,7 +1304,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     'Fim: ',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1312,7 +1315,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     acaoListItem.finishAt,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1333,7 +1336,7 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,

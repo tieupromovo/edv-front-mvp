@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -41,11 +39,11 @@ class ClientsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Clients List',
-      apiUrl: '${baseUrl}/clients',
+      apiUrl: '$baseUrl/clients',
       callType: ApiCallType.GET,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -71,17 +69,17 @@ class ClientsCheckInCall {
 
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "phone": "${phone}",
-  "invitation_type": "${invitationType}"
+  "name": "$name",
+  "phone": "$phone",
+  "invitation_type": "$invitationType"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ClientsCheckIn',
-      apiUrl: '${baseUrl}/clients',
+      apiUrl: '$baseUrl/clients',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -107,11 +105,11 @@ class ClientsCheckOutCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'ClientsCheckOut',
-      apiUrl: '${baseUrl}/clients/${onboardingClientId}/checkout',
+      apiUrl: '$baseUrl/clients/$onboardingClientId/checkout',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       bodyType: BodyType.NONE,
@@ -136,11 +134,11 @@ class TeamsCheckInCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Teams CheckIn',
-      apiUrl: '${baseUrl}/teams/${teamId}/checkin',
+      apiUrl: '$baseUrl/teams/$teamId/checkin',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -165,11 +163,11 @@ class TeamsCheckOutCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Teams CheckOut',
-      apiUrl: '${baseUrl}/teams/${teamId}/checkout',
+      apiUrl: '$baseUrl/teams/$teamId/checkout',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -193,11 +191,11 @@ class TeamsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Teams List',
-      apiUrl: '${baseUrl}/teams',
+      apiUrl: '$baseUrl/teams',
       callType: ApiCallType.GET,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -223,11 +221,11 @@ class CompletedSaleCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Completed Sale',
       apiUrl:
-          '${baseUrl}/clients/${onboardingclientId}/completed_sale/${promoterId}',
+          '$baseUrl/clients/$onboardingclientId/completed_sale/$promoterId',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -280,11 +278,11 @@ class StoreGetAllCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Store GetAll',
-      apiUrl: '${baseUrl}/edv/${actionId}/stores',
+      apiUrl: '$baseUrl/edv/$actionId/stores',
       callType: ApiCallType.GET,
       headers: {
         'Content-type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -299,6 +297,246 @@ class StoreGetAllCall {
 
 /// End Action Group Code
 
+/// Start Reports Group Code
+
+class ReportsGroup {
+  static String getBaseUrl({
+    String? jwt = '',
+  }) =>
+      'http://edv-mvp.eupromovo.com.br:8080/api/v1/reports';
+  static Map<String, String> headers = {
+    'Content-type': 'application/json',
+    'Authorization': 'Bearer [jwt]',
+  };
+  static ReportsHomePageCall reportsHomePageCall = ReportsHomePageCall();
+  static ReportsStoreCall reportsStoreCall = ReportsStoreCall();
+  static ReportsPresencesCall reportsPresencesCall = ReportsPresencesCall();
+  static ReportsScheduledPresencesCall reportsScheduledPresencesCall =
+      ReportsScheduledPresencesCall();
+  static ReportsCheckInSalesCall reportsCheckInSalesCall =
+      ReportsCheckInSalesCall();
+  static ReportsCumulativeSalesCall reportsCumulativeSalesCall =
+      ReportsCumulativeSalesCall();
+}
+
+class ReportsHomePageCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsHomePage',
+      apiUrl: '$baseUrl/homepage',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsStoreCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsStore',
+      apiUrl: '$baseUrl/$actionId/stores',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsPresencesCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsPresences',
+      apiUrl: '$baseUrl/$actionId/presences',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsScheduledPresencesCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsScheduledPresences',
+      apiUrl: '$baseUrl/$actionId/scheduledPresences',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsCheckInSalesCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? date = '',
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsCheckInSales',
+      apiUrl: '$baseUrl/$actionId/checkinSales',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {
+        'action_date': date,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsCumulativeSalesCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? date = '',
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsCumulativeSales',
+      apiUrl: '$baseUrl/$actionId/cumulativeCheckinSales',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {
+        'action_date': date,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Reports Group Code
+
+/// Start Leads Group Code
+
+class LeadsGroup {
+  static String getBaseUrl({
+    String? jwt = '',
+  }) =>
+      'http://edv-mvp.eupromovo.com.br:8080/api/v1';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [jwt]',
+  };
+  static LeadsListCall leadsListCall = LeadsListCall();
+}
+
+class LeadsListCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+  }) async {
+    final baseUrl = LeadsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Leads List',
+      apiUrl: '$baseUrl/leads',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Leads Group Code
+
 class BffMessageCall {
   static Future<ApiCallResponse> call({
     String? messageType = 'type',
@@ -306,8 +544,8 @@ class BffMessageCall {
   }) async {
     final ffApiRequestBody = '''
 {
-    "messageType": "${messageType}", 
-    "messageBody": "${messageBody}"
+    "messageType": "$messageType", 
+    "messageBody": "$messageBody"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'BffMessage',
@@ -340,8 +578,8 @@ class LoginCall {
   }) async {
     final ffApiRequestBody = '''
 {
-    "username": "${username}",
-    "password": "${password}"
+    "username": "$username",
+    "password": "$password"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
@@ -360,11 +598,11 @@ class LoginCall {
     );
   }
 
-  static dynamic? userData(dynamic response) => getJsonField(
+  static dynamic userData(dynamic response) => getJsonField(
         response,
         r'''$.user''',
       );
-  static dynamic? teamData(dynamic response) => getJsonField(
+  static dynamic teamData(dynamic response) => getJsonField(
         response,
         r'''$.team''',
       );
@@ -380,10 +618,10 @@ class ActionCreateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "startAt": "${startAt}",
-  "finishAt": "${finishAt}",
-  "actionMakerId": ${actionMakerId}
+  "name": "$name",
+  "startAt": "$startAt",
+  "finishAt": "$finishAt",
+  "actionMakerId": $actionMakerId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ActionCreate',
@@ -391,7 +629,7 @@ class ActionCreateCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -448,24 +686,24 @@ class LojaCreateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "goal": ${goal},
+  "name": "$name",
+  "goal": $goal,
 
   "addresses": [
     {
-      "city": "${city}"
+      "city": "$city"
     }
   ],
-  "actionId": ${actionId}
+  "actionId": $actionId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'LojaCreate',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -508,23 +746,23 @@ class LojaUpdateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "goal": ${goal},
+  "name": "$name",
+  "goal": $goal,
 
   "addresses": [
     {
-      "city": "${city}"
+      "city": "$city"
     }
   ],
-  "actionId": ${actionId}
+  "actionId": $actionId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'LojaUpdate',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/${storeId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/$storeId',
       callType: ApiCallType.PUT,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -566,7 +804,7 @@ class ActionListAllCall {
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -635,7 +873,7 @@ class ClienteListAllCall {
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -659,11 +897,11 @@ class ClienteCreateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "phone": ${phone},
-  "invitation_type": "${invitationType}",
-  "date": "${date}",
-  "storeId": ${storeId}
+  "name": "$name",
+  "phone": $phone,
+  "invitation_type": "$invitationType",
+  "date": "$date",
+  "storeId": $storeId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ClienteCreate',
@@ -671,7 +909,7 @@ class ClienteCreateCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -693,11 +931,11 @@ class ActionListDetailCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'ActionListDetail',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -749,22 +987,22 @@ class ActionUpdateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "actionType": "${actionType}",
-  "startAt": "${startAt}",
-  "finishAt": "${finishAt}",
-  "frequency": "${frequency}",
-  "executionInvestment": ${executionInvestment},
-  "actionStatus": "${actionStatus}",
+  "name": "$name",
+  "actionType": "$actionType",
+  "startAt": "$startAt",
+  "finishAt": "$finishAt",
+  "frequency": "$frequency",
+  "executionInvestment": $executionInvestment,
+  "actionStatus": "$actionStatus",
   "actionMakerId": 1
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ActionUpdate',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId',
       callType: ApiCallType.PUT,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -811,11 +1049,11 @@ class ActionDeleteCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'ActionDelete',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -861,11 +1099,11 @@ class LojasListAllCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LojasListAll',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -933,11 +1171,11 @@ class TeamListAllCall {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamListAll',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores/${storeId}/teams',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -958,7 +1196,7 @@ class TeamListAllCall {
           .map((x) => castToType<String>(x))
           .withoutNulls
           .toList();
-  static dynamic? profileVendedor(dynamic response) => getJsonField(
+  static dynamic profileVendedor(dynamic response) => getJsonField(
         response,
         r'''$[?(@.profile=='VENDEDOR')]''',
       );
@@ -975,20 +1213,20 @@ class TeamCreateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "name": "${name}",
-  "phone": "${phone}",
-  "profile": "${type}",
-  "storeId": ${storeId},
-  "actionId": ${actionId}
+  "name": "$name",
+  "phone": "$phone",
+  "profile": "$type",
+  "storeId": $storeId,
+  "actionId": $actionId
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'TeamCreate',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores/${storeId}/teams',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       body: ffApiRequestBody,
@@ -1050,11 +1288,11 @@ class TeamDeleteCall {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamDelete',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores/${storeId}/teams/${teamId}',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId/teams/$teamId',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -1074,11 +1312,11 @@ class TeamDetailCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'TeamDetail',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/team/${teamId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/team/$teamId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -1135,11 +1373,11 @@ class LojasListDetailCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LojasListDetail',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/${storeId}',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/stores/$storeId',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -1180,11 +1418,11 @@ class LojasListPorIDCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LojasListPorID',
-      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/${acaoId}/stores',
+      apiUrl: 'http://edv-mvp.eupromovo.com.br:8080/api/v1/$acaoId/stores',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
@@ -1227,11 +1465,11 @@ class LojaDeleteCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LojaDelete',
       apiUrl:
-          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/${actionId}/stores/${storeId}',
+          'http://edv-mvp.eupromovo.com.br:8080/api/v1/actions/$actionId/stores/$storeId',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${jwt}',
+        'Authorization': 'Bearer $jwt',
       },
       params: {},
       returnBody: true,
