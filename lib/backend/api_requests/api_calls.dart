@@ -48,7 +48,7 @@ class ClientsListCall {
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
@@ -200,7 +200,7 @@ class TeamsListCall {
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
@@ -287,7 +287,7 @@ class StoreGetAllCall {
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
@@ -349,6 +349,7 @@ class ReportsHomePageCall {
 class ReportsStoreCall {
   Future<ApiCallResponse> call({
     int? actionId,
+    String? actionDate = '',
     String? jwt = '',
   }) async {
     final baseUrl = ReportsGroup.getBaseUrl(
@@ -363,7 +364,9 @@ class ReportsStoreCall {
         'Content-type': 'application/json',
         'Authorization': 'Bearer $jwt',
       },
-      params: {},
+      params: {
+        'action_date': actionDate,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
@@ -510,6 +513,7 @@ class LeadsGroup {
 
 class LeadsListCall {
   Future<ApiCallResponse> call({
+    String? phone = '',
     String? jwt = '',
   }) async {
     final baseUrl = LeadsGroup.getBaseUrl(
@@ -518,7 +522,7 @@ class LeadsListCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Leads List',
-      apiUrl: '$baseUrl/leads',
+      apiUrl: '$baseUrl/leads/phone/$phone',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -527,7 +531,7 @@ class LeadsListCall {
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
@@ -815,52 +819,6 @@ class ActionListAllCall {
       alwaysAllowBody: false,
     );
   }
-
-  static List<String>? actionName(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].name''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<String>? actionStartAt(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].startAt''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<String>? actionFinishAt(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].finishAt''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<String>? actionStatus(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].actionStatus''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<int>? actionId(dynamic response) => (getJsonField(
-        response,
-        r'''$[:].actionId''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
 }
 
 class ClienteListAllCall {
@@ -976,25 +934,16 @@ class ActionListDetailCall {
 class ActionUpdateCall {
   static Future<ApiCallResponse> call({
     String? jwt = '',
-    int? actionId,
     String? name = '',
     String? startAt = '',
     String? finishAt = '',
-    String? actionType = '',
-    String? frequency = '',
-    String? actionStatus = '',
-    double? executionInvestment,
+    int? actionId,
   }) async {
     final ffApiRequestBody = '''
 {
   "name": "$name",
-  "actionType": "$actionType",
   "startAt": "$startAt",
-  "finishAt": "$finishAt",
-  "frequency": "$frequency",
-  "executionInvestment": $executionInvestment,
-  "actionStatus": "$actionStatus",
-  "actionMakerId": 1
+  "finishAt": "$finishAt"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ActionUpdate',
@@ -1008,38 +957,13 @@ class ActionUpdateCall {
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
-      encodeBodyUtf8: false,
+      encodeBodyUtf8: true,
       decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
-
-  static String? actionName(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$.name''',
-      ));
-  static String? actionStartAt(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$.startAt''',
-      ));
-  static String? actionFinishAt(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$.finishAt''',
-      ));
-  static String? actionStatus(dynamic response) =>
-      castToType<String>(getJsonField(
-        response,
-        r'''$.actionStatus''',
-      ));
-  static int? actionId(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$.actionId''',
-      ));
 }
 
 class ActionDeleteCall {

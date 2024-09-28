@@ -903,103 +903,119 @@ class _AcaoEquipeCreatePageWidgetState
                                                         const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        var shouldSetState =
-                                                            false;
-                                                        _model.teamCreateResponse =
-                                                            await TeamCreateCall
-                                                                .call(
-                                                          name: _model
-                                                              .inputTeamNameTextController
-                                                              .text,
-                                                          jwt:
-                                                              currentAuthenticationToken,
-                                                          phone: _model
-                                                              .inputTeamPhoneTextController
-                                                              .text,
-                                                          type: _model
-                                                              .inputTeamTypeValue,
-                                                          storeId:
-                                                              valueOrDefault<
-                                                                  int>(
-                                                            widget
-                                                                .store?.storeId,
-                                                            1,
-                                                          ),
-                                                          actionId: widget
-                                                              .acao?.actionId,
-                                                        );
-
-                                                        shouldSetState = true;
-                                                        if ((_model
-                                                                .teamCreateResponse
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: const Text(
-                                                                    'Sucesso!'),
-                                                                content: const Text(
-                                                                    'Equipe Cadastrada'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: const Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
+                                                      onPressed: ((_model
+                                                                      .inputTeamNameTextController
+                                                                      .text ==
+                                                                  '') ||
+                                                              (_model.inputTeamPhoneTextController
+                                                                      .text ==
+                                                                  '') ||
+                                                              (_model.inputTeamTypeValue ==
+                                                                  ''))
+                                                          ? null
+                                                          : () async {
+                                                              var shouldSetState =
+                                                                  false;
+                                                              _model.teamCreateResponse =
+                                                                  await TeamCreateCall
+                                                                      .call(
+                                                                name: _model
+                                                                    .inputTeamNameTextController
+                                                                    .text,
+                                                                jwt:
+                                                                    currentAuthenticationToken,
+                                                                phone: _model
+                                                                    .inputTeamPhoneTextController
+                                                                    .text,
+                                                                type: _model
+                                                                    .inputTeamTypeValue,
+                                                                storeId:
+                                                                    valueOrDefault<
+                                                                        int>(
+                                                                  widget.store
+                                                                      ?.storeId,
+                                                                  1,
+                                                                ),
+                                                                actionId: widget
+                                                                    .acao
+                                                                    ?.actionId,
                                                               );
-                                                            },
-                                                          );
-                                                          safeSetState(() {
-                                                            _model
-                                                                .inputTeamNameTextController
-                                                                ?.clear();
-                                                            _model
-                                                                .inputTeamPhoneTextController
-                                                                ?.clear();
-                                                          });
-                                                          if (shouldSetState) {
-                                                            safeSetState(() {});
-                                                          }
-                                                          return;
-                                                        } else {
-                                                          await showDialog(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: const Text(
-                                                                    'Error'),
-                                                                content: const Text(
-                                                                    'Erros no backend'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: const Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          );
-                                                          if (shouldSetState) {
-                                                            safeSetState(() {});
-                                                          }
-                                                          return;
-                                                        }
 
-                                                        if (shouldSetState) {
-                                                          safeSetState(() {});
-                                                        }
-                                                      },
+                                                              shouldSetState =
+                                                                  true;
+                                                              if ((_model
+                                                                      .teamCreateResponse
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: const Text(
+                                                                          'Sucesso!'),
+                                                                      content: const Text(
+                                                                          'Equipe Cadastrada'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              const Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                                safeSetState(
+                                                                    () {
+                                                                  _model
+                                                                      .inputTeamNameTextController
+                                                                      ?.clear();
+                                                                  _model
+                                                                      .inputTeamPhoneTextController
+                                                                      ?.clear();
+                                                                });
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
+                                                              } else {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: const Text(
+                                                                          'Error'),
+                                                                      content: const Text(
+                                                                          'Erros no backend'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              const Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
+                                                              }
+
+                                                              if (shouldSetState) {
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
+                                                            },
                                                       text: 'Adicionar',
                                                       options: FFButtonOptions(
                                                         height: 40.0,

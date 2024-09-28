@@ -780,6 +780,8 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                     _model
                                                         .txtCidadeTextController
                                                         ?.clear();
+                                                    _model.txtMetaTextController
+                                                        ?.clear();
                                                   });
                                                 },
                                                 text: 'Limpar',
@@ -816,113 +818,131 @@ class _AcaoLojasCreatePageWidgetState extends State<AcaoLojasCreatePageWidget> {
                                                 ),
                                               ),
                                               FFButtonWidget(
-                                                onPressed: () async {
-                                                  var shouldSetState = false;
-                                                  _model.lojaCreateResponse =
-                                                      await LojaCreateCall.call(
-                                                    name:
-                                                        valueOrDefault<String>(
-                                                      _model
-                                                          .txtNomeTextController
-                                                          .text,
-                                                      'null',
-                                                    ),
-                                                    city:
-                                                        valueOrDefault<String>(
-                                                      _model
-                                                          .txtCidadeTextController
-                                                          .text,
-                                                      'null',
-                                                    ),
-                                                    goal: functions
-                                                        .validationMeta(
-                                                            int.parse(_model
+                                                onPressed: ((_model
+                                                                .txtNomeTextController
+                                                                .text ==
+                                                            '') ||
+                                                        (_model.txtCidadeTextController
+                                                                .text ==
+                                                            '') ||
+                                                        (_model.txtMetaTextController
+                                                                .text ==
+                                                            ''))
+                                                    ? null
+                                                    : () async {
+                                                        var shouldSetState =
+                                                            false;
+                                                        _model.lojaCreateResponse =
+                                                            await LojaCreateCall
+                                                                .call(
+                                                          name: valueOrDefault<
+                                                              String>(
+                                                            _model
+                                                                .txtNomeTextController
+                                                                .text,
+                                                            'null',
+                                                          ),
+                                                          city: valueOrDefault<
+                                                              String>(
+                                                            _model
+                                                                .txtCidadeTextController
+                                                                .text,
+                                                            'null',
+                                                          ),
+                                                          goal: functions
+                                                              .validationMeta(int
+                                                                  .parse(_model
+                                                                      .txtMetaTextController
+                                                                      .text))
+                                                              .toDouble(),
+                                                          actionId:
+                                                              valueOrDefault<
+                                                                  int>(
+                                                            ActionStruct.maybeFromMap(
+                                                                    widget.acao
+                                                                        ?.toMap())
+                                                                ?.actionId,
+                                                            1,
+                                                          ),
+                                                          jwt:
+                                                              currentAuthenticationToken,
+                                                        );
+
+                                                        shouldSetState = true;
+                                                        if ((_model
+                                                                .lojaCreateResponse
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Sucesso!'),
+                                                                content: const Text(
+                                                                    'Loja Cadastrada'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                          safeSetState(() {
+                                                            _model
+                                                                .txtNomeTextController
+                                                                ?.clear();
+                                                            _model
+                                                                .txtCidadeTextController
+                                                                ?.clear();
+                                                            _model
                                                                 .txtMetaTextController
-                                                                .text))
-                                                        .toDouble(),
-                                                    actionId:
-                                                        valueOrDefault<int>(
-                                                      ActionStruct.maybeFromMap(
-                                                              widget.acao
-                                                                  ?.toMap())
-                                                          ?.actionId,
-                                                      1,
-                                                    ),
-                                                    jwt:
-                                                        currentAuthenticationToken,
-                                                  );
+                                                                ?.clear();
+                                                          });
+                                                          if (shouldSetState) {
+                                                            safeSetState(() {});
+                                                          }
+                                                          return;
+                                                        } else {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Error'),
+                                                                content: Text((_model
+                                                                        .lojaCreateResponse
+                                                                        ?.bodyText ??
+                                                                    '')),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: const Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                          if (shouldSetState) {
+                                                            safeSetState(() {});
+                                                          }
+                                                          return;
+                                                        }
 
-                                                  shouldSetState = true;
-                                                  if ((_model.lojaCreateResponse
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title:
-                                                              const Text('Sucesso!'),
-                                                          content: const Text(
-                                                              'Loja Cadastrada'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: const Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        );
+                                                        if (shouldSetState) {
+                                                          safeSetState(() {});
+                                                        }
                                                       },
-                                                    );
-                                                    safeSetState(() {
-                                                      _model
-                                                          .txtNomeTextController
-                                                          ?.clear();
-                                                      _model
-                                                          .txtCidadeTextController
-                                                          ?.clear();
-                                                      _model
-                                                          .txtMetaTextController
-                                                          ?.clear();
-                                                    });
-                                                    if (shouldSetState) {
-                                                      safeSetState(() {});
-                                                    }
-                                                    return;
-                                                  } else {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: const Text('Error'),
-                                                          content: Text((_model
-                                                                  .lojaCreateResponse
-                                                                  ?.bodyText ??
-                                                              '')),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: const Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                    if (shouldSetState) {
-                                                      safeSetState(() {});
-                                                    }
-                                                    return;
-                                                  }
-
-                                                  if (shouldSetState) {
-                                                    safeSetState(() {});
-                                                  }
-                                                },
                                                 text: 'Adicionar Loja',
                                                 options: FFButtonOptions(
                                                   height: 40.0,

@@ -202,8 +202,16 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
                                                               FontWeight.w600,
                                                         ),
                                                   ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
                                                   Text(
-                                                    ' / Loja: ',
+                                                    'Loja: ',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

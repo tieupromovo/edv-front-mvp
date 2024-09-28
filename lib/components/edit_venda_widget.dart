@@ -203,58 +203,61 @@ class _EditVendaWidgetState extends State<EditVendaWidget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () async {
-                        _model.apiResultSales =
-                            await OnBoardingGroup.completedSaleCall.call(
-                          jwt: currentAuthenticationToken,
-                          onboardingclientId:
-                              widget.selectedClient?.onboardingClientId,
-                          promoterId: valueOrDefault<int>(
-                            _model.cmbTeamValue,
-                            0,
-                          ),
-                        );
-
-                        if ((_model.apiResultSales?.succeeded ?? true)) {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('Venda'),
-                                content: const Text('Venda anotada'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
+                      onPressed: (_model.cmbTeamValue == 0)
+                          ? null
+                          : () async {
+                              _model.apiResultSales =
+                                  await OnBoardingGroup.completedSaleCall.call(
+                                jwt: currentAuthenticationToken,
+                                onboardingclientId:
+                                    widget.selectedClient?.onboardingClientId,
+                                promoterId: valueOrDefault<int>(
+                                  _model.cmbTeamValue,
+                                  0,
+                                ),
                               );
-                            },
-                          );
-                        } else {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: const Text('ERRO'),
-                                content: const Text('Ocorreu algum erro no backend'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
 
-                        Navigator.pop(context);
+                              if ((_model.apiResultSales?.succeeded ?? true)) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('Venda'),
+                                      content: const Text('Venda anotada'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('ERRO'),
+                                      content:
+                                          const Text('Ocorreu algum erro no backend'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
 
-                        safeSetState(() {});
-                      },
+                              Navigator.pop(context);
+
+                              safeSetState(() {});
+                            },
                       text: 'Confirmar Venda',
                       options: FFButtonOptions(
                         height: 40.0,

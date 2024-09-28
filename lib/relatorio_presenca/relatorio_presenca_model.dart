@@ -1,7 +1,6 @@
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'relatorio_presenca_widget.dart' show RelatorioPresencaWidget;
 import 'package:flutter/material.dart';
 
@@ -14,9 +13,6 @@ class RelatorioPresencaModel extends FlutterFlowModel<RelatorioPresencaWidget> {
   FocusNode? nomeLojaAcaoFocusNode;
   TextEditingController? nomeLojaAcaoTextController;
   String? Function(BuildContext, String?)? nomeLojaAcaoTextControllerValidator;
-  // State field(s) for dropDown_dias widget.
-  String? dropDownDiasValue;
-  FormFieldController<String>? dropDownDiasValueController;
   // Model for DrawerContentCmp component.
   late DrawerContentCmpModel drawerContentCmpModel;
 
