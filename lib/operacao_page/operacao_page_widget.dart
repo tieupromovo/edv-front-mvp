@@ -7,7 +7,6 @@ import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -36,14 +35,48 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Check-out';
       safeSetState(() {});
-      _model.instantTimer = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 1000),
-        callback: (timer) async {
-          _model.dataAutal = getCurrentTimestamp;
-          safeSetState(() {});
-        },
-        startImmediately: true,
-      );
+      if (currentUserData?.user.roles == 'ADMIN') {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: const Text(
+                  'Você não tem acesso a essa tela, acesse com outro usuário.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+
+        context.goNamed('HomePage');
+      } else if (currentUserData?.team.profile == 'RECEPCIONISTA') {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: const Text(
+                  'Você não tem acesso a essa tela, acesse com outro usuário.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+
+        context.goNamed('OnBoardingPage');
+      } else {
+        _model.dataAutal = getCurrentTimestamp;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

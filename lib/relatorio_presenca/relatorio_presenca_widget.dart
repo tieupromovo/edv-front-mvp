@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -60,12 +59,12 @@ class _RelatorioPresencaWidgetState extends State<RelatorioPresencaWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-    final chartPieChartColorsList1 = [
+    final chartPieChartColorsList = [
       FlutterFlowTheme.of(context).primary,
-      FlutterFlowTheme.of(context).secondary,
-      FlutterFlowTheme.of(context).alternate,
-      const Color(0x68000000),
-      const Color(0xB1622824)
+      FlutterFlowTheme.of(context).tertiary,
+      FlutterFlowTheme.of(context).warning,
+      const Color(0xFF0093FF),
+      FlutterFlowTheme.of(context).alternate
     ];
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -278,6 +277,169 @@ class _RelatorioPresencaWidgetState extends State<RelatorioPresencaWidget> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 24.0, 0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Presença por Origem',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 16.0, 0.0, 0.0),
+                                              child: SizedBox(
+                                                width: 325.0,
+                                                height: 300.0,
+                                                child: Stack(
+                                                  children: [
+                                                    FlutterFlowPieChart(
+                                                      data: FFPieChartData(
+                                                        values: ReportsGroup
+                                                            .reportsPresencesCall
+                                                            .values(
+                                                          containerReportsPresencesResponse
+                                                              .jsonBody,
+                                                        )!,
+                                                        colors:
+                                                            chartPieChartColorsList,
+                                                        radius: [50.0],
+                                                      ),
+                                                      donutHoleRadius: 50.0,
+                                                      donutHoleColor:
+                                                          Colors.transparent,
+                                                      sectionLabelType:
+                                                          PieChartSectionLabelType
+                                                              .value,
+                                                      sectionLabelStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .override(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
+                                                        shadows: [
+                                                          Shadow(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            offset: const Offset(
+                                                                2.0, 2.0),
+                                                            blurRadius: 2.0,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              -1.0, -1.0),
+                                                      child:
+                                                          FlutterFlowChartLegendWidget(
+                                                        entries: ReportsGroup
+                                                            .reportsPresencesCall
+                                                            .legends(
+                                                              containerReportsPresencesResponse
+                                                                  .jsonBody,
+                                                            )!
+                                                            .asMap()
+                                                            .entries
+                                                            .map(
+                                                              (label) =>
+                                                                  LegendEntry(
+                                                                chartPieChartColorsList[label
+                                                                        .key %
+                                                                    chartPieChartColorsList
+                                                                        .length],
+                                                                label.value,
+                                                              ),
+                                                            )
+                                                            .toList(),
+                                                        width: 100.0,
+                                                        height: 200.0,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  fontSize: 9.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        textPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    4.0),
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    8.0,
+                                                                    5.0,
+                                                                    8.0),
+                                                        borderWidth: 0.0,
+                                                        borderRadius:
+                                                            const BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                        ),
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        indicatorSize: 15.0,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -293,7 +455,7 @@ class _RelatorioPresencaWidgetState extends State<RelatorioPresencaWidget> {
                                                 },
                                                 text: 'Voltar',
                                                 icon: const Icon(
-                                                  Icons.campaign_sharp,
+                                                  Icons.arrow_back_ios,
                                                   size: 20.0,
                                                 ),
                                                 options: FFButtonOptions(
@@ -331,417 +493,6 @@ class _RelatorioPresencaWidgetState extends State<RelatorioPresencaWidget> {
                                             ),
                                           ].divide(const SizedBox(width: 16.0)),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Presença por Origem',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Inter',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 300.0,
-                                            height: 220.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                            ),
-                                            child: SizedBox(
-                                              width: 300.0,
-                                              height: 200.0,
-                                              child: FlutterFlowPieChart(
-                                                data: FFPieChartData(
-                                                  values: functions
-                                                      .extractCountInvitationType(
-                                                          containerReportsPresencesResponse
-                                                              .jsonBody)!,
-                                                  colors:
-                                                      chartPieChartColorsList1,
-                                                  radius: [40.0],
-                                                ),
-                                                donutHoleRadius: 50.0,
-                                                donutHoleColor:
-                                                    Colors.transparent,
-                                                sectionLabelType:
-                                                    PieChartSectionLabelType
-                                                        .value,
-                                                sectionLabelStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Ligação',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  fontSize: 9.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          ),
-                                          Text(
-                                            'WhatsApp',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  fontSize: 9.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Rede Social',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  fontSize: 9.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: const BoxDecoration(
-                                              color: Color(0x68000000),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Folheto',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  fontSize: 9.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: const BoxDecoration(
-                                              color: Color(0xB1622824),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Passante',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  fontSize: 9.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Agendados vs Presença',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            FutureBuilder<ApiCallResponse>(
-                                              future: ReportsGroup
-                                                  .reportsScheduledPresencesCall
-                                                  .call(
-                                                actionId: widget
-                                                    .actionSelected?.actionId,
-                                                jwt: currentAuthenticationToken,
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                final containerReportsScheduledPresencesResponse =
-                                                    snapshot.data!;
-
-                                                return Container(
-                                                  width: 300.0,
-                                                  height: 220.0,
-                                                  decoration: const BoxDecoration(),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                0.0, 0.0),
-                                                    child: SizedBox(
-                                                      width: 300.0,
-                                                      height: 220.0,
-                                                      child:
-                                                          FlutterFlowBarChart(
-                                                        barData: [
-                                                          FFBarChartData(
-                                                            yData: functions
-                                                                .extractPresenceCountSchedules(
-                                                                    containerReportsScheduledPresencesResponse
-                                                                        .jsonBody)!,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                          ),
-                                                          FFBarChartData(
-                                                            yData: functions
-                                                                .extractPresenceCountCheckins(
-                                                                    containerReportsScheduledPresencesResponse
-                                                                        .jsonBody)!,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary,
-                                                          )
-                                                        ],
-                                                        xLabels: functions
-                                                            .extractPresencedate(
-                                                                containerReportsScheduledPresencesResponse
-                                                                    .jsonBody)!,
-                                                        barWidth: 12.0,
-                                                        barBorderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        barSpace: 1.0,
-                                                        groupSpace: 14.0,
-                                                        alignment:
-                                                            BarChartAlignment
-                                                                .spaceEvenly,
-                                                        chartStylingInfo:
-                                                            ChartStylingInfo(
-                                                          enableTooltip: true,
-                                                          tooltipBackgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primaryBackground,
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primaryBackground,
-                                                          showGrid: true,
-                                                          showBorder: false,
-                                                        ),
-                                                        axisBounds:
-                                                            const AxisBounds(),
-                                                        xAxisLabelInfo:
-                                                            const AxisLabelInfo(
-                                                          showLabels: true,
-                                                          labelTextStyle:
-                                                              TextStyle(
-                                                            fontSize: 7.0,
-                                                          ),
-                                                          labelInterval: 10.0,
-                                                          reservedSize: 28.0,
-                                                        ),
-                                                        yAxisLabelInfo:
-                                                            const AxisLabelInfo(
-                                                          reservedSize: 42.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Agendados',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  fontSize: 11.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                          Container(
-                                            width: 15.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.01,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Check-In',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  fontSize: 11.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                        ],
                                       ),
                                     ],
                                   ),

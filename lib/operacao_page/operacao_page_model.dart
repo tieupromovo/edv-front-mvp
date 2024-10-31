@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/drawer_content_cmp_widget.dart';
 import '/components/pg_header_cmp_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/instant_timer.dart';
 import '/flutter_flow/request_manager.dart';
 
 import 'operacao_page_widget.dart' show OperacaoPageWidget;
@@ -15,7 +14,6 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  InstantTimer? instantTimer;
   // Model for PgHeaderCmp component.
   late PgHeaderCmpModel pgHeaderCmpModel;
   // Stores action output result for [Backend Call - API (ClientsCheckOut)] action in Button widget.
@@ -48,7 +46,6 @@ class OperacaoPageModel extends FlutterFlowModel<OperacaoPageWidget> {
 
   @override
   void dispose() {
-    instantTimer?.cancel();
     pgHeaderCmpModel.dispose();
     drawerContentCmpModel.dispose();
 

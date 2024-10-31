@@ -403,6 +403,25 @@ class ReportsPresencesCall {
       alwaysAllowBody: false,
     );
   }
+
+  List<String>? legends(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].invitationType''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<int>? values(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].countInvitationType''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ReportsScheduledPresencesCall {

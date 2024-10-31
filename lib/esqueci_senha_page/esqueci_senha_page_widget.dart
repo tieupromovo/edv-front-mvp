@@ -182,8 +182,7 @@ class _EsqueciSenhaPageWidgetState extends State<EsqueciSenhaPageWidget>
                                   labelColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                   unselectedLabelColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
+                                      FlutterFlowTheme.of(context).primaryText,
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(

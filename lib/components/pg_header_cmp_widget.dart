@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,15 @@ class _PgHeaderCmpWidgetState extends State<PgHeaderCmpWidget> {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              context.pushNamed('HomePage');
+              if (currentUserData?.user.roles == 'ADMIN') {
+                context.goNamed('HomePage');
+              } else if (currentUserData?.team.profile == 'RECEPCIONISTA') {
+                context.goNamed('OnBoardingPage');
+              } else if (currentUserData?.team.profile == 'LIDER') {
+                context.pushNamed('OperacaoPage');
+              } else {
+                context.goNamed('HomePage');
+              }
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),

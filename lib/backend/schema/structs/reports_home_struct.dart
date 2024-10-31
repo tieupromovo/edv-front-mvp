@@ -17,6 +17,7 @@ class ReportsHomeStruct extends BaseStruct {
     double? presence,
     double? conversion,
     List<String>? dateRange,
+    double? sumGoals,
   })  : _actionId = actionId,
         _actionName = actionName,
         _startAt = startAt,
@@ -26,7 +27,8 @@ class ReportsHomeStruct extends BaseStruct {
         _countSell = countSell,
         _presence = presence,
         _conversion = conversion,
-        _dateRange = dateRange;
+        _dateRange = dateRange,
+        _sumGoals = sumGoals;
 
   // "action_id" field.
   int? _actionId;
@@ -114,6 +116,15 @@ class ReportsHomeStruct extends BaseStruct {
 
   bool hasDateRange() => _dateRange != null;
 
+  // "sum_goals" field.
+  double? _sumGoals;
+  double get sumGoals => _sumGoals ?? 0.0;
+  set sumGoals(double? val) => _sumGoals = val;
+
+  void incrementSumGoals(double amount) => sumGoals = sumGoals + amount;
+
+  bool hasSumGoals() => _sumGoals != null;
+
   static ReportsHomeStruct fromMap(Map<String, dynamic> data) =>
       ReportsHomeStruct(
         actionId: castToType<int>(data['action_id']),
@@ -126,6 +137,7 @@ class ReportsHomeStruct extends BaseStruct {
         presence: castToType<double>(data['presence']),
         conversion: castToType<double>(data['conversion']),
         dateRange: getDataList(data['dateRange']),
+        sumGoals: castToType<double>(data['sum_goals']),
       );
 
   static ReportsHomeStruct? maybeFromMap(dynamic data) => data is Map
@@ -143,6 +155,7 @@ class ReportsHomeStruct extends BaseStruct {
         'presence': _presence,
         'conversion': _conversion,
         'dateRange': _dateRange,
+        'sum_goals': _sumGoals,
       }.withoutNulls;
 
   @override
@@ -187,6 +200,10 @@ class ReportsHomeStruct extends BaseStruct {
           _dateRange,
           ParamType.String,
           isList: true,
+        ),
+        'sum_goals': serializeParam(
+          _sumGoals,
+          ParamType.double,
         ),
       }.withoutNulls;
 
@@ -242,6 +259,11 @@ class ReportsHomeStruct extends BaseStruct {
           ParamType.String,
           true,
         ),
+        sumGoals: deserializeParam(
+          data['sum_goals'],
+          ParamType.double,
+          false,
+        ),
       );
 
   @override
@@ -260,7 +282,8 @@ class ReportsHomeStruct extends BaseStruct {
         countSell == other.countSell &&
         presence == other.presence &&
         conversion == other.conversion &&
-        listEquality.equals(dateRange, other.dateRange);
+        listEquality.equals(dateRange, other.dateRange) &&
+        sumGoals == other.sumGoals;
   }
 
   @override
@@ -274,7 +297,8 @@ class ReportsHomeStruct extends BaseStruct {
         countSell,
         presence,
         conversion,
-        dateRange
+        dateRange,
+        sumGoals
       ]);
 }
 
@@ -288,6 +312,7 @@ ReportsHomeStruct createReportsHomeStruct({
   int? countSell,
   double? presence,
   double? conversion,
+  double? sumGoals,
 }) =>
     ReportsHomeStruct(
       actionId: actionId,
@@ -299,4 +324,5 @@ ReportsHomeStruct createReportsHomeStruct({
       countSell: countSell,
       presence: presence,
       conversion: conversion,
+      sumGoals: sumGoals,
     );

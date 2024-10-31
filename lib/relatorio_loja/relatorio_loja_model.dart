@@ -6,6 +6,10 @@ import 'relatorio_loja_widget.dart' show RelatorioLojaWidget;
 import 'package:flutter/material.dart';
 
 class RelatorioLojaModel extends FlutterFlowModel<RelatorioLojaWidget> {
+  ///  Local state fields for this page.
+
+  String? date;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for PgHeaderCmp component.

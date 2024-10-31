@@ -43,6 +43,26 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Check-in';
       safeSetState(() {});
+      if (currentUserData?.user.roles == 'ADMIN') {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: const Text(
+                  'Você não tem acesso a essa tela, acesse com outro usuário.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+
+        context.goNamed('HomePage');
+      }
     });
 
     _model.tabBarController = TabController(
@@ -311,7 +331,7 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                             unselectedLabelColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
+                                                                    .primaryText,
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)

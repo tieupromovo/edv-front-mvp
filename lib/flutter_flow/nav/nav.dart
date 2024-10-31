@@ -8,7 +8,6 @@ import '/backend/schema/structs/index.dart';
 import '/auth/custom_auth/custom_auth_user_provider.dart';
 
 import '/index.dart';
-import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -74,13 +73,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
+          appStateNotifier.loggedIn ? const HomePageWidget() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
+              appStateNotifier.loggedIn ? const HomePageWidget() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'EstruturaBasica',
@@ -91,9 +90,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'HomePage')
-              : const HomePageWidget(),
+          builder: (context, params) => const HomePageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -104,9 +101,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AcaoCreatePage',
           path: '/acaoCreatePage',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'AcaoCreatePage')
-              : const AcaoCreatePageWidget(),
+          builder: (context, params) => const AcaoCreatePageWidget(),
         ),
         FFRoute(
           name: 'AcaoLojasCreatePage',
@@ -147,23 +142,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'OnBoardingPage',
           path: '/OnBoardingPage',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'OnBoardingPage')
-              : OnBoardingPageWidget(
-                  lead: params.getParam<LeadsStruct>(
-                    'lead',
-                    ParamType.DataStruct,
-                    isList: true,
-                    structBuilder: LeadsStruct.fromSerializableMap,
-                  ),
-                ),
+          builder: (context, params) => OnBoardingPageWidget(
+            lead: params.getParam<LeadsStruct>(
+              'lead',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: LeadsStruct.fromSerializableMap,
+            ),
+          ),
         ),
         FFRoute(
           name: 'OperacaoPage',
           path: '/operacaoPage',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'OperacaoPage')
-              : const OperacaoPageWidget(),
+          builder: (context, params) => const OperacaoPageWidget(),
         ),
         FFRoute(
           name: 'RelatorioLoja',
@@ -175,6 +166,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.DataStruct,
               isList: false,
               structBuilder: ReportsHomeStruct.fromSerializableMap,
+            ),
+            actionDate: params.getParam(
+              'actionDate',
+              ParamType.String,
             ),
           ),
         ),

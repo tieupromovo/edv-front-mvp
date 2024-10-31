@@ -19,6 +19,7 @@ class ReportStoresStruct extends BaseStruct {
     double? presence,
     double? conversion,
     double? teamRate,
+    double? goal,
   })  : _actionId = actionId,
         _actionName = actionName,
         _actionStartAt = actionStartAt,
@@ -30,7 +31,8 @@ class ReportStoresStruct extends BaseStruct {
         _countSells = countSells,
         _presence = presence,
         _conversion = conversion,
-        _teamRate = teamRate;
+        _teamRate = teamRate,
+        _goal = goal;
 
   // "action_id" field.
   int? _actionId;
@@ -132,6 +134,15 @@ class ReportStoresStruct extends BaseStruct {
 
   bool hasTeamRate() => _teamRate != null;
 
+  // "goal" field.
+  double? _goal;
+  double get goal => _goal ?? 0.0;
+  set goal(double? val) => _goal = val;
+
+  void incrementGoal(double amount) => goal = goal + amount;
+
+  bool hasGoal() => _goal != null;
+
   static ReportStoresStruct fromMap(Map<String, dynamic> data) =>
       ReportStoresStruct(
         actionId: castToType<int>(data['action_id']),
@@ -146,6 +157,7 @@ class ReportStoresStruct extends BaseStruct {
         presence: castToType<double>(data['presence']),
         conversion: castToType<double>(data['conversion']),
         teamRate: castToType<double>(data['team_rate']),
+        goal: castToType<double>(data['goal']),
       );
 
   static ReportStoresStruct? maybeFromMap(dynamic data) => data is Map
@@ -165,6 +177,7 @@ class ReportStoresStruct extends BaseStruct {
         'presence': _presence,
         'conversion': _conversion,
         'team_rate': _teamRate,
+        'goal': _goal,
       }.withoutNulls;
 
   @override
@@ -215,6 +228,10 @@ class ReportStoresStruct extends BaseStruct {
         ),
         'team_rate': serializeParam(
           _teamRate,
+          ParamType.double,
+        ),
+        'goal': serializeParam(
+          _goal,
           ParamType.double,
         ),
       }.withoutNulls;
@@ -281,6 +298,11 @@ class ReportStoresStruct extends BaseStruct {
           ParamType.double,
           false,
         ),
+        goal: deserializeParam(
+          data['goal'],
+          ParamType.double,
+          false,
+        ),
       );
 
   @override
@@ -300,7 +322,8 @@ class ReportStoresStruct extends BaseStruct {
         countSells == other.countSells &&
         presence == other.presence &&
         conversion == other.conversion &&
-        teamRate == other.teamRate;
+        teamRate == other.teamRate &&
+        goal == other.goal;
   }
 
   @override
@@ -316,7 +339,8 @@ class ReportStoresStruct extends BaseStruct {
         countSells,
         presence,
         conversion,
-        teamRate
+        teamRate,
+        goal
       ]);
 }
 
@@ -333,6 +357,7 @@ ReportStoresStruct createReportStoresStruct({
   double? presence,
   double? conversion,
   double? teamRate,
+  double? goal,
 }) =>
     ReportStoresStruct(
       actionId: actionId,
@@ -347,4 +372,5 @@ ReportStoresStruct createReportStoresStruct({
       presence: presence,
       conversion: conversion,
       teamRate: teamRate,
+      goal: goal,
     );
