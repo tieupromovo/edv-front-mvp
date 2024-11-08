@@ -1,6 +1,7 @@
 export '/backend/schema/util/schema_util.dart';
 
 export 'bff_message_response_struct.dart';
+export 'home_page_detail_struct.dart';
 export 'leads_struct.dart';
 export 'login_edv_struct.dart';
 export 'onboarging_team_struct.dart';

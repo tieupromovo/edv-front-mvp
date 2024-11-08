@@ -759,8 +759,8 @@ class _AcaoEquipeCreatePageWidgetState
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   if (currentUserData
-                                                          ?.user.roles ==
-                                                      'ADMIN')
+                                                          ?.team.profile !=
+                                                      'LIDER')
                                                     Align(
                                                       alignment:
                                                           const AlignmentDirectional(

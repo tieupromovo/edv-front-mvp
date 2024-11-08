@@ -34,7 +34,26 @@ class _AcaoCreatePageWidgetState extends State<AcaoCreatePageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().PageTitle = 'Cadastro de Ação';
       safeSetState(() {});
-      if (currentUserData?.user.roles != 'ADMIN') {
+      if (currentUserData?.team.profile == 'RECEPCIONISTA') {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: const Text('Erro'),
+              content: const Text(
+                  'Você não tem acesso a essa tela, acesse com outro usuário.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+
+        context.goNamed('OnBoardingPage');
+      } else if (currentUserData?.team.profile == 'LIDER') {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {

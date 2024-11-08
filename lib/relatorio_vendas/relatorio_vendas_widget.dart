@@ -455,32 +455,28 @@ class _RelatorioVendasWidgetState extends State<RelatorioVendasWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 8.0),
+                                                    0.0, 16.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 8.0),
-                                                  child: Text(
-                                                    'Conversão por Hora Acumulado',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                  ),
+                                                Text(
+                                                  'Conversão de Check-In por Hora Acumulado',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                 ),
                                               ],
                                             ),
@@ -520,7 +516,136 @@ class _RelatorioVendasWidgetState extends State<RelatorioVendasWidget> {
                                                           barWidth: 3.0,
                                                           isCurved: true,
                                                         ),
+                                                      )
+                                                    ],
+                                                    chartStylingInfo:
+                                                        ChartStylingInfo(
+                                                      enableTooltip: true,
+                                                      tooltipBackgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBackground,
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBackground,
+                                                      showGrid: true,
+                                                      showBorder: false,
+                                                    ),
+                                                    axisBounds: const AxisBounds(),
+                                                    xAxisLabelInfo:
+                                                        AxisLabelInfo(
+                                                      showLabels: true,
+                                                      labelTextStyle: const TextStyle(
+                                                        fontSize: 14.0,
                                                       ),
+                                                      labelInterval: 10.0,
+                                                      labelFormatter:
+                                                          LabelFormatter(
+                                                        numberFormat: (val) =>
+                                                            formatNumber(
+                                                          val,
+                                                          formatType:
+                                                              FormatType.custom,
+                                                          format: '',
+                                                          locale: '',
+                                                        ),
+                                                      ),
+                                                      reservedSize: 32.0,
+                                                    ),
+                                                    yAxisLabelInfo:
+                                                        const AxisLabelInfo(
+                                                      showLabels: true,
+                                                      labelInterval: 10.0,
+                                                      reservedSize: 40.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                width: 15.0,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.01,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Check-In',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          fontSize: 11.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Conversão de Vendas por Hora Acumulado ',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 300.0,
+                                                height: 220.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
+                                                child: SizedBox(
+                                                  width: 300.0,
+                                                  height: 250.0,
+                                                  child: FlutterFlowLineChart(
+                                                    data: [
                                                       FFLineChartData(
                                                         xData: functions
                                                             .extractSalesHora(
@@ -588,229 +713,6 @@ class _RelatorioVendasWidgetState extends State<RelatorioVendasWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Container(
-                                                width: 15.0,
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.01,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Check-In',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 11.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                              Container(
-                                                width: 15.0,
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.01,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Vendas',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondary,
-                                                          fontSize: 11.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 8.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Conversão Por Hora',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 16.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 300.0,
-                                                  height: 220.0,
-                                                  decoration: const BoxDecoration(),
-                                                  child: SizedBox(
-                                                    width: 300.0,
-                                                    height: 250.0,
-                                                    child: FlutterFlowLineChart(
-                                                      data: [
-                                                        FFLineChartData(
-                                                          xData: functions
-                                                              .extractSalesHora(
-                                                                  containerReportsCheckInSalesResponse
-                                                                      .jsonBody)!,
-                                                          yData: functions
-                                                              .extractPresenceCountCheckins(
-                                                                  containerReportsCheckInSalesResponse
-                                                                      .jsonBody)!,
-                                                          settings:
-                                                              LineChartBarData(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            barWidth: 3.0,
-                                                            dotData: const FlDotData(
-                                                                show: false),
-                                                          ),
-                                                        ),
-                                                        FFLineChartData(
-                                                          xData: functions
-                                                              .extractSalesHora(
-                                                                  containerReportsCheckInSalesResponse
-                                                                      .jsonBody)!,
-                                                          yData: functions
-                                                              .extractSalesCount(
-                                                                  containerReportsCheckInSalesResponse
-                                                                      .jsonBody)!,
-                                                          settings:
-                                                              LineChartBarData(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary,
-                                                            barWidth: 3.0,
-                                                            dotData: const FlDotData(
-                                                                show: false),
-                                                          ),
-                                                        )
-                                                      ],
-                                                      chartStylingInfo:
-                                                          ChartStylingInfo(
-                                                        enableTooltip: true,
-                                                        tooltipBackgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                        showGrid: true,
-                                                        showBorder: false,
-                                                      ),
-                                                      axisBounds: const AxisBounds(),
-                                                      xAxisLabelInfo:
-                                                          AxisLabelInfo(
-                                                        showLabels: true,
-                                                        labelTextStyle:
-                                                            const TextStyle(),
-                                                        labelInterval: 10.0,
-                                                        labelFormatter:
-                                                            LabelFormatter(
-                                                          numberFormat: (val) =>
-                                                              val.toString(),
-                                                        ),
-                                                        reservedSize: 32.0,
-                                                      ),
-                                                      yAxisLabelInfo:
-                                                          const AxisLabelInfo(
-                                                        showLabels: true,
-                                                        labelTextStyle:
-                                                            TextStyle(),
-                                                        labelInterval: 10.0,
-                                                        reservedSize: 40.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Container(
-                                                width: 15.0,
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.01,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Check-In',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 11.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
                                               Container(
                                                 width: 15.0,
                                                 height:

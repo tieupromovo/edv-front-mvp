@@ -282,6 +282,15 @@ class _OnBoardingPageWidgetState extends State<OnBoardingPageWidget>
                                                                       .w600,
                                                             ),
                                                       ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
                                                       Text(
                                                         'Loja: ',
                                                         style: FlutterFlowTheme

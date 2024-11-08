@@ -610,7 +610,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                                     child: Padding(
                                                                                       padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                       child: Text(
-                                                                                        acaoListItem.conversion.toString(),
+                                                                                        formatNumber(
+                                                                                          acaoListItem.conversion,
+                                                                                          formatType: FormatType.percent,
+                                                                                        ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: 'Inter',
                                                                                               color: FlutterFlowTheme.of(context).primaryText,

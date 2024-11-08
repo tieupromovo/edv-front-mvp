@@ -75,7 +75,6 @@ class _OperacaoPageWidgetState extends State<OperacaoPageWidget> {
         context.goNamed('OnBoardingPage');
       } else {
         _model.dataAutal = getCurrentTimestamp;
-        safeSetState(() {});
       }
     });
 

@@ -315,6 +315,8 @@ class ReportsGroup {
       ReportsScheduledPresencesCall();
   static ReportsCheckInSalesCall reportsCheckInSalesCall =
       ReportsCheckInSalesCall();
+  static ReportsHomeDetailsCall reportsHomeDetailsCall =
+      ReportsHomeDetailsCall();
   static ReportsCumulativeSalesCall reportsCumulativeSalesCall =
       ReportsCumulativeSalesCall();
 }
@@ -465,6 +467,37 @@ class ReportsCheckInSalesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'ReportsCheckInSales',
       apiUrl: '$baseUrl/$actionId/checkinSales',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {
+        'action_date': date,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportsHomeDetailsCall {
+  Future<ApiCallResponse> call({
+    int? actionId,
+    String? date = '',
+    String? jwt = '',
+  }) async {
+    final baseUrl = ReportsGroup.getBaseUrl(
+      jwt: jwt,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportsHomeDetails',
+      apiUrl: '$baseUrl/homepage/$actionId',
       callType: ApiCallType.GET,
       headers: {
         'Content-type': 'application/json',
